@@ -1,3 +1,3 @@
-import Quotes from './Quotes'
+import Quotes from "./Quotes";
 
-export default Quotes
+export default Quotes;
