@@ -8,6 +8,9 @@ import Quotes from "./components/pages/Quotes";
 import Navbar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router-dom";
+import AuthorInstance from "./components/pages/templates/AuthorInstance"
+import BookInstance from "./components/pages/templates/BookInstance"
+import QuoteInstance from "./components/pages/templates/QuoteInstance"
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path="/books" component={Books} />
         <Route path="/authors" component={Authors} />
         <Route path="/quotes" component={Quotes} />
+        <Route path="/book" component={BookInstance} />
+        <Route path="/author" component={AuthorInstance} />
+        <Route path="/quote" component={QuoteInstance} />
       </div>
     </BrowserRouter>
   );
