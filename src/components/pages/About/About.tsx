@@ -1,22 +1,51 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
+import TeamMember from "./TeamMember";
 
-// const teamMembers = [
-//   { name: "Andrew Le" },
-//   { name: "Sai Kiran Maddela" },
-//   { name: "Rahul Ramaswamy" },
-//   { name: "Byungik Hyun" },
-//   { name: "Maria Sierra" },
-// ];
+const teamMembers = [
+  { name: "Andrew Le", username: "andrewandyle", commits: 0, issues: 0 },
+  { name: "Sai Kiran Maddela", username: "saikm22000", commits: 0, issues: 0 },
+  {
+    name: "Rahul Ramaswamy",
+    username: "rahulramaswamy",
+    commits: 0,
+    issues: 0,
+  },
+  { name: "Byungik Hyun", username: "quddlr9015", commits: 0, issues: 0 },
+  { name: "Maria Sierra", username: "mjscs", commits: 0, issues: 0 },
+];
 
 function About() {
   const [loading, setLoading] = useState(true);
+  const [teamData, setTeamData] = useState(teamMembers);
+  const [stats, setStats] = useState({ commits: 0, issues: 0 });
 
   useEffect(() => {
     async function getData() {
+      let newStats = { ...stats };
       const commits = await fetchCommits();
-      console.log("commits", commits);
+      newStats = { ...newStats, commits: Object.values(commits).length };
+      let newTeamMembers = [...teamMembers];
+      commits.forEach((commit: any) => {
+        (
+          newTeamMembers.find(
+            (member) =>
+              member.name === commit.author_name ||
+              member.username === commit.author_name
+          ) || newTeamMembers[4]
+        ).commits++;
+      });
       const issues = await fetchIssues();
-      console.log("issues", issues);
+      newStats = { ...newStats, issues: Object.values(issues).length };
+      issues.forEach((issue: any) => {
+        (
+          newTeamMembers.find(
+            (member) => member.username === issue.author.username
+          ) || newTeamMembers[4]
+        ).issues++;
+      });
+      setStats(newStats);
+      setTeamData(newTeamMembers);
       setLoading(false);
     }
     getData();
@@ -52,6 +81,19 @@ function About() {
           works or authors, or for those who simply want to get more into
           reading!
         </p>
+      </div>
+      <div className="container">
+        <h1 className="text-center">Team</h1>
+        <hr />
+        <div className="d-flex">
+          {teamData.map((data) => (
+            <TeamMember member={data} />
+          ))}
+        </div>
+      </div>
+      <div className="container">
+        <h3>Total Commits: {stats.commits}</h3>
+        <h3>Total Issues: {stats.issues}</h3>
       </div>
     </div>
   );
