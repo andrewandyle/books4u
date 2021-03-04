@@ -1,13 +1,12 @@
 import React from "react";
-import BookItem from "./items/BookItem";
 
-function Grid({ data }: any) {
+function Grid({ data, Component }: any) {
   return (
-    <div>
-      {data.map((item: any) => (
-        <BookItem item={item}></BookItem>
-      ))}
-    </div>
+      <div className = "my-3 row">
+        {data.map((item: any) => (
+          <Component item={item}></Component>
+        ))}
+      </div>
   );
 }
 
