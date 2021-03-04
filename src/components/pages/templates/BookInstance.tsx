@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 const books: Book[] = [
-  { id: "0", 
+    { id: "0", 
     image: "http://books.google.com/books/content?id=_oG_iTxP1pIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api", 
     author: "Daniel Keyes",
     title: "Flowers for Algernon",
@@ -48,14 +48,14 @@ interface Book {
 }
 
 function BookInstance() {
-  const [bookId, setBookId] = useState(0);
-  useEffect(() => {
-    const url = window.location.href;
-    const split_url = url.split("/");
-    const id = split_url[split_url.length - 1];
-    setBookId(parseInt(id));
-  }, []);
-  return (
+    const [bookId, setBookId] = useState(0);
+    useEffect(() => {
+        const url = window.location.href;
+        const split_url = url.split("/");
+        const id = split_url[split_url.length - 1];
+        setBookId(parseInt(id));
+    }, []);
+    return (
     <div className="d-flex flex-column align-items-center">
         <img className="p-2" src={books[bookId].image} alt="Book Image"/>
         <h2 className="p-2">{books[bookId].title}</h2>
