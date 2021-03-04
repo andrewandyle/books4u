@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-  <div>
+  <div style ={{height: "100%"}}>
     <div className = "text-center">
       <h1>Welcome to Books4U</h1>
       <h3>We're here to help you to find the books</h3>
     </div>
     
-    <div className = "container flex justify-content-center">
+    <div className = "container flex justify-content-center" style = {{height :600}}>
         <div className = "row">
           <div className = "column ml- mt-5 mb-5" style = {{width:"33%"}}>
             <div className="card text-center">
@@ -60,7 +60,7 @@ function Home() {
               </div>
             </div>
           </div>
-
+    
         </div>
       </div>
 
