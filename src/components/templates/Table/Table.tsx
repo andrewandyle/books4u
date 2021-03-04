@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Table({ data }: any) {
   return (
@@ -12,7 +13,12 @@ function Table({ data }: any) {
           {data.map((row: any) => (
             <tr>
               {Object.values(row).map((item: any) => (
-                <td>{item}</td>
+                <td>
+                  <Link to={`/author/${item}`}>
+                  {item}
+                    <br></br>
+                  </Link>
+                </td>
               ))}
             </tr>
           ))}
