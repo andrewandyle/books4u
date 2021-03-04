@@ -3,10 +3,24 @@ import Table from "../../templates/Table";
 
 function Authors() {
   const authors = [
-    { id: "1", name: "name1", works: "works1" },
-    { id: "2", name: "name2", works: "works2" },
-    { id: "3", name: "name3", works: "works3" },
-  ];
+    { id: "0", 
+    name: "Verna Aardema", 
+    works: "Porque Zumban los Mosquitos en los Oidos de la Gente", 
+    onTour: "No",
+    },
+
+    { id: "1", 
+    name: "Ken Burns", 
+    works: "The Roosevelts", 
+    onTour: "Yes",
+    },
+
+    { id: "2", 
+    name: "Geoffrey C. Ward", 
+    works: "Before the Trumpet", 
+    onTour: "Yes",
+    }
+];
   return (<div>
     <div>
         <div className="container-fluid pt-4 pb-4 d-flex flex-column align-items-center">
