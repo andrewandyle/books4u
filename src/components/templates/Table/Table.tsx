@@ -16,7 +16,7 @@ function Table({ data }: any) {
                 <td>
                   <Link to={`/author/${item}`}>
                   {item}
-                    <br></br>
+                  <br></br>
                   </Link>
                 </td>
               ))}
