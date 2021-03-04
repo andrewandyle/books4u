@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from "../../templates/Grid/Grid";
+import BookItem from "../../templates/Grid/items/BookItem";
 
 function Books() {
   const books = [
@@ -9,8 +10,16 @@ function Books() {
   ];
   return (
     <div>
-      This is the books page.
-      <Grid data={books}></Grid>
+      <div className="container-fluid pt-4 pb-4">
+      <div className="container">
+        <h1 className="text-center">Books</h1>
+        <hr />
+        <p className = "text-center">
+          Find information on your favorite books!
+        </p>
+      </div>
+    </div>
+      <Grid data={books} Component = {BookItem}></Grid>
     </div>
   );
 }
