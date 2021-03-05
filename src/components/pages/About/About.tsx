@@ -49,6 +49,9 @@ function About() {
       setLoading(false);
     }
     getData();
+    
+    
+     
   }, []);
 
   async function fetchCommits() {
@@ -92,10 +95,14 @@ function About() {
         </div>
       </div>
       <div className="container">
-        <h3>Total Commits: {stats.commits}</h3>
-        <h3>Total Issues: {stats.issues}</h3>
+        <h3 className="text-center">Total Commits: {stats.commits} </h3>
+        <h3 className="text-center">Total Issues: {stats.issues}</h3>
+        <h4 className="text-center">
+        <a href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6">Postman Documentation</a>
+        </h4>
       </div>
     </div>
+    
   );
 }
 
