@@ -100,6 +100,9 @@ function About() {
         <h4 className="text-center">
         <a href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6">Postman Documentation</a>
         </h4>
+        <h4 className="text-center">
+        <a href="https://gitlab.com/cs373-group14/books4u">GitLab Documentation</a>
+        </h4>
       </div>
     </div>
     
