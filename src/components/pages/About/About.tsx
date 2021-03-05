@@ -97,15 +97,38 @@ function About() {
       <div className="container">
         <h3 className="text-center">Total Commits: {stats.commits} </h3>
         <h3 className="text-center">Total Issues: {stats.issues}</h3>
-        <h4 className="text-center">
+        {/* <h4 className="text-center">
         <a href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6">Postman Documentation</a>
         </h4>
         <h4 className="text-center">
         <a href="https://gitlab.com/cs373-group14/books4u">GitLab Repository</a>
-        </h4>
+        </h4> */}
+        <div className = "row py 2 align-center">
+          <div className = "p-2 col-lg-4 col-md-2">
+            <div className = "card">
+              <div className = "card-body">
+                <img className = "card-image" src='https://cdn.auth0.com/blog/build-a-secure-express-api-using-postman-and-auth0/postman-logo.png'/>
+                <br></br>
+                <a className = "card-title" href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6">
+                  <h4>Postman Documentation Link</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className = "p-2 col-lg-4 col-md-2">
+            <div className = "card">
+              <div className = "card-body">
+                <img className = "card-image" src='https://about.gitlab.com/images/press/logo/png/gitlab-logo-gray-stacked-rgb.png' style = {{height: "280px", width: "300px"}}/>
+                <br></br>
+                <a className = "card-title" href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6">
+                  <h4>GitLab Repo Link</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
   );
 }
 
