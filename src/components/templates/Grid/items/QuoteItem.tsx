@@ -16,7 +16,7 @@ function QuoteItem({ item }: any) {
           <br></br>
           Source: {work}
         </p>
-        <a href={`/quote/${id}`} className="btn btn-primary">See the Quote!</a>    
+        <a href={`/quote/${id}`} className="btn btn-primary">See More Information!</a>    
       </div>
     </div>
   );
