@@ -71,7 +71,7 @@ function BookInstance() {
             <li className="list-group-item">{books[bookId].year}</li>
         </ul>
         <br></br>
-        <a href="/quotes" className="btn btn-primary">Find Some Notable Quotes from this Book!</a>
+        <a href={`/quote/${bookId}`} className="btn btn-primary">Look at a Quote from this Book!</a>
     </div>
   );
 }
