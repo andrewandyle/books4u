@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const authors: Author[] = [
   {
     id: "0",
@@ -56,7 +57,7 @@ function AuthorInstance() {
       <h2 className="p-2">{authors[authorId].name}</h2>
       <ul className="list-group">
         <li className="list-group-item">
-          <a href={`/book/${authorId}`}> Works: {authors[authorId].works}</a>
+          <Link to={`/book/${authorId}`}>Works: {authors[authorId].works}</Link>
         </li>
         <li className="list-group-item">
           Biography/Spotlight: {authors[authorId].bio}
@@ -66,9 +67,9 @@ function AuthorInstance() {
         </li>
       </ul>
       <br></br>
-      <a href={`/quote/${authorId}`} className="btn btn-primary">
+      <Link to={`/quote/${authorId}`} className="btn btn-primary">
         Look at a Quote from this Book!
-      </a>
+      </Link>
     </div>
   );
 }

@@ -2,18 +2,14 @@
 import React, { useState, useEffect } from "react";
 import TeamMember from "./TeamMember";
 
-const teamMembers = [
-  { name: "Andrew Le", username: "andrewandyle", commits: 0, issues: 0 },
-  { name: "Sai Kiran Maddela", username: "saikm22000", commits: 0, issues: 0 },
-  {
-    name: "Rahul Ramaswamy",
-    username: "rahulramaswamy",
-    commits: 0,
-    issues: 0,
-  },
-  { name: "Byungik Hyun", username: "quddlr9015", commits: 0, issues: 0 },
-  { name: "Maria Sierra", username: "mjscs", commits: 0, issues: 0 },
-];
+interface TeamMemberData {
+  name: string;
+  username: string;
+  email: string;
+  commits: number;
+  issues: number;
+}
+const teamMembers: TeamMemberData[] = [];
 
 function About() {
   const [loading, setLoading] = useState(true);
@@ -22,27 +18,62 @@ function About() {
 
   useEffect(() => {
     async function getData() {
+      setLoading(true);
       let newStats = { ...stats };
       const commits = await fetchCommits();
       newStats = { ...newStats, commits: Object.values(commits).length };
-      let newTeamMembers = [...teamMembers];
+      let newTeamMembers = [
+        {
+          name: "Andrew Le",
+          username: "andrewandyle",
+          email: "andrewandyle@gmail.com",
+          commits: 0,
+          issues: 0,
+        },
+        {
+          name: "Sai Kiran Maddela",
+          username: "saikm22000",
+          email: "saikiran.m00@gmail.com",
+          commits: 0,
+          issues: 0,
+        },
+        {
+          name: "Rahul Ramaswamy",
+          username: "rahulramaswamy",
+          email: "rahul.ramaswamy@utexas.edu",
+          commits: 0,
+          issues: 0,
+        },
+        {
+          name: "Byungik Hyun",
+          username: "quddlr9015",
+          email: "quddlr9015@gmail.com",
+          commits: 0,
+          issues: 0,
+        },
+        {
+          name: "Maria Sierra",
+          username: "mjscs",
+          email: "69916283+mjscs@users.noreply.github.com",
+          commits: 0,
+          issues: 0,
+        },
+      ];
       commits.forEach((commit: any) => {
-        (
-          newTeamMembers.find(
-            (member) =>
-              member.name === commit.author_name ||
-              member.username === commit.author_name
-          ) || newTeamMembers[4]
-        ).commits++;
+        const correspondingMember = newTeamMembers.find(
+          (member) =>
+            member.email === commit.author_email ||
+            member.username === commit.author_name
+        );
+        if (correspondingMember) correspondingMember.commits++;
       });
       const issues = await fetchIssues();
       newStats = { ...newStats, issues: Object.values(issues).length };
       issues.forEach((issue: any) => {
-        (
-          newTeamMembers.find(
-            (member) => member.username === issue.author.username
-          ) || newTeamMembers[4]
-        ).issues++;
+        const correspondingMember = newTeamMembers.find(
+          (member) => member.username === issue.author.username
+        );
+        if (correspondingMember) correspondingMember.issues++;
       });
       setStats(newStats);
       setTeamData(newTeamMembers);
@@ -87,19 +118,13 @@ function About() {
         <hr />
         <div className="d-flex">
           {teamData.map((data) => (
-            <TeamMember member={data} />
+            <TeamMember member={data} key={data.username} />
           ))}
         </div>
       </div>
       <div className="container">
         <h3 className="text-center">Total Commits: {stats.commits} </h3>
         <h3 className="text-center">Total Issues: {stats.issues}</h3>
-        {/* <h4 className="text-center">
-        <a href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6">Postman Documentation</a>
-        </h4>
-        <h4 className="text-center">
-        <a href="https://gitlab.com/cs373-group14/books4u">GitLab Repository</a>
-        </h4> */}
         <div className="row py 2 align-center">
           <div className="p-2 col-lg-4 col-md-2">
             <div className="card">
@@ -113,6 +138,8 @@ function About() {
                 <a
                   className="card-title"
                   href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <h4>Postman Documentation Link</h4>
                 </a>
@@ -132,6 +159,8 @@ function About() {
                 <a
                   className="card-title"
                   href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6"
+                  target="_blank"
+                  rel="noreferrer"
                 >
                   <h4>GitLab Repo Link</h4>
                 </a>

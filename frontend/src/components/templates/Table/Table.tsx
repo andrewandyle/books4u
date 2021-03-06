@@ -10,15 +10,16 @@ function Table({ data }: any) {
       <thead className="thead-dark">
         <tr>
           {Object.keys(data[0]).map(
-            (header) => header !== "id" && <th>{header.toUpperCase()}</th>
+            (header) =>
+              header !== "id" && <th key={header}>{header.toUpperCase()}</th>
           )}
         </tr>
         {data.map((row: any) => (
-          <tr>
+          <tr key={row.id}>
             {Object.values(row).map(
               (item: any, index) =>
                 Object.keys(row).find((key) => row[key] === item) !== "id" && (
-                  <td>
+                  <td key={`index_${index}_row_${row.id}`}>
                     {index === 1 ? (
                       <Link to={`/author/${row.id}`}>{item}</Link>
                     ) : (

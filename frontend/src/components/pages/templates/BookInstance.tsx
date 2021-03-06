@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const books: Book[] = [
   {
     id: "0",
@@ -76,7 +77,7 @@ function BookInstance() {
       <h2 className="p-2">{books[bookId].title}</h2>
       <ul className="list-group">
         <li className="list-group-item">
-          <a href={`/author/${bookId}`}> Author: {books[bookId].author}</a>
+          <Link to={`/author/${bookId}`}> Author: {books[bookId].author}</Link>
         </li>
         <li className="list-group-item">Genre: {books[bookId].genre}</li>
         <li className="list-group-item">
@@ -90,9 +91,9 @@ function BookInstance() {
         <li className="list-group-item">{books[bookId].year}</li>
       </ul>
       <br></br>
-      <a href={`/quote/${bookId}`} className="btn btn-primary">
+      <Link to={`/quote/${bookId}`} className="btn btn-primary">
         Look at a Quote from this Book!
-      </a>
+      </Link>
     </div>
   );
 }

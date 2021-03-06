@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const quotes: Quote[] = [
   {
     id: "0",
@@ -53,13 +54,15 @@ function QuoteInstance() {
   return (
     <div className="d-flex flex-column align-items-center">
       <img className="p-2" src={quotes[quoteId].image} alt="Quote" />
-      <a href={`/book/${quoteId}`} className="btn btn-primary">
+      <Link to={`/book/${quoteId}`} className="btn btn-primary">
         Learn More About the Source!
-      </a>
+      </Link>
       <h4 className="p-2">"{quotes[quoteId].text}"</h4>
       <ul className="list-group">
         <li className="list-group-item">
-          <a href={`/author/${quoteId}`}> Author: {quotes[quoteId].author}</a>
+          <Link to={`/author/${quoteId}`}>
+            Author: {quotes[quoteId].author}
+          </Link>
         </li>
         <li className="list-group-item">
           Length in Words: {quotes[quoteId].length}
