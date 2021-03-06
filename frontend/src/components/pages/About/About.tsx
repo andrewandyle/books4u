@@ -2,6 +2,13 @@
 import React, { useState, useEffect } from "react";
 import TeamMember from "./TeamMember";
 
+// Images
+import AndrewLe from "./media/andrew_le.jpg";
+import SaiKiranMaddela from "./media/sai_kiran_maddela.jpg";
+import RahulRamaswamy from "./media/rahul_ramaswamy.jpg";
+import ByungikHyun from "./media/byungik_hyun.jpg";
+import MariaSierra from "./media/maria_sierra.png";
+
 interface TeamMemberData {
   name: string;
   username: string;
@@ -29,6 +36,9 @@ function About() {
           email: "andrewandyle@gmail.com",
           commits: 0,
           issues: 0,
+          image: AndrewLe,
+          bio:
+            "Andrew is a senior CS student who enjoys full-stack app development. Enjoys biking, weightlifting, being a foodie, and playing video games.",
         },
         {
           name: "Sai Kiran Maddela",
@@ -36,6 +46,9 @@ function About() {
           email: "saikiran.m00@gmail.com",
           commits: 0,
           issues: 0,
+          image: SaiKiranMaddela,
+          bio:
+            "Sai is a senior CS student who is interested in AI/ML concepts, specifically neural networks and NLP. He enjoys playing basketball, biking, and reading.",
         },
         {
           name: "Rahul Ramaswamy",
@@ -43,6 +56,9 @@ function About() {
           email: "rahul.ramaswamy@utexas.edu",
           commits: 0,
           issues: 0,
+          image: RahulRamaswamy,
+          bio:
+            "Rahul is a junior double majoring in computer science and math. He loves to try new food, travel, play poker, and watch new TV shows/movies.",
         },
         {
           name: "Byungik Hyun",
@@ -50,6 +66,9 @@ function About() {
           email: "quddlr9015@gmail.com",
           commits: 0,
           issues: 0,
+          image: ByungikHyun,
+          bio:
+            "Byungik is a senior CS student who likes to watch Premier League soccer games, play League of Legends, and watch old movies.",
         },
         {
           name: "Maria Sierra",
@@ -57,6 +76,9 @@ function About() {
           email: "69916283+mjscs@users.noreply.github.com",
           commits: 0,
           issues: 0,
+          image: MariaSierra,
+          bio:
+            "Maria is a senior CS student who is a fan of hiking, exploring new eateries in Austin, and watching the latest series in the Marvel cinematic universe.",
         },
       ];
       commits.forEach((commit: any) => {
