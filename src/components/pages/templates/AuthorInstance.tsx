@@ -51,7 +51,7 @@ function AuthorInstance() {
                 <li className="list-group-item">On Tour: {authors[authorId].onTour ? "True" : "False"}</li>
             </ul>     
             <br></br> 
-            <a href="/quotes" className="btn btn-primary">Find Some Notable Quotes From This Author!</a>
+            <a href={`/quote/${authorId}`} className="btn btn-primary">Look at a Quote from this Book!</a>
         </div>
     );
 }
