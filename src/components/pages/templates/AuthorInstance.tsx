@@ -44,7 +44,9 @@ function AuthorInstance() {
             <img className="p-2" src={authors[authorId].image} alt="Author Image"/>
             <h2 className="p-2">{authors[authorId].name}</h2>
             <ul className="list-group">
-                <li className="list-group-item">Works: {authors[authorId].works}</li>
+                <li className="list-group-item">
+                    <a href={`/books`}> Works: {authors[authorId].works}</a>
+                </li>
                 <li className="list-group-item">Biography/Spotlight: {authors[authorId].bio}</li>
                 <li className="list-group-item">On Tour: {authors[authorId].onTour ? "True" : "False"}</li>
             </ul>      

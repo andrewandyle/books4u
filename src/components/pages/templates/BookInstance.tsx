@@ -60,7 +60,9 @@ function BookInstance() {
         <img className="p-2" src={books[bookId].image} alt="Book Image"/>
         <h2 className="p-2">{books[bookId].title}</h2>
         <ul className="list-group">
-            <li className="list-group-item">Author: {books[bookId].author}</li>
+            <li className="list-group-item">
+                <a href={`/author/${bookId}`}> Author: {books[bookId].author}</a>
+            </li>
             <li className="list-group-item">Genre: {books[bookId].genre}</li>
             <li className="list-group-item">Publishing Year: {books[bookId].year}</li>
             <li className="list-group-item">{books[bookId].description}</li>
