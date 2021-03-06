@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 function QuoteItem({ item }: any) {
-  const { id, quote, author, length, tags } = item;
+  const { id, text, author, length, tags, work} = item;
   return (
     <div className = "p-2 col-lg-4 col-md-6">
       <div className = "p-1 bg-light border border-dark rounded-lg container d-flex flex-column align-items-center"
@@ -10,8 +10,11 @@ function QuoteItem({ item }: any) {
         <p style={{textAlign: "center"}}> 
           Tags: {tags}
           <br></br>
-          length: {length}
+          Length: {length}
           <br></br>
+          Quote: {text}
+          <br></br>
+          Source: {work}
         </p>
         <a href={`/quote/${id}`} className="btn btn-primary">See the Quote!</a>    
       </div>

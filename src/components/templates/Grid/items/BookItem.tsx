@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 function BookItem({ item }: any) {
-  const { id, author, title, year, price, pageCount} = item;
+  const { id, author, genre, title, year, price, pageCount} = item;
   return (
     <div className = "p-2 col-lg-4 col-md-6">
       <div className = "p-1 bg-light border border-dark rounded-lg container d-flex flex-column align-items-center"
@@ -15,6 +15,8 @@ function BookItem({ item }: any) {
           Price: {price}
           <br></br>
           Page Count: {pageCount}
+          <br></br>
+          Genre: {genre}
         </p>
         <a href={`/book/${id}`} className="btn btn-primary">See More</a>      
       </div>

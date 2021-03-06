@@ -118,7 +118,7 @@ function About() {
           <div className = "p-2 col-lg-4 col-md-2">
             <div className = "card">
               <div className = "card-body">
-                <img className = "card-image" src='https://about.gitlab.com/images/press/logo/png/gitlab-logo-gray-stacked-rgb.png' style = {{height: "280px", width: "300px"}}/>
+                <img className = "card-image" src='https://about.gitlab.com/images/press/logo/png/gitlab-logo-gray-stacked-rgb.png' style = {{height: "278px", width: "300px"}}/>
                 <br></br>
                 <a className = "card-title" href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6">
                   <h4>GitLab Repo Link</h4>

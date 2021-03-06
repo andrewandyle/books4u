@@ -4,22 +4,27 @@ import Table from "../../templates/Table";
 function Authors() {
   const authors = [
     { id: "0", 
-    name: "Verna Aardema", 
-    works: "Porque Zumban los Mosquitos en los Oidos de la Gente", 
+    name: "J.K. Rowling", 
+    works: "Harry Potter and the Sorcerer’s Stone, Harry Potter and the Deathly Hallows, ...", 
+    bio: "J. K. Rowling was born in the summer of 1965 at Yate General Hospital in England and grew up in Chepstow, Gwent.  She left Chepstow for Exeter University, where she ...",
     onTour: "No",
+    lastInitial: "R"
     },
-
     { id: "1", 
-    name: "Ken Burns", 
-    works: "The Roosevelts", 
-    onTour: "Yes",
+    name: "F. Scott Fitzgerald", 
+    works: "The Great Gatsby, The Diamond as Big as the Ritz, ...", 
+    bio: "F. Scott Fitzgerald was considered the quintessential author of the Jazz Age. Born in St. Paul, Minnesota, in 1896, Fitzgerald attended Princeton University, where he ...",
+    onTour: "No",
+    lastInitial: "F"
     },
 
     { id: "2", 
-    name: "Geoffrey C. Ward", 
-    works: "Before the Trumpet", 
-    onTour: "Yes",
-    }
+    name: "John Steinbeck", 
+    works: "La perla, East of Eden, Cannery Row, The Grapes of Wrath, Of Mice and Men, ...", 
+    bio: "John Steinbeck, born in Salinas, California, in 1902, grew up in a fertile agricultural valley, about 25 miles from the Pacific Coast. Both the valley and the coast would serve as ...",
+    onTour: "No",
+    lastInitial: "S"
+    },
 ];
   return (<div>
     <div>
