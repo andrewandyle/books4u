@@ -49,8 +49,9 @@ function AuthorInstance() {
                 </li>
                 <li className="list-group-item">Biography/Spotlight: {authors[authorId].bio}</li>
                 <li className="list-group-item">On Tour: {authors[authorId].onTour ? "True" : "False"}</li>
-            </ul>      
-            <a href="#!" className="btn btn-primary">Link to Page?</a>
+            </ul>     
+            <br></br> 
+            <a href="/quotes" className="btn btn-primary">Find Some Notable Quotes From This Author!</a>
         </div>
     );
 }

@@ -70,7 +70,8 @@ function BookInstance() {
             <li className="list-group-item">Price: ${books[bookId].price}</li>
             <li className="list-group-item">{books[bookId].year}</li>
         </ul>
-        <a href={books[bookId].buyLink} className="btn btn-primary">Buy</a>
+        <br></br>
+        <a href="/quotes" className="btn btn-primary">Find Some Notable Quotes from this Book!</a>
     </div>
   );
 }

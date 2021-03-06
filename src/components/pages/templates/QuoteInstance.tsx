@@ -42,11 +42,11 @@ function QuoteInstance() {
     return (
         <div className="d-flex flex-column align-items-center">
             <img className="p-2" src={quotes[quoteId].image} alt="Quote Image"/>
+            <a href={`/book/${quoteId}`} className="btn btn-primary">Learn More About the Source!</a>
             <h4 className="p-2">"{quotes[quoteId].text}"</h4>
             <ul className="list-group">
                 <li className="list-group-item">
                     <a href={`/author/${quoteId}`}> Author: {quotes[quoteId].author}</a>
-                    
                 </li>
                 <li className="list-group-item">Length in Words: {quotes[quoteId].length}</li>
                 <li className="list-group-item">Tags: {quotes[quoteId].tags}</li>
