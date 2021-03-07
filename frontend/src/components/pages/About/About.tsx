@@ -180,7 +180,7 @@ function About() {
                 <br></br>
                 <a
                   className="card-title"
-                  href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6"
+                  href="https://gitlab.com/cs373-group14/books4u"
                   target="_blank"
                   rel="noreferrer"
                 >
