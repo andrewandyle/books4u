@@ -1,77 +1,47 @@
 # Books4u
 
-- Canvas / Microsoft Teams group number (please check this carefully)
+### Necessary information related to the grading of this project.
 
-Group 14
+Git SHA: ab7919469cf6671145cac295bcda2b90b6b1981b
 
-- names of the team members
+Project Leader: Andrew Le
+Pipelines: N/A
 
-Byungik Hyun, Andrew Le, Sai Kiran Maddela, Rahul Ramaswamy, Maria Sierra
+Website: https://booksforyou.me/
 
-- name of the project (alphanumeric, no spaces, max 32 chars, this will also be your URL)
+Comments: N/A
 
-Books4u
+#### Byungik Hyun
 
-- the proposed project
+EID: bh26948
+GitLab ID: quddlr9015
+Estimated Completion Time: 15
+Actual Completion Time: 21
 
-A website that allows users to search for information on books, authors, and quotes.
+#### Andrew Le
 
-- URLs of at least three disparate data sources that you will programmatically scrape using a RESTful API (be very sure about this)
+EID: aal2797
+GitLab ID: andrewandyle
+Estimated Completion Time: 15
+Actual Completion Time: 21
 
-Books - https://developers.google.com/maps/documentation/places/web-service/overview?hl=en_US
+#### Sai Kiran Maddela
 
-Authors - https://developer.penguinrandomhouse.com/docs/read/enhanced_prh_api/resources/Authors  
+EID: sm68866
+GitLab ID: saikm22000
+Estimated Completion Time: 15
+Actual Completion Time: 21
 
-Quotes - https://goodreads.com/api
+#### Rahul Ramaswamy
 
-- at least three models
+EID: rrr3228
+GitLab ID: rahulramaswamy
+Estimated Completion Time: 15
+Actual Completion Time: 21
 
-Books
+#### Maria Sierra
 
-Authors
-
-Quotes
-
-- an estimate of the number of instances of each model
-
-Books - 500+
-
-Authors - 100+
-
-Quotes - 1000+
-
-- each model must have many attributes
-
-Books - Name, Genre, Year, Author, Description, Page Count, Price
-
-Authors - Author Name, Works, Bio/Spotlight, On Tour, First Initial, Last Initial
-
-Quotes - Quote, Length, Image, Author, Tags
-
-- each model must connect to at least two other models
-
-Books have authors and contain quotes
-
-Authors have books and quotes
-
-Quotes are from books and authors
-
-- each model must be rich with different media (e.g., descriptions, feeds, images, maps, videos, etc.) (be very sure about this)
-
-Books - Descriptions, images
-
-Authors - Descriptions, Author Photo
-
-Quotes - Images, Descriptions 
-
-- civic engagement
-
-Encouraging individuals to explore new books and authors
-
-- three questions
-
-What books are related to a particular category/genre? 
-
-Where did a particular quote come from?
-
-What books has an author written?
+EID: mjs5855
+GitLab ID: mjscs
+Estimated Completion Time: 15
+Actual Completion Time: 21
