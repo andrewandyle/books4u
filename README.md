@@ -13,35 +13,35 @@ Comments: N/A
 
 #### Byungik Hyun
 
-EID: bh26948
-GitLab ID: quddlr9015
-Estimated Completion Time: 15
-Actual Completion Time: 21
+EID: bh26948  
+GitLab ID: quddlr9015  
+Estimated Completion Time: 15  
+Actual Completion Time: 21  
 
 #### Andrew Le
 
-EID: aal2797
-GitLab ID: andrewandyle
-Estimated Completion Time: 15
-Actual Completion Time: 21
+EID: aal2797  
+GitLab ID: andrewandyle  
+Estimated Completion Time: 15  
+Actual Completion Time: 21  
 
 #### Sai Kiran Maddela
 
-EID: sm68866
-GitLab ID: saikm22000
-Estimated Completion Time: 15
-Actual Completion Time: 21
+EID: sm68866  
+GitLab ID: saikm22000  
+Estimated Completion Time: 15  
+Actual Completion Time: 21  
 
 #### Rahul Ramaswamy
 
-EID: rrr3228
-GitLab ID: rahulramaswamy
-Estimated Completion Time: 15
-Actual Completion Time: 21
+EID: rrr3228  
+GitLab ID: rahulramaswamy  
+Estimated Completion Time: 15  
+Actual Completion Time: 21  
 
 #### Maria Sierra
 
-EID: mjs5855
-GitLab ID: mjscs
-Estimated Completion Time: 15
-Actual Completion Time: 21
+EID: mjs5855  
+GitLab ID: mjscs  
+Estimated Completion Time: 15  
+Actual Completion Time: 21  
