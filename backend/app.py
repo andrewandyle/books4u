@@ -162,4 +162,4 @@ def get_quote(id):
     return quotes["quotes"][int(id)]
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host="0.0.0.0", port=80, threaded=True, debug=True)
