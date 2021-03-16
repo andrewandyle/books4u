@@ -23,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:prod": "docker build -t books4u-front .",
+    "stop:prod": "docker stop books4u-front"
   },
   "eslintConfig": {
     "extends": [
@@ -45,5 +47,6 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.7"
-  }
+  },
+  "proxy": "http://localhost:80"
 }
