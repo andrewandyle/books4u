@@ -2,7 +2,7 @@ import json
 from flask import Flask, request, render_template
 from flask_cors import CORS
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
 CORS(app)
 
 # DUMMY DATA
@@ -130,6 +130,10 @@ quotes = {"quotes": [
 @app.route("/")
 def index():
     return {}
+
+@app.route("/<path:path>")
+def index(path):
+    return render_template("index.html")
 
 @app.route('/api/books', methods=["GET"])
 def get_books():
