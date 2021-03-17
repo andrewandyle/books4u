@@ -129,10 +129,6 @@ quotes = {"quotes": [
 
 @app.route("/")
 def index():
-    return {}
-
-@app.route("/<path:path>")
-def index(path):
     return render_template("index.html")
 
 @app.route('/api/books', methods=["GET"])
