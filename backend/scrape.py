@@ -80,13 +80,13 @@ def scrapeNotAwardAndBestSellerAuthors():
 #frames = [dataframe1, dataframe2]
 #authorsDataFrames = pd.concat(frames)
 #authorsDataFrames.to_csv('authors.csv', encoding = 'utf-8')
-'''
+
 authorsDataFrames = pd.read_csv('authors.csv')
 print(authorsDataFrames)
-'''
-def scrapeQuotesByAuthor():
+
+def scrapeQuotesByAuthor(name):
     quote_params = {
-        "author" : "Michael Parks",
+        "author" : name,
         #"minlength" : "0",
         #"maxlength" : "300",
         #"private" : "true",
@@ -99,6 +99,13 @@ def scrapeQuotesByAuthor():
     raw = requests.get(
         "https://quotes.rest/quote/search", params=quote_params
     ).json()
-    print(raw)
+    return raw
 
-scrapeQuotesByAuthor()
+scrapeQuotesByAuthor("Michael Parks")
+frames = []
+for i in range(5):
+    result = scrapeQuotesByAuthor(authorsDataFrames[i]['display'])
+    dataframe = pd.DataFrame.from_dict(result['contents'])
+    frames.append(dataframe)
+quotesDataFrames = pd.concat(frames)
+quotesDataFrames.to_csv('quotes.csv', encoding = 'utf-8')
