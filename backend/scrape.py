@@ -101,11 +101,19 @@ def scrapeQuotesByAuthor(name):
     ).json()
     return raw
 
-scrapeQuotesByAuthor("Michael Parks")
+#scrapeQuotesByAuthor("Michael Parks")
 frames = []
-for i in range(5):
-    result = scrapeQuotesByAuthor(authorsDataFrames[i]['display'])
-    dataframe = pd.DataFrame.from_dict(result['contents'])
-    frames.append(dataframe)
+
+
+
+for i in range(2,5):
+    #print(authorsDataFrames['display'].iloc(i))
+    result = scrapeQuotesByAuthor((authorsDataFrames['display'].iloc(i)))
+    try:
+        dataframe = pd.DataFrame.from_dict(result['contents'])
+        frames.append(dataframe)
+    except:
+        continue
+    
 quotesDataFrames = pd.concat(frames)
 quotesDataFrames.to_csv('quotes.csv', encoding = 'utf-8')
