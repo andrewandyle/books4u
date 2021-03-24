@@ -130,6 +130,16 @@ def scrapeBooksByAuthor(name):
     ).json()
     return raw
 
-result = scrapeBooksByAuthor('Paul McEvoy')
-booksDataFrames = pd.DataFrame.from_dict(result['items'])
+quotesDataFrames = pd.read_csv('quotes.csv')
+frames = []
+for i in range(len(quotesDataFrames)):
+    result = scrapeBooksByAuthor(quotesDataFrames['requested_author'][i])
+    try:
+        dataframe = pd.DataFrame.from_dict(result['items'])
+        frames.append(dataframe)
+    except:
+        continue
+
+booksDataFrames = pd.concat(frames)
 booksDataFrames.to_csv('books.csv', encoding = 'utf-8')
+
