@@ -102,13 +102,16 @@ def scrapeQuotesByAuthor(name):
     return raw
 
 frames = []
-for i in range(5):
+'''
+for i in range(1000):
     result = scrapeQuotesByAuthor(authorsDataFrames['display'][i])
     try:
         dataframe = pd.DataFrame.from_dict(result['contents'])
+        frames.append(dataframe)
     except:
-        dataframe = None
-    frames.append(dataframe)
+        continue
+    
 print(frames)
 quotesDataFrames = pd.concat(frames)
 quotesDataFrames.to_csv('quotes.csv', encoding = 'utf-8')
+'''
