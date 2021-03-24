@@ -115,3 +115,21 @@ print(frames)
 quotesDataFrames = pd.concat(frames)
 quotesDataFrames.to_csv('quotes.csv', encoding = 'utf-8')
 '''
+
+#https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
+
+def scrapeBooksByAuthor(name):
+    book_params = {
+        "q" : '+inauthor:' + name,
+        "key" : "AIzaSyD9kP1HFu062nYfIm-tMqTaHWgnKHejZ7A"
+        
+    }
+    
+    raw = requests.get(
+        "https://www.googleapis.com/books/v1/volumes", params=book_params
+    ).json()
+    return raw
+
+result = scrapeBooksByAuthor('Paul McEvoy')
+booksDataFrames = pd.DataFrame.from_dict(result['items'])
+booksDataFrames.to_csv('books.csv', encoding = 'utf-8')
