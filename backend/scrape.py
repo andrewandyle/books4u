@@ -110,5 +110,8 @@ for i in range(5):
         dataframe = None
     frames.append(dataframe)
 print(frames)
+#scrapeQuotesByAuthor("Michael Parks")
+frames = []
+    
 quotesDataFrames = pd.concat(frames)
 quotesDataFrames.to_csv('quotes.csv', encoding = 'utf-8')
