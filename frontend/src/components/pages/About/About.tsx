@@ -48,7 +48,7 @@ function About() {
           issues: 0,
           image: SaiKiranMaddela,
           bio:
-            "Sai is a senior CS student who is interested in AI/ML concepts, specifically neural networks and NLP. He enjoys playing basketball, biking, and reading.",
+            "Sai is a third year CS student who is interested in AI/ML concepts, specifically neural networks and NLP. He enjoys playing basketball, biking, and reading.",
         },
         {
           name: "Rahul Ramaswamy",
@@ -185,6 +185,27 @@ function About() {
                   rel="noreferrer"
                 >
                   <h4>GitLab Repo Link</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="p-2 col-lg-4 col-md-2">
+            <div className="card">
+              <div className="card-body">
+                <img
+                  className="card-image"
+                  alt="GitLab"
+                  src="https://about.gitlab.com/images/press/logo/png/gitlab-logo-gray-stacked-rgb.png"
+                  style={{ height: "278px", width: "300px" }}
+                />
+                <br></br>
+                <a
+                  className="card-title"
+                  href="https://gitlab.com/cs373-group14/books4u"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h4>Dummy Test</h4>
                 </a>
               </div>
             </div>
