@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from flask_cors import CORS
+#from flask_cors import CORS
 import requests
 import time
 import urllib
@@ -32,6 +32,7 @@ def scrapeAwardAndBestSellerAuthors():
     raw = requests.get(
         "https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/views/list-display", params=author_params
     ).json()
+    return raw
     dataframe = pd.DataFrame.from_dict(raw['data']['authors'])
 
 def scrapeAwardAndNotBestSellerAuthors():
@@ -51,8 +52,9 @@ def scrapeAwardAndNotBestSellerAuthors():
     raw = requests.get(
         "https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/views/list-display", params=author_params
     ).json()
+    return raw
     dataframe = pd.DataFrame.from_dict(raw['data']['authors'])
-
+"""
 def scrapeNotAwardAndBestSellerAuthors():
     author_params = {
         "rows" : "10",
@@ -69,6 +71,34 @@ def scrapeNotAwardAndBestSellerAuthors():
     raw = requests.get(
         "https://api.penguinrandomhouse.com/resources/v2/title/domains/PRH.US/authors/views/list-display", params=author_params
     ).json()
+"""
 
-scrapeAwardAndBestSellerAuthors()
-# scrapeAwardAndNotBestSellerAuthors()
+#raw1 = scrapeAwardAndBestSellerAuthors()
+#raw2 = scrapeAwardAndNotBestSellerAuthors()
+#dataframe1 = pd.DataFrame.from_dict(raw1['data']['authors'])
+#dataframe2 = pd.DataFrame.from_dict(raw2['data']['authors'])
+#frames = [dataframe1, dataframe2]
+#authorsDataFrames = pd.concat(frames)
+#authorsDataFrames.to_csv('authors.csv', encoding = 'utf-8')
+'''
+authorsDataFrames = pd.read_csv('authors.csv')
+print(authorsDataFrames)
+'''
+def scrapeQuotesByAuthor():
+    quote_params = {
+        "author" : "Michael Parks",
+        #"minlength" : "0",
+        #"maxlength" : "300",
+        #"private" : "true",
+        "language" : "en",
+        "limit" : "1",
+        #"sfw" : "false",
+        "api_key" : "fB4po_6wvrjcPMLTOW_SKweF"
+    }
+    
+    raw = requests.get(
+        "https://quotes.rest/quote/search", params=quote_params
+    ).json()
+    print(raw)
+
+scrapeQuotesByAuthor()
