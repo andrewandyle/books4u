@@ -191,7 +191,39 @@ def createBooksCsv():
     # booksDataFrames = pd.concat(frames)
     # booksDataFrames.to_csv('books.csv', encoding = 'utf-8')
 
+
+def createExtraField():
+    #authorsDataFrames = pd.read_csv('author-fixed.csv')
+    def scrapeExtraFieldByAuthor(name):
+        quote_params = {
+            "query" : name,
+            "language" : "en",
+            "detailed" : "true",
+            "start" : "0",
+            "limit" : "1",
+            "api_key" : "fB4po_6wvrjcPMLTOW_SKweF"
+        }
+        raw = requests.get(
+            "https://quotes.rest/quote/authors/search", params=quote_params
+        ).json()
+        return raw
+
+    print(scrapeExtraFieldByAuthor('Mark Twain'))
+    extra_field_list = []
+    for i in range(len(authorsDataFrames)):
+        result = scrapeExtraFieldByAuthor(authorsDataFrames['full_name'][i])
+        try:
+            result = result['contents']['authors']
+            extra_field_list.append({'occupation' : result['occupation'], 'birthday' : result['born'], 'date_of_death' : result['dead']})
+            
+        except:
+            continue
+    
+    extraFieldDataFrames = pd.DataFrame.from_dict(extra_field_list)
+    extraFieldDataFrames.to_csv('extra_fields.csv', encoding = 'utf-8')
+
 if __name__ == "__main__":
-    createAuthorsCsv()
-    createQuotesCsv()
-    createBooksCsv()
+    # createAuthorsCsv()
+    # createQuotesCsv()
+    # createBooksCsv()
+    createExtraField()
