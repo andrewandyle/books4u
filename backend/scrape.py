@@ -53,17 +53,17 @@ def scrapeNoBestsellersAuthors():
     ).json()
     return raw
     
-authors_list = []
-result = scrapeBestSellersAuthors()
-for author in result['data']['authors']:   
-    authors_list.append({'first_name': author['first'], 'last_name' : author['last'], 'on_tour' : author['ontour'], 'bestsellers' : "True", 'spotlight' : author['spotlight'], 'image' : author['_links'][0]['href']})
+# authors_list = []
+# result = scrapeBestSellersAuthors()
+# for author in result['data']['authors']:   
+#     authors_list.append({'full_name' : author['display'], 'first_name': author['first'], 'last_name' : author['last'], 'on_tour' : author['ontour'], 'bestsellers' : "True", 'spotlight' : author['spotlight'], 'image' : author['_links'][0]['href']})
 
-result = scrapeNoBestsellersAuthors()
-for author in result['data']['authors']:   
-    authors_list.append({'first_name': author['first'], 'last_name' : author['last'], 'on_tour' : author['ontour'], 'bestsellers' : "False", 'spotlight' : author['spotlight'], 'image' : author['_links'][0]['href']})
+# result = scrapeNoBestsellersAuthors()
+# for author in result['data']['authors']:   
+#     authors_list.append({'full_name' : author['display'], 'first_name': author['first'], 'last_name' : author['last'], 'on_tour' : author['ontour'], 'bestsellers' : "False", 'spotlight' : author['spotlight'], 'image' : author['_links'][0]['href']})
 
-authorsDataFrames = pd.DataFrame.from_dict(authors_list)
-authorsDataFrames.to_csv('authors-fixed.csv', encoding = 'utf-8')
+# authorsDataFrames = pd.DataFrame.from_dict(authors_list)
+# authorsDataFrames.to_csv('authors-fixed.csv', encoding = 'utf-8')
 
 
 #     dataframe = pd.DataFrame.from_dict(raw['data']['authors'])
@@ -97,40 +97,43 @@ authorsDataFrames.to_csv('authors-fixed.csv', encoding = 'utf-8')
 # #authorsDataFrames = pd.concat(frames)
 # #authorsDataFrames.to_csv('authors.csv', encoding = 'utf-8')
 
-# authorsDataFrames = pd.read_csv('authors.csv')
+authorsDataFrames = pd.read_csv('authors-fixed.csv')
 # #print(authorsDataFrames['display'][0])
 
-# def scrapeQuotesByAuthor(name):
-#     quote_params = {
-#         "author" : name,
-#         #"minlength" : "0",
-#         #"maxlength" : "300",
-#         #"private" : "true",
-#         "language" : "en",
-#         "limit" : "1",
-#         #"sfw" : "false",
-#         "api_key" : "fB4po_6wvrjcPMLTOW_SKweF"
-#     }
+def scrapeQuotesByAuthor(name):
+    quote_params = {
+        "author" : name,
+        #"minlength" : "0",
+        #"maxlength" : "300",
+        #"private" : "true",
+        "language" : "en",
+        "limit" : "1",
+        #"sfw" : "false",
+        "api_key" : "fB4po_6wvrjcPMLTOW_SKweF"
+    }
     
-#     raw = requests.get(
-#         "https://quotes.rest/quote/search", params=quote_params
-#     ).json()
-#     return raw
+    raw = requests.get(
+        "https://quotes.rest/quote/search", params=quote_params
+    ).json()
+    return raw
 
-# frames = []
-# '''
-# for i in range(1000):
-#     result = scrapeQuotesByAuthor(authorsDataFrames['display'][i])
-#     try:
-#         dataframe = pd.DataFrame.from_dict(result['contents'])
-#         frames.append(dataframe)
-#     except:
-#         continue
-    
+quotes_list = []
+
+for i in range(5):
+    result = scrapeQuotesByAuthor(authorsDataFrames['full_name'][i])
+    try:
+        result = result['contents']['quotes']
+        quotes_list.append({'quote' : result[0]['quote'], 'length' : result[0]['length'], 'tags' : result[0]['tags'], 'category' : "None", 'language' : result[0]['language'], 'unique_words' : 0, 'num_syllables' : 0, 'score' : 0, 'most_common_word' : "", 'least_common_word' : "", 'link' : result[0]['permalink'], 'background' : result[0]['background']})
+        
+    except:
+        continue
+quotesDataFrames = pd.DataFrame.from_dict(quotes_list)
+quotesDataFrames.to_csv('quotes-fixed.csv', encoding = 'utf-8')
+
 # print(frames)
 # quotesDataFrames = pd.concat(frames)
 # quotesDataFrames.to_csv('quotes.csv', encoding = 'utf-8')
-# '''
+
 
 # #https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes&key=yourAPIKey
 
