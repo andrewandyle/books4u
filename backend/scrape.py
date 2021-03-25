@@ -151,12 +151,12 @@ def scrapeBooksByAuthor(name):
     return raw
 
 def createBooksCsv():
-    quotesDataFrames = pd.read_csv('quotes-fixed.csv')
+    authorsDataFrames = pd.read_csv('authors-fixed.csv')
     books_list = []
-    for i in range(len(quotesDataFrames)):
-        author_name = quotesDataFrames['author'][i]
+    for i in range(len(authorsDataFrames)):
+        author_name = authorsDataFrames['full_name'][i]
         print(i, author_name)
-        result = scrapeBooksByAuthor(quotesDataFrames['author'][i])
+        result = scrapeBooksByAuthor(author_name)
         try:
             result = result['items']
             for book in result:
