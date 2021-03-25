@@ -1,11 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import ARRAY
-from init import db
+from init import db, ma
 # db = SQLAlchemy()
 
 ###### MODELS ######
 
 # Book Model
+
+
 class Book(db.Model):
     __tablename__ = 'book'
     id = db.Column(db.Integer, primary_key=True)
@@ -27,6 +29,8 @@ class Book(db.Model):
     authors = db.relationship('Author', secondary='books_to_authors')
 
 # Author model
+
+
 class Author(db.Model):
     __tablename__ = 'author'
     id = db.Column(db.Integer, primary_key=True)
@@ -50,6 +54,8 @@ class Author(db.Model):
     quotes = db.relationship('Quote', secondary='author_to_quotes')
 
 # Quote model
+
+
 class Quote(db.Model):
     __tablename__ = 'quote'
     id = db.Column(db.Integer, primary_key=True)
@@ -66,22 +72,79 @@ class Quote(db.Model):
 
     link = db.Column(db.String())
     background = db.Column(db.String())
-    
+
     # author association
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
     author = db.relationship('Author', backref='quote')
 
+
 class BooksToAuthors(db.Model):
-    
+
     book_id = db.Column(db.Integer, db.ForeignKey('book.id'))
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
+
 
 class BooksToQuotes(db.Model):
     __tablename__ = 'books_to_quotes'
     book_id = db.Column(db.Integer, db.ForeignKey('book.id'))
     quote_id = db.Column(db.Integer, db.ForeignKey('quote.id'))
 
+
 class AuthorToQuotes(db.Model):
     __tablename__ = 'author_to_quotes'
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
     quote_id = db.Column(db.Integer, db.ForeignKey('quote.id'))
+
+
+class BookSchema(ma.Schema):
+    class Meta:
+        fields = (
+            "id",
+            "name",
+            "genres",
+            "year",
+            "page_count",
+            "price",
+            "avg_rating",
+            "num_ratings",
+            "maturity_rating",
+            "language",
+            "description",
+            "image",
+            "purchase_link",
+            "authors"
+        )
+
+class AuthorSchema(ma.Schema):
+    class Meta:
+        fields = (
+            "id",
+            "first_name",
+            "last_name",
+            "on_tour",
+            "bestsellers",
+            "birthday",
+            "date_of_death",
+            "genres",
+            "occupation",
+            "spotlight",
+            "image"
+        )
+
+class QuoteSchema(ma.Schema):
+    class Meta:
+        fields = (
+            "id",
+            "quote",
+            "length",
+            "tags",
+            "category",
+            "language",
+            "unique_words",
+            "num_syllables",
+            "score",
+            "most_common_word",
+            "least_common_word",
+            "link",
+            "background",
+        )
