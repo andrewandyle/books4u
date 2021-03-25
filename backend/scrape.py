@@ -193,7 +193,7 @@ def createBooksCsv():
 
 
 def createExtraField():
-    #authorsDataFrames = pd.read_csv('author-fixed.csv')
+    authorsDataFrames = pd.read_csv('authors-fixed.csv')
     def scrapeExtraFieldByAuthor(name):
         quote_params = {
             "query" : name,
@@ -208,18 +208,28 @@ def createExtraField():
         ).json()
         return raw
 
-    print(scrapeExtraFieldByAuthor('Mark Twain'))
-    extra_field_list = []
+    extra_authors = []
     for i in range(len(authorsDataFrames)):
+        print(i)
         result = scrapeExtraFieldByAuthor(authorsDataFrames['full_name'][i])
+        curr = authorsDataFrames.iloc[i]
+        result = result['contents']['authors']
         try:
-            result = result['contents']['authors']
-            extra_field_list.append({'occupation' : result['occupation'], 'birthday' : result['born'], 'date_of_death' : result['dead']})
-            
+            curr['occupation'] = result[0]['occupation']
         except:
-            continue
+            curr['occupation'] = None
+        try:
+            curr['birthday'] = result[0]['born']
+        except:
+            curr['birthday'] = None
+        try:
+            curr['date_of_death'] = result[0]['dead']
+        except:
+            curr['date_of_death'] = None
+        
+        extra_authors.append(curr)
     
-    extraFieldDataFrames = pd.DataFrame.from_dict(extra_field_list)
+    extraFieldDataFrames = pd.DataFrame.from_dict(extra_authors)
     extraFieldDataFrames.to_csv('extra_fields.csv', encoding = 'utf-8')
 
 if __name__ == "__main__":
