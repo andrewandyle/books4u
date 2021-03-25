@@ -119,7 +119,7 @@ def scrapeQuotesByAuthor(name):
 
 quotes_list = []
 
-for i in range(5):
+for i in range(len(authorsDataFrames)):
     result = scrapeQuotesByAuthor(authorsDataFrames['full_name'][i])
     try:
         result = result['contents']['quotes']
