@@ -153,12 +153,14 @@ quotesDataFrames = pd.read_csv('quotes-fixed.csv')
 books_list = []
 for i in range(1):
     result = scrapeBooksByAuthor(quotesDataFrames['author'][i])
-    print(result)
-    # try:
-    #     dataframe = pd.DataFrame.from_dict(result['items'])
-    #     books_list.append(dataframe)
-    # except:
-    #     continue
+    #print(result)
+    result = result['items']
+    for book in result:
+        print(book)
+        books_list.append({'name' : book['volumeInfo']['title'], 'genres' : book['volumeInfo']['categories'], 'year' : book['volumeInfo']['publishedDate'], 'page_count' : book['volumeInfo']['pageCount'], 'price' : book['saleInfo']['listPrice']['amount'], 'avg_rating' : book['volumeInfo']['averageRating'], 'num_ratings' : book['volumeInfo']['ratingsCount'], 'maturity_rating' : book['volumeInfo']['maturityRating'], 'language' : book['volumeInfo']['language'], 'description' : book['volumeInfo']['description'], 'purchase_link' : book['saleInfo']['buyLink'], 'authors' : book['volumeInfo']['authors']})
+        print(books_list)
+        break
+
 
 # booksDataFrames = pd.concat(frames)
 # booksDataFrames.to_csv('books.csv', encoding = 'utf-8')
