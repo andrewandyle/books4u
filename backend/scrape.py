@@ -140,6 +140,7 @@ def scrapeNoBestsellersAuthors():
 def scrapeBooksByAuthor(name):
     book_params = {
         "q" : '+inauthor:' + name,
+        "maxResults" : "40",
         "key" : "AIzaSyD9kP1HFu062nYfIm-tMqTaHWgnKHejZ7A"
         
     }
@@ -151,16 +152,64 @@ def scrapeBooksByAuthor(name):
 
 quotesDataFrames = pd.read_csv('quotes-fixed.csv')
 books_list = []
-for i in range(1):
+for i in range(len(quotesDataFrames)):
+    print(i)
     result = scrapeBooksByAuthor(quotesDataFrames['author'][i])
-    #print(result)
-    result = result['items']
-    for book in result:
-        print(book)
-        books_list.append({'name' : book['volumeInfo']['title'], 'genres' : book['volumeInfo']['categories'], 'year' : book['volumeInfo']['publishedDate'], 'page_count' : book['volumeInfo']['pageCount'], 'price' : book['saleInfo']['listPrice']['amount'], 'avg_rating' : book['volumeInfo']['averageRating'], 'num_ratings' : book['volumeInfo']['ratingsCount'], 'maturity_rating' : book['volumeInfo']['maturityRating'], 'language' : book['volumeInfo']['language'], 'description' : book['volumeInfo']['description'], 'purchase_link' : book['saleInfo']['buyLink'], 'authors' : book['volumeInfo']['authors']})
-        print(books_list)
-        break
-
+    try:
+        result = result['items']
+        for book in result:
+            curr = {}
+            try:
+                curr['name'] = book['volumeInfo']['title']
+            except:
+                curr['name'] = "No name available"
+            try:
+                curr['genres'] = book['volumeInfo']['categories']
+            except:
+                curr['genres'] = "No genres available"
+            try:
+                curr['year'] = book['volumeInfo']['publishedDate']
+            except:
+                curr['year'] = "No year available"
+            try:
+                curr['page_count'] = book['volumeInfo']['pageCount']
+            except:
+                curr['page_count'] = "No page count available"
+            try:
+                curr['purchase_link'] = book['saleInfo']['buyLink']
+                curr['price'] = book['saleInfo']['listPrice']['amount']
+            except:
+                curr['purchase_link'] = "Not for sale"
+                curr['price'] = "Not for sale"
+            try:
+                curr['avg_rating'] = book['volumeInfo']['averageRating']
+            except:
+                curr['avg_rating'] = "No rating available"
+            try:
+                curr['num_ratings'] = book['volumeInfo']['ratingsCount']
+            except:
+                curr['num_ratings'] = "No rating count"
+            try:
+                curr['maturity_rating'] = book['volumeInfo']['maturityRating']
+            except:
+                curr['maturity_rating'] = "No maturity rating available"
+            try:
+                curr['language'] = book['volumeInfo']['language']
+            except:
+                curr['language'] = "No language available"
+            try:
+                curr['description'] = book['volumeInfo']['description']
+            except:
+                curr['description'] = "No description available"
+            try:
+                curr['authors'] = book['volumeInfo']['authors']
+            except:
+                curr['authors'] = "No authors available???"
+            books_list.append(curr)
+    except:
+        continue
+booksDataFrames = pd.DataFrame.from_dict(books_list)
+booksDataFrames.to_csv('books-fixed.csv', encoding = 'utf-8')
 
 # booksDataFrames = pd.concat(frames)
 # booksDataFrames.to_csv('books.csv', encoding = 'utf-8')
