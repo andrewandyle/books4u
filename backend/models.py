@@ -37,7 +37,7 @@ class Author(db.Model):
     first_name = db.Column(db.String())
     last_name = db.Column(db.String())
     on_tour = db.Column(db.Boolean)
-    awards = db.Column(db.Boolean)
+    # awards = db.Column(db.Boolean)
     bestsellers = db.Column(db.Boolean)
     birthday = db.Column(db.String())
     date_of_death = db.Column(db.String())
@@ -62,7 +62,7 @@ class Quote(db.Model):
     quote = db.Column(db.String())
     length = db.Column(db.Integer)
     tags = db.Column(ARRAY(db.String()))
-    category = db.Column(db.String())
+    # category = db.Column(db.String())
     language = db.Column(db.String())
     unique_words = db.Column(db.Integer)
     num_syllables = db.Column(db.Integer)
@@ -138,7 +138,6 @@ class QuoteSchema(ma.Schema):
             "quote",
             "length",
             "tags",
-            "category",
             "language",
             "unique_words",
             "num_syllables",
@@ -147,6 +146,7 @@ class QuoteSchema(ma.Schema):
             "least_common_word",
             "link",
             "background",
+            "author_id"
         )
 
 db.create_all()
