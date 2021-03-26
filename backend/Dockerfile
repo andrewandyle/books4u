@@ -9,7 +9,7 @@ RUN ls && pwd
 WORKDIR /books4u
 
 RUN ls && pwd
-RUN cd frontend && npm install && npm build
+RUN cd frontend && npm install && npm run-script build
 RUN pwd && ls
 RUN pip3 install -r backend/requirements.txt
 RUN pip3 install flask_sqlalchemy
