@@ -17,7 +17,7 @@ def index():
 
 @app.route('/api/books', methods=["GET"])
 def get_books():
-    all_books = Book.query.all()
+    all_books = Book.query.limit(50).all()
     return jsonify({ "books": books_schema.dump(all_books) })
 
 @app.route('/api/authors', methods=["GET"])
