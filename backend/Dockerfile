@@ -12,10 +12,6 @@ RUN ls && pwd
 RUN cd frontend && npm install && npm run-script build
 RUN pwd && ls
 RUN pip3 install -r backend/requirements.txt
-RUN pip3 install flask_sqlalchemy
-RUN pip3 install flask_marshmallow
-RUN pip3 install config
-RUN pip3 install psycopg2
 RUN git pull --force
 
 EXPOSE 80
