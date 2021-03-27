@@ -17,9 +17,8 @@ interface Book {
 }
 
 function BookInstance() {
+  /*Axios is just here to compile. */
   const [{ data: books }] = useAxios("/api/books");
-  console.log("NO")
-  console.log(books)
   const [bookId, setBookId] = useState(0);
   useEffect(() => {
     const url = window.location.href;
