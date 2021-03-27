@@ -14,6 +14,7 @@ const columns = [
   },
   { name: "first_name", label: "First Name" },
   { name: "last_name", label: "Last Name" },
+  { name: "num_published_books", label: "No. of Published Books" },
   { name: "occupation", label: "Occupation" },
   { name: "avg_rating", label: "Average Rating" },
 ];

@@ -5,6 +5,7 @@ function Loading() {
   return (
     <div className="text-center">
       <img src={LoadingIcon} alt="Loading..." />
+      <h3>Loading...</h3>
     </div>
   );
 }
