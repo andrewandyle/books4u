@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-function BookItem({ item }: any) {
+function BookItem({ item, excludeAuthor }: any) {
   const { id, authors, name, year, price, page_count, image } = item;
   return (
     <div className="p-2 col-lg-4 col-md-6">
@@ -11,11 +11,18 @@ function BookItem({ item }: any) {
         {image && <img src={image} alt={`Cover of ${name}`}></img>}
         <h3>{name}</h3>
         <p style={{ textAlign: "center" }}>
-          Author: {authors.map((author: any) => author.replace(/^'|'$/g, '')).join(', ')}
+          {!excludeAuthor && (
+            <div>
+              Author:{" "}
+              {authors
+                .map((author: any) => author.replace(/^'|'$/g, ""))
+                .join(", ")}
+              <br />
+            </div>
+          )}
+          Year: {year ? year.substring(0, 4) : "N/A"}
           <br />
-          Year: {year ? year.substring(0, 4) : 'N/A'}
-          <br />
-          Price: {price ? `$${price}` : 'N/A'}
+          Price: {price ? `$${price}` : "N/A"}
           <br />
           Page Count: {page_count}
         </p>

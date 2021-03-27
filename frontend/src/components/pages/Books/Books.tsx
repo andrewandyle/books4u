@@ -33,7 +33,7 @@ function Books() {
   return loading ? (
     <Loading />
   ) : (
-    <div className="container mb-5">
+    <div className="container">
       <div className="row d-flex flex-row py-5">
       <h2>Discover Books</h2>
         <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
