@@ -4,6 +4,7 @@ import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Authors from "./components/pages/Authors";
 import Books from "./components/pages/Books";
+import BooksPagination from "./components/pages/BooksPagination";
 import Quotes from "./components/pages/Quotes";
 import Navbar from "./components/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,7 +20,7 @@ function App() {
         <Navbar />
         <Route path="/" exact component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/books" component={Books} />
+        <Route path="/books" component={BooksPagination} />
         <Route path="/authors" component={Authors} />
         <Route path="/quotes" component={Quotes} />
         <Route path="/book" component={BookInstance} />

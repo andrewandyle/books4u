@@ -9,6 +9,7 @@ function Table({ data }: any) {
     >
       <thead className="thead-dark">
         <tr>
+          console.log(data[0])
           {Object.keys(data[0]).map(
             (header) =>
               header !== "id" && <th key={header}>{header.toUpperCase()}</th>

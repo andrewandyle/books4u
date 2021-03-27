@@ -1,8 +1,14 @@
 import React from "react";
 import Grid from "../../templates/Grid/Grid";
 import QuoteItem from "../../templates/Grid/items/QuoteItem";
+import Pagination from '../../templates/Pagination';
+import useAxios from 'axios-hooks';
 
 function Quotes() {
+  // const state = { allQuotes: [], currQuotes: [], currPage: null, totalPages: null }
+  // const [{ data: allQuotes }] = useAxios("/api/books");
+  // this.setState({ allq });
+  // console.log(allQuotes)
   const quotes = [
     {
       id: "0",
