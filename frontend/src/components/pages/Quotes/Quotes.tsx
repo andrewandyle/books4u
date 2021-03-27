@@ -1,63 +1,55 @@
-import React from "react";
-import Grid from "../../templates/Grid/Grid";
+import React, { Component } from 'react';
 import QuoteItem from "../../templates/Grid/items/QuoteItem";
 import Pagination from '../../templates/Pagination';
-import useAxios from 'axios-hooks';
+import axios from 'axios'
 
-function Quotes() {
-  // const state = { allQuotes: [], currQuotes: [], currPage: null, totalPages: null }
-  // const [{ data: allQuotes }] = useAxios("/api/books");
-  // this.setState({ allq });
-  // console.log(allQuotes)
-  const quotes = [
-    {
-      id: "0",
-      text: "It does not do to dwell on dreams and forget to live.",
-      author: "J.K. Rowling",
-      length: "12",
-      tags: "dreams, life",
-      image:
-        "https://books.google.com/books/content/images/frontcover/wrOQLV6xB-wC?fife=w200-h300",
-      work: "Harry Potter and the the Sorcer's Stone",
-    },
+class Quotes extends Component {
+  state = { allQuotes: [], currQuotes: [], currentPage: null, totalPages: null }
 
-    {
-      id: "1",
-      text:
-        "So we beat on, boats against the current, borne back ceaselessly into the past.",
-      author: "F. Scott Fitzgerald",
-      length: "14",
-      tags: "book, inspirational",
-      image:
-        "https://books.google.com/books/publisher/content/images/frontcover/sBoZEAAAQBAJ?fife=w200-h300",
-      work: "The Great Gatsby",
-    },
+  componentDidMount() {
+    axios.get("/api/quotes")
+      .then((res: { data: any; }) => {
+        const allQuotes = res.data.quotes;
+        this.setState({ allQuotes });
+      })
+  }
+  onPageChanged = (data: { currentPage: any; totalPages: any; pageLimit: any; }) => {
+    const { allQuotes } = this.state;
+    const { currentPage, totalPages, pageLimit } = data;
+    const offset = (currentPage - 1) * pageLimit;
+    const currQuotes = allQuotes.slice(offset, offset + pageLimit);
+    this.setState({ currentPage, currQuotes, totalPages });
+  }
+  render() {
+    const { allQuotes, currQuotes, currentPage, totalPages } = this.state;
+    const totalBooks = allQuotes.length;
+    if (totalBooks === 0) return null;
 
-    {
-      id: "2",
-      text:
-        "And the little screaming fact that sounds through all history: repression works only to strengthen and knit the repressed.",
-      author: "John Steinbeck",
-      length: "19",
-      tags: "repression, strength",
-      image:
-        "https://books.google.com/books/content/images/frontcover/ClXiwSYzjtYC?fife=w200-h300",
-      work: "The Grapes of Wrath",
-    },
-  ];
+    const headerClass = ['text-dark py-2 pr-4 m-0', currentPage ? 'border-gray border-right' : ''].join(' ').trim();
 
-  return (
-    <div>
-      <div className="container-fluid pt-4 pb-4">
-        <div className="container">
-          <h1 className="text-center">Quotes</h1>
-          <hr />
-          <p className="text-center">Find information on quotes!</p>
+    return (
+      <div className="container mb-5">
+        <div className="row d-flex flex-row py-5">
+          <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
+            <div className="d-flex flex-row align-items-center">
+              <h2 className={headerClass}>
+                <strong className="text-secondary">{totalBooks}</strong> Quotes
+              </h2>
+              { currentPage && (
+                <span className="current-page d-inline-block h-100 pl-4 text-secondary">
+                  Page <span className="font-weight-bold">{ currentPage }</span> / <span className="font-weight-bold">{ totalPages }</span>
+                </span>
+              ) }
+            </div>
+            <div className="d-flex flex-row py-4 align-items-center">
+              <Pagination totalRecords={totalBooks} pageLimit={18} pageNeighbours={1} onPageChanged={this.onPageChanged} />
+            </div>
+          </div>
+          { currQuotes.map(quote => <QuoteItem item={quote} />) }
         </div>
       </div>
-      <Grid data={quotes} Component={QuoteItem}></Grid>
-    </div>
-  );
+    );
+  }
 }
 
 export default Quotes;

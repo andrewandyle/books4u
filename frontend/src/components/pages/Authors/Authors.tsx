@@ -1,54 +1,34 @@
-import React from "react";
-import Table from "../../templates/Table";
-import useAxios from 'axios-hooks'
+import React, { Component } from "react";
+import MUIDataTable from "mui-datatables";
+import axios from "axios";
 
-function Authors() {
-  // const authors = [
-  //   {
-  //     id: "0",
-  //     name: "J.K. Rowling",
-  //     works: "Harry Potter and the Sorcerer’s Stone, ...",
-  //     bio:
-  //       "J. K. Rowling was born in the summer of 1965 at Yate General Hospital in England and grew up in Chepstow, Gwent.  She left Chepstow for Exeter University, where she ...",
-  //     onTour: "No",
-  //     lastInitial: "R",
-  //   },
-  //   {
-  //     id: "1",
-  //     name: "F. Scott Fitzgerald",
-  //     works: "The Great Gatsby,  ...",
-  //     bio:
-  //       "F. Scott Fitzgerald was considered the quintessential author of the Jazz Age. Born in St. Paul, Minnesota, in 1896, Fitzgerald attended Princeton University, where he ...",
-  //     onTour: "No",
-  //     lastInitial: "F",
-  //   },
+const columns = ['Name', 'On Tour', 'Gender', 'Genres']
 
-  //   {
-  //     id: "2",
-  //     name: "John Steinbeck",
-  //     works: "The Grapes of Wrath, ...",
-  //     bio:
-  //       "John Steinbeck, born in Salinas, California, in 1902, grew up in a fertile agricultural valley, about 25 miles from the Pacific Coast. Both the valley and the coast would serve as ...",
-  //     onTour: "No",
-  //     lastInitial: "S",
-  //   },
-  // ];
+class Authors extends Component {
+  state = {
+    allAuthors: [],
+  };
 
-  const[{data: authors}]= useAxios("/api/authors");
-  console.log(authors)
+  componentDidMount() {
+    axios.get("/api/authors").then((res: { data: any }) => {
+      let allAuthors = res.data.authors;
+      allAuthors = allAuthors.map((author: any) => {
+        const { first_name, last_name, on_tour, gender, genres } = author
+        return [`${first_name} ${last_name}`, on_tour, gender, genres ? genres.map((genre: any) => genre.replace(/^'|'$/g, '')).join(', ') : '']
+      })
+      this.setState({ allAuthors });
+    });
+  }
 
-  return (
-    <div className="container-fluid pt-4 pb-4 d-flex flex-column align-items-center">
-      <div className="container align-items-center">
-        <h1 className="text-center">Authors</h1>
-        <hr />
-        <p className="text-center">
-          Find information on your favorite authors!
-        </p>
-      </div>
-      <Table data={authors}></Table>
-    </div>
-  );
+  render() {
+    return (
+      <MUIDataTable
+        title="Authors"
+        data={this.state.allAuthors}
+        columns={columns}
+      />
+    );
+  }
 }
 
 export default Authors;

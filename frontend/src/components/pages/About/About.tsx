@@ -116,9 +116,7 @@ function About() {
     ).then((res) => res.json());
   }
 
-  return loading ? (
-    <div className="text-center">Loading...</div>
-  ) : (
+  return (
     <div className="container-fluid pt-4 pb-4">
       <div className="container">
         <h1 className="text-center">About Us</h1>
@@ -134,19 +132,27 @@ function About() {
           works or authors, or for those who simply want to get more into
           reading!
         </p>
-      </div>
-      <div className="container">
         <h1 className="text-center">Team</h1>
         <hr />
-        <div className="d-flex">
-          {teamData.map((data) => (
-            <TeamMember member={data} key={data.username} />
-          ))}
-        </div>
       </div>
-      <div className="container">
-        <h3 className="text-center">Total Commits: {stats.commits} </h3>
-        <h3 className="text-center">Total Issues: {stats.issues}</h3>
+      {loading ? (
+        <div className="text-center">Loading...</div>
+      ) : (
+        <>
+          <div className="container">
+            <div className="d-flex">
+              {teamData.map((data) => (
+                <TeamMember member={data} key={data.username} />
+              ))}
+            </div>
+          </div>
+          <div className="container">
+            <h3 className="text-center">Total Commits: {stats.commits} </h3>
+            <h3 className="text-center">Total Issues: {stats.issues}</h3>
+          </div>
+        </>
+      )}
+      <div>
         <div className="row py 2 align-center">
           <div className="p-2 col-lg-4 col-md-2">
             <div className="card">
@@ -185,27 +191,6 @@ function About() {
                   rel="noreferrer"
                 >
                   <h4>GitLab Repo Link</h4>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="p-2 col-lg-4 col-md-2">
-            <div className="card">
-              <div className="card-body">
-                <img
-                  className="card-image"
-                  alt="GitLab"
-                  src="https://about.gitlab.com/images/press/logo/png/gitlab-logo-gray-stacked-rgb.png"
-                  style={{ height: "278px", width: "300px" }}
-                />
-                <br></br>
-                <a
-                  className="card-title"
-                  href="https://gitlab.com/cs373-group14/books4u"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <h4>Dummy Test</h4>
                 </a>
               </div>
             </div>

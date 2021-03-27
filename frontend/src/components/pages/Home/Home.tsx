@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useAxios from 'axios-hooks'
 
 function Home() {
   return (
