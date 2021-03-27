@@ -84,7 +84,7 @@ class BooksToQuotes(db.Model):
     quote_id    = db.Column(db.Integer, db.ForeignKey('quote.id'), primary_key = True)
 
 
-class AuthorToQuotes(db.Model):
+class AuthorsToQuotes(db.Model):
     __tablename__ = 'author_to_quotes'
     author_id   = db.Column(db.Integer, db.ForeignKey('author.id'), primary_key = True)
     quote_id    = db.Column(db.Integer, db.ForeignKey('quote.id'), primary_key = True)
@@ -145,6 +145,27 @@ class QuoteSchema(ma.Schema):
             "link",
             "background",
             "author_id"
+        )
+
+class BooksToAuthorsSchema(ma.Schema):
+    class Meta:
+        fields = (
+            "book_id",
+            "author_id"
+        )
+
+class BooksToQuotesSchema(ma.Schema):
+    class Meta:
+        fields = (
+            "book_id",
+            "quote_id"
+        )
+
+class AuthorsToQuotesSchema(ma.Schema):
+    class Meta:
+        fields = (
+            "author_id",
+            "quote_id"
         )
 
 db.create_all()

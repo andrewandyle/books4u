@@ -6,32 +6,34 @@ function BookInstance() {
   const url = window.location.href;
   const split_url = url.split("/");
   const id = split_url[split_url.length - 1];
-  const [{ data: book, loading }] = useAxios(`/api/book/${id}`);
+  const [{ data, loading }] = useAxios(`/api/book/${id}`);
 
   return loading ? (
     <Loading />
   ) : (
     <div className="d-flex flex-column align-items-center">
-      <img className="p-2" src={book.image} alt="Book" />
-      <h2 className="p-2">{book.name}</h2>
+      <img className="p-2" src={data.book.image} alt="Book" />
+      <h2 className="p-2">{data.book.name}</h2>
       <ul className="list-group">
         <li className="list-group-item">
           Author:{" "}
-          {book.authors
+          {data.book.authors
             .map((author: any) => author.replace(/^'|'$/g, ""))
             .join(", ")}
         </li>
         <li className="list-group-item">
           Genre:{" "}
-          {book.genres
-            .map((genre: any) => genre.replace(/^'|'$/g, ""))
-            .join(", ")}
+          {data.book.genres
+            ? data.book.genres
+                .map((genre: any) => genre.replace(/^'|'$/g, ""))
+                .join(", ")
+            : "N/A"}
         </li>
-        <li className="list-group-item">Publishing Year: {book.year}</li>
-        <li className="list-group-item">{book.description}</li>
-        <li className="list-group-item">Page Count: {book.page_count}</li>
+        <li className="list-group-item">Publishing Year: {data.book.year}</li>
+        <li className="list-group-item">{data.book.description}</li>
+        <li className="list-group-item">Page Count: {data.book.page_count}</li>
         <li className="list-group-item">
-          Price: {book.price ? `$${book.price}` : "N/A"}
+          Price: {data.book.price ? `$${data.book.price}` : "N/A"}
         </li>
       </ul>
       <br></br>

@@ -6,20 +6,20 @@ function AuthorInstance() {
   const url = window.location.href;
   const split_url = url.split("/");
   const id = split_url[split_url.length - 1];
-  const [{ data: author, loading }] = useAxios(`/api/author/${id}`);
+  const [{ data, loading }] = useAxios(`/api/author/${id}`);
 
   return loading ? (
     <Loading />
   ) : (
     <div className="container d-flex flex-column align-items-center">
-      <img className="p-2" src={author.image} alt="Author" />
+      <img className="p-2" src={data.author.image} alt="Author" />
       <h2 className="p-2">
-        {author.first_name} {author.last_name}
+        {data.author.first_name} {data.author.last_name}
       </h2>
-      <div dangerouslySetInnerHTML={{ __html: author.spotlight }}></div>
+      <div dangerouslySetInnerHTML={{ __html: data.author.spotlight }}></div>
       <ul className="list-group">
         <li className="list-group-item">
-          On Tour: {author.on_tour ? "True" : "False"}
+          On Tour: {data.author.on_tour ? "True" : "False"}
         </li>
       </ul>
       <br></br>
