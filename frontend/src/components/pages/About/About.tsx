@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import TeamMember from "./TeamMember";
+import Loading from "../../Loading";
 
 // Images
 import AndrewLe from "./media/andrew_le.jpg";
@@ -136,7 +137,7 @@ function About() {
         <hr />
       </div>
       {loading ? (
-        <div className="text-center">Loading...</div>
+        <Loading />
       ) : (
         <>
           <div className="container">

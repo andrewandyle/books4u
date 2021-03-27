@@ -121,9 +121,9 @@ class AuthorSchema(ma.Schema):
             "occupation",
             "num_published_books",
             "avg_rating",
-            "gender"
+            "gender",
             "birthday",
-            "date_of_death"
+            "date_of_death",
             "spotlight",
             "image"
         )
@@ -134,6 +134,7 @@ class QuoteSchema(ma.Schema):
             "id",
             "quote",
             "length",
+            "author",
             "tags",
             "language",
             "num_unique_words",
