@@ -1,29 +1,31 @@
 import React from "react";
+import "./TeamMember.css";
 
 function TeamMember({ member }: any) {
   return (
-    <div className="card" style={{ maxWidth: 232 }}>
-      <div className="card-img-top card-body" style={{ maxHeight: 232 }}>
-        <img
-          width={200}
-          src={
-            member.image ||
-            "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png"
-          }
-          alt="Person"
-        />
+    <div className="card mb-3" style={{ borderRadius: 10, maxWidth: 450 }}>
+      <div className="d-flex flex-row p-2 border-bottom memberInfo">
+        <img className="profilePic" src={member.image} alt="Person" />
+        <div className="p-2">
+          <h3>{member.name}</h3>
+          {member.status}
+          <br />
+          <b>GitLab ID:</b> {member.username}
+          <br />
+          <div className="row">
+            <div className="col">
+              <h1 className="value">{member.commits}</h1>Commits
+            </div>
+            <div className="col">
+              <h1 className="value">{member.issues}</h1>Issues
+            </div>
+            <div className="col">
+              <h1 className="value">{member.unitTests}</h1>Tests
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="card-body">
-        Name: {member.name}
-        <br />
-        GitLab ID: {member.username}
-        <br />
-        Commits: {member.commits}
-        <br />
-        Issues: {member.issues}
-        <hr />
-        {member.bio}
-      </div>
+      <div className="card-body">{member.bio}</div>
     </div>
   );
 }

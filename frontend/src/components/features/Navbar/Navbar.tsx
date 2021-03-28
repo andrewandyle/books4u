@@ -20,7 +20,7 @@ function Navbar() {
           src={Logo}
           width={30}
           alt="Books4U"
-          style={{ marginLeft: 20, marginRight: 10 }}
+          style={{ marginLeft: 7, marginRight: 10 }}
         />
         Books4U
       </Link>
