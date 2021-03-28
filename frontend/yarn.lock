@@ -1875,6 +1875,13 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
+"@types/mui-datatables@^3.7.1":
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/@types/mui-datatables/-/mui-datatables-3.7.1.tgz#94b82078c125f2b4d2388a59ab7db528b345f555"
+  integrity sha512-Gv4GIHTI7NW0BnwfbTGHCD6FjUBO3Gl8vSWYS2Y/Zg4LSUgWAJ/EMkTOO7wAWxQv1w5fgGGmhUjzQs/Rita/WQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/node@*":
   version "14.14.31"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.31.tgz#72286bd33d137aa0d152d47ec7c1762563d34055"
@@ -9433,6 +9440,11 @@ react-error-overlay@^6.0.9:
   version "6.0.9"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
+
+react-fast-marquee@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-fast-marquee/-/react-fast-marquee-1.1.2.tgz#5b29c3c8d4761d2e70c74b52ad01e46c705fc21a"
+  integrity sha512-j8pLxwPWrmqpBOUdcflPtV6C4osqftpPSx/NWA77TDxCeb0+M+NcKx6AebVOlcqr1HNnHg3SQS72urtu1AWssw==
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"

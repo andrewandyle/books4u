@@ -1,73 +1,44 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Marquee from "react-fast-marquee";
+import "./Home.css";
+
+// Icons
+import Logo from "../../media/logo.png";
+import Book from "../../media/book.png";
+import Author from "../../media/author.png";
+import Quote from "../../media/quote.png";
 
 function Home() {
   return (
-    <div style={{ height: "100%" }}>
-      <div className="text-center">
-        <h1>Welcome to Books4U</h1>
+    <div className="body">
+      <Marquee speed={40} gradient={false} style={{ height: 258 }}>
+        <div className="bookshelf"></div>
+      </Marquee>
+
+      <div className="text-center text-light mt-5 mb-5">
+        <img src={Logo} alt="Books4U" />
+        <h1>Welcome to Books For You!</h1>
+        <h4>
+          Explore the literary world and search for information on your favorite
+          literature.
+        </h4>
       </div>
-      <div
-        className="container flex justify-content-center"
-        style={{ height: "600" }}
-      >
-        <div className="row">
-          <div className="column ml- mt-5 mb-5" style={{ width: "33%" }}>
-            <div className="card text-center">
-              <div className="overflow">
-                <img
-                  src="https://media.wired.com/photos/5be4cd03db23f3775e466767/master/w_2560%2Cc_limit/books-521812297.jpg"
-                  alt="bookImage"
-                  style={{ height: 310, width: "100%" }}
-                ></img>
-              </div>
-              <div className="card-body text-dark">
-                <button type="button" className="btn btn-outline-success">
-                  <Link to="/books" className="nav-link">
-                    Books
-                  </Link>
-                </button>
-              </div>
-            </div>
-          </div>
 
-          <div className="column ml-5 mt-5 mb-5" style={{ width: "33%" }}>
-            <div className="card text-center">
-              <div className="overflow">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Shakespeare_Droeshout_1623.jpg/900px-Shakespeare_Droeshout_1623.jpg"
-                  alt="AuthorImage"
-                  style={{ height: 310, width: "100%" }}
-                ></img>
-              </div>
-              <div className="card-body text-dark">
-                <button type="button" className="btn btn-outline-success">
-                  <Link to="/authors" className="nav-link">
-                    Authors
-                  </Link>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="column ml-5 mt-5 mb-5" style={{ width: "33%" }}>
-            <div className="card text-center">
-              <div className="overflow">
-                <img
-                  src="https://libreshot.com/wp-content/uploads/2017/04/close-up-inside-of-a-book-973x691.jpg"
-                  alt="QuotesImage"
-                  style={{ height: 310, width: "100%" }}
-                ></img>
-              </div>
-              <div className="card-body text-dark">
-                <button type="button" className="btn btn-outline-success">
-                  <Link to="/quotes" className="nav-link">
-                    Quotes
-                  </Link>
-                </button>
-              </div>
-            </div>
-          </div>
+      <div className="container">
+        <div className="d-flex flex-row justify-content-between">
+          <Link className="btn btn-danger btn-lg" to="/books">
+            <img className="icon" src={Book} alt="Books" />
+            Browse Books
+          </Link>
+          <Link className="btn btn-danger btn-lg" to="/authors">
+            <img className="icon" src={Author} alt="Authors" />
+            Browse Authors
+          </Link>
+          <Link className="btn btn-danger btn-lg" to="/quotes">
+            <img className="icon" src={Quote} alt="Quotes" />
+            Browse Quotes
+          </Link>
         </div>
       </div>
     </div>

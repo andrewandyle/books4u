@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useAxios from "axios-hooks";
-import Loading from "../../Loading";
+import Loading from "../../features/Loading";
 import QuoteItem from "../../templates/Grid/items/QuoteItem";
 
 function BookInstance() {

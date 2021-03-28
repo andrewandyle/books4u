@@ -1,6 +1,6 @@
 import React from "react";
 import MUIDataTable from "mui-datatables";
-import Loading from "../../Loading";
+import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 
 const columns = [

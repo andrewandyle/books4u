@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import TeamMember from "./TeamMember";
-import Loading from "../../Loading";
+import Loading from "../../features/Loading";
 
 // Images
 import AndrewLe from "./media/andrew_le.jpg";

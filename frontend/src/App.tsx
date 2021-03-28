@@ -8,7 +8,7 @@ import Quotes from "./components/pages/Quotes";
 import AuthorInstance from "./components/pages/AuthorInstance";
 import BookInstance from "./components/pages/BookInstance";
 import QuoteInstance from "./components/pages/QuoteInstance";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/features/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router-dom";
 

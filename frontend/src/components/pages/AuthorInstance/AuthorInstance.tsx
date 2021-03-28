@@ -1,6 +1,6 @@
 import React from "react";
 import useAxios from "axios-hooks";
-import Loading from "../../Loading";
+import Loading from "../../features/Loading";
 import BookItem from "../../templates/Grid/items/BookItem";
 import QuoteItem from "../../templates/Grid/items/QuoteItem";
 

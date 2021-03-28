@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BookItem from "../../templates/Grid/items/BookItem";
 import Pagination from "../../templates/Pagination";
-import Loading from "../../Loading";
+import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 
 function Books() {

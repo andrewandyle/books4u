@@ -1,0 +1,18 @@
+.bookshelf {
+  background-image: url("./media/bookshelf.png");
+  background-repeat: repeat-x;
+  height: 258px;
+  width: 100vw;
+}
+
+.body {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("./media/wood.jpg");
+  height: 100vh;
+}
+
+.icon {
+  filter: invert();
+  width: 40px;
+  margin-right: 10px;
+}
