@@ -169,33 +169,41 @@ function About() {
               <h3 className="text-center">Total Unit Tests: 12</h3>
             </div>
             <div className="d-flex flex-wrap justify-content-evenly">
-              <a
-                className="btn btn-success btn-lg"
-                href="https://gitlab.com/cs373-group14/books4u"
-                target="_blank"
-                rel="noreferrer"
+
+        
+              <button className="click">
+              <a 
+              className='a'
+              href="https://gitlab.com/cs373-group14/books4u"
+              target="_blank"
+              rel="noreferrer"
               >
-                <img
-                  src="https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png"
-                  alt="GitLab"
-                  width={40}
-                />
+              <img
+                src="https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png"
+                alt="GitLab"
+                width={40}
+                style={{ marginRight: 10 }}
+              />
                 GitLab Repo
-              </a>
-              <a
-                className="btn btn-success btn-lg"
-                href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6"
-                target="_blank"
-                rel="noreferrer"
+                </a>
+              </button>
+
+              <button className="click">
+              <a 
+              className='a'
+              href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6"
+              target="_blank"
+              rel="noreferrer"
               >
-                <img
-                  src="https://miro.medium.com/max/512/1*fVBL9mtLJmHIH6YpU7WvHQ.png"
-                  alt="Postman"
-                  width={35}
-                  style={{ marginRight: 10 }}
-                />
+              <img
+                src="https://miro.medium.com/max/512/1*fVBL9mtLJmHIH6YpU7WvHQ.png"
+                alt="Postman"
+                width={40}
+                style={{ marginRight: 10 }}
+              />
                 Postman Documentation
-              </a>
+                </a>
+              </button>
             </div>
           </div>
         </>
