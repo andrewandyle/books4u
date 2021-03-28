@@ -33,13 +33,14 @@ function Books() {
   return loading ? (
     <Loading />
   ) : (
-    <div className="container mb-5">
+    <div className="container">
       <div className="row d-flex flex-row py-5">
+      <h2>Discover Books</h2>
         <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
           <div className="d-flex flex-row align-items-center">
             <h2 className={headerClass}>
               <strong className="text-secondary">{data.books.length}</strong>{" "}
-              Books
+              Results
             </h2>
             {currentPage && (
               <span className="current-page d-inline-block h-100 pl-4 text-secondary">
@@ -51,7 +52,7 @@ function Books() {
           <div className="d-flex flex-row py-4 align-items-center">
             <Pagination
               totalRecords={data.books.length}
-              pageLimit={18}
+              pageLimit={30}
               pageNeighbours={1}
               onPageChanged={onPageChanged}
             />

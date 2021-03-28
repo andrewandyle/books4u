@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-      <Link to="/" className="navbar-brand">
+    <nav
+      className="navbar navbar-dark navbar-expand-lg"
+      style={{ backgroundColor: "#654321" }}
+    >
+      <Link to="/" className="navbar-brand ml-20">
         Books4U
       </Link>
       <div className="collpase navbar-collapse">

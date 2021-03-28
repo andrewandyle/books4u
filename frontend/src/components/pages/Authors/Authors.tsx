@@ -34,7 +34,7 @@ function Authors() {
     <Loading />
   ) : (
     <MUIDataTable
-      title="Authors"
+      title="Discover Authors"
       data={data.authors}
       columns={columns}
       options={options}
