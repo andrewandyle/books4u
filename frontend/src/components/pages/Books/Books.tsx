@@ -21,6 +21,10 @@ function Books() {
     setCurrentBooks(currBooks);
     setCurrentPage(currentPage);
     setTotalPages(totalPages);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const headerClass = [
@@ -35,32 +39,28 @@ function Books() {
   ) : (
     <div className="container">
       <div className="row d-flex flex-row py-5">
-      <h2>Discover Books</h2>
-        <div className="w-100 px-4 py-5 d-flex flex-row flex-wrap align-items-center justify-content-between">
-          <div className="d-flex flex-row align-items-center">
-            <h2 className={headerClass}>
-              <strong className="text-secondary">{data.books.length}</strong>{" "}
-              Results
-            </h2>
-            {currentPage && (
-              <span className="current-page d-inline-block h-100 pl-4 text-secondary">
-                Page <span className="font-weight-bold">{currentPage}</span> /{" "}
-                <span className="font-weight-bold">{totalPages}</span>
-              </span>
-            )}
-          </div>
-          <div className="d-flex flex-row py-4 align-items-center">
-            <Pagination
-              totalRecords={data.books.length}
-              pageLimit={30}
-              pageNeighbours={1}
-              onPageChanged={onPageChanged}
-            />
-          </div>
-        </div>
+        <h2>Discover Books</h2>
         {currentBooks.map((book: any) => (
           <BookItem item={book} />
         ))}
+        <div className="d-flex flex-row py-4 align-items-center justify-content-between">
+          <h2 className={headerClass}>
+            <strong className="text-secondary">{data.books.length}</strong>{" "}
+            Results
+          </h2>
+          {currentPage && (
+            <span className="current-page d-inline-block h-100 pl-4 text-secondary">
+              Page <span className="font-weight-bold">{currentPage}</span> /{" "}
+              <span className="font-weight-bold">{totalPages}</span>
+            </span>
+          )}
+          <Pagination
+            totalRecords={data.books.length}
+            pageLimit={30}
+            pageNeighbours={1}
+            onPageChanged={onPageChanged}
+          />
+        </div>
       </div>
     </div>
   );
