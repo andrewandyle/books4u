@@ -23,6 +23,7 @@ const options = {
   print: false,
   download: false,
   selectableRowsHideCheckboxes: true,
+  jumpToPage: true,
   onRowClick: (authorData: any) =>
     window.location.assign("/author/" + authorData[0]),
 };

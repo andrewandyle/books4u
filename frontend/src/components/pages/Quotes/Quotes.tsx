@@ -23,6 +23,7 @@ const options = {
   print: false,
   download: false,
   selectableRowsHideCheckboxes: true,
+  jumpToPage: true,
   onRowClick: (quoteData: any) =>
     window.location.assign("/quote/" + quoteData[0]),
 };
