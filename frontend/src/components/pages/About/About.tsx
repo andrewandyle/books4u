@@ -196,6 +196,132 @@ function About() {
               </div>
             </div>
           </div>
+          <div className="p-2 col-lg-4 col-md-2">
+            <div className="card">
+              <div className="card-body">
+                <img
+                  className="card-image"
+                  alt="React Bootstrap"
+                  src="https://jquery-plugins.net/image/plugin/bootstrap-4-the-most-popular-html-css-and-js-library.jpg"
+                  style={{ height: "278px", width: "300px" }}
+                />
+                <br></br>
+                <a
+                  className="card-title"
+                  href="https://getbootstrap.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h4>React BootStrap</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="p-2 col-lg-4 col-md-2">
+            <div className="card">
+              <div className="card-body">
+                <img
+                  className="card-image"
+                  alt="AWS Elastic Beanstalk"
+                  src="https://incarnated.net/wp-content/uploads/2018/03/elastic_beanstalk.png"
+                  style={{ height: "278px", width: "300px" }}
+                />
+                <br></br>
+                <a
+                  className="card-title"
+                  href="https://aws.amazon.com/elasticbeanstalk/?nc1=h_ls"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h4>AWS Elastic Beanstalk</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="p-2 col-lg-4 col-md-2">
+            <div className="card">
+              <div className="card-body">
+                <img
+                  className="card-image"
+                  alt="NameCheap"
+                  src="https://www.forbes.com/coupons/vfiles/31137/merchant_image-merchant_open_graph.png/"
+                  style={{ height: "278px", width: "300px" }}
+                />
+                <br></br>
+                <a
+                  className="card-title"
+                  href="https://www.namecheap.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h4>NameCheap</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="p-2 col-lg-4 col-md-2">
+            <div className="card">
+              <div className="card-body">
+                <img
+                  className="card-image"
+                  alt="Microsoft Teams"
+                  src="https://www.marshall.edu/it/files/microsoft-team-2019.png"
+                  style={{ height: "278px", width: "300px" }}
+                />
+                <br></br>
+                <a
+                  className="card-title"
+                  href="https://www.microsoft.com/en-us/microsoft-teams/teams-for-work?=&ef_id=CjwKCAjwr_uCBhAFEiwAX8YJgY8yke0RO6nmkP-ZuoJL0RwU2RGqrOhatMtDjfoiorO0bMHTO8CXMxoCKhUQAvD_BwE:G:s&OCID=AID2100233_SEM_CjwKCAjwr_uCBhAFEiwAX8YJgY8yke0RO6nmkP-ZuoJL0RwU2RGqrOhatMtDjfoiorO0bMHTO8CXMxoCKhUQAvD_BwE:G:s&gclid=CjwKCAjwr_uCBhAFEiwAX8YJgY8yke0RO6nmkP-ZuoJL0RwU2RGqrOhatMtDjfoiorO0bMHTO8CXMxoCKhUQAvD_BwE&rtc=1"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h4>Microsoft Teams</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="p-2 col-lg-4 col-md-2">
+            <div className="card">
+              <div className="card-body">
+                <img
+                  className="card-image"
+                  alt="React"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKQe3DFXTvg9YbRAxRClU6IuWD5-VmhryDSDMFhxs1Q4zsXB5t7p-yP8-ZHlxbFKrcyDU&usqp=CAU"
+                  style={{ height: "278px", width: "300px" }}
+                />
+                <br></br>
+                <a
+                  className="card-title"
+                  href="https://reactjs.org/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h4>React</h4>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="p-2 col-lg-4 col-md-2">
+            <div className="card">
+              <div className="card-body">
+                <img
+                  className="card-image"
+                  alt="Zoom"
+                  src="https://i.pcmag.com/imagery/reviews/05fRE6utWAtXmByTrwqgdcU-9.1569481702.fit_lim.size_1200x630.jpg"
+                  style={{ height: "278px", width: "300px" }}
+                />
+                <br></br>
+                <a
+                  className="card-title"
+                  href="https://zoom.us/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <h4>Zoom</h4>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
