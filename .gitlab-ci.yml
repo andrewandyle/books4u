@@ -23,7 +23,7 @@ books4u_jest:
 
 books4u_python:
   image:
-    name: mcgenius/pp_python
+    name: saimadd2021/books4u:backend_flask_test
     entrypoint: [""]
   script:
     - cd backend

@@ -3,6 +3,11 @@
 
 # CMD bash
 
-FROM postman/newman_alpine33
+# Dockerfile for frontend_unit container
+# FROM postman/newman_alpine33
+
+# CMD bash
+
+FROM mcgenius/pp_python
 
 CMD bash
