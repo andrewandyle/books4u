@@ -3,6 +3,15 @@ before_script:
   - uname -a
   - printenv | sort
 
+books4u_postman:
+  image:
+    name: postman/newman_alpine33
+    entrypoint: [""]
+  script:
+    - cd backend
+    - newman run postman.json
+
+
 books4u_jest:
   image:
     name: mcgenius/pp_mocha
