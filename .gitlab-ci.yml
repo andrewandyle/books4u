@@ -12,6 +12,15 @@ books4u_jest:
     - yarn install --ignore-engines
     - yarn test
 
+books4u_python:
+  image:
+    name: mcgenius/pp_python
+    entrypoint: [""]
+  script:
+    - cd backend
+    - pip install -r requirements.txt
+    - python tests.py
+
 books4u_selenium:
   image:
     name: python:3.7
