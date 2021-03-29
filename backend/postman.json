@@ -1,0 +1,534 @@
+{
+	"info": {
+		"_postman_id": "cdb3c6af-7f24-4236-b767-949e63d86008",
+		"name": "Books For You",
+		"description": "# Introduction\nThis API provides endpoints to access information from a collection of books, authors, and quotes. It supplies this content to the site https://booksforyou.me. The data is gathered from other public sources and loaded into a connected database. The purpose of this data is to help people explore the literary world by browsing and exploring new books and authors.\n\nNo API key is required for this API, this information is publicly accessible. There is no limit on API calls.\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET All Books",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains books\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"books\");",
+							"});",
+							"",
+							"pm.test(\"First id is 0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.books[0].id).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Returned 2150 books\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.books.length).to.eql(2150);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://booksforyou.me/api/books",
+					"protocol": "https",
+					"host": [
+						"booksforyou",
+						"me"
+					],
+					"path": [
+						"api",
+						"books"
+					]
+				},
+				"description": "Returns a list of all books."
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://booksforyou.me/api/books",
+							"protocol": "https",
+							"host": [
+								"booksforyou",
+								"me"
+							],
+							"path": [
+								"api",
+								"books"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"books\": [\n        {\n            \"authors\": [\n                \"'James Dashner'\"\n            ],\n            \"avg_rating\": 3.0,\n            \"description\": \"Traces the fateful period after the Earth is decimated by catastrophic solar flares and reveals the stories behind the formation of WICKED, the construction of the Glade, and Thomas' entry into the Maze.\",\n            \"genres\": [\n                \"'JUVENILE FICTION'\"\n            ],\n            \"id\": 0,\n            \"image\": \"http://books.google.com/books/content?id=hRfTCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api\",\n            \"language\": \"en\",\n            \"maturity_rating\": \"NOT_MATURE\",\n            \"name\": \"The Kill Order\",\n            \"num_ratings\": 46,\n            \"page_count\": 329,\n            \"price\": null,\n            \"purchase_link\": null,\n            \"year\": \"2014-01-07\"\n        },\n        {\n            \"authors\": [\n                \"'James Dashner'\"\n            ],\n            \"avg_rating\": 4.0,\n            \"description\": \"The first book in the blockbuster phenomenon The Maze Runner series now features chapters from the highly-anticipated series conclusion, The Fever Code, the book that finally reveals the story of how the maze was built! This special movie tie-in edition includes an eight-page full-color insert with photos from the film. The Maze Runner and Maze Runner: The Scorch Trials are now major motion pictures featuring the star of MTV's Teen Wolf, Dylan O’Brien; Kaya Scodelario; Aml Ameen; Will Poulter; and Thomas Brodie-Sangster. The third movie, Maze Runner: The Death Cure, will hit screens in 2018. When Thomas wakes up in the lift, the only thing he can remember is his name. He’s surrounded by strangers—boys whose memories are also gone. Outside the towering stone walls that surround them is a limitless, ever-changing maze. It’s the only way out—and no one’s ever made it through alive. Then a girl arrives. The first girl ever. And the message she delivers is terrifying: Remember. Survive. Run. Also look for James Dashner’s edge-of-your-seat MORTALITY DOCTRINE series! Praise for the Maze Runner series: A #1 New York Times Bestselling Series A USA Today Bestseller A Kirkus Reviews Best Teen Book of the Year An ALA-YASLA Best Fiction for Young Adults Book An ALA-YALSA Quick Pick \\\"{A} mysterious survival saga that passionate fans describe as a fusion of Lord of the Flies, The Hunger Games, and Lost.\\\"—EW “Wonderful action writing—fast-paced…but smart and well observed.”—Newsday “{A} nail-biting must-read.”—Seventeen “Breathless, cinematic action.”—Publishers Weekly “Heart pounding to the very last moment.”—Kirkus Reviews “Exclamation-worthy.”—Romantic Times “James Dashner’s illuminating prequel {The Kill Order} will thrill fans of this Maze Runner {series} and prove just as exciting for readers new to the series.”—Shelf Awareness, Starred \\\"Take a deep breath before you start any James Dashner book.\\\"-Deseret News\",\n            \"genres\": [\n                \"'Young Adult Fiction'\"\n            ],\n            \"id\": 1,\n            \"image\": \"http://books.google.com/books/content?id=jcJWAAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api\",\n            \"language\": \"en\",\n            \"maturity_rating\": \"NOT_MATURE\",\n            \"name\": \"The Maze Runner Movie Tie-In Edition (Maze Runner, Book One)\",\n            \"num_ratings\": 4,\n            \"page_count\": 416,\n            \"price\": null,\n            \"purchase_link\": null,\n            \"year\": \"2014-08-05\"\n        },\n        ...\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET All Authors",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains authors\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"authors\");",
+							"});",
+							"",
+							"pm.test(\"First id is 0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.authors[0].id).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Returned 214 authors\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.authors.length).to.eql(214);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://booksforyou.me/api/authors",
+					"protocol": "https",
+					"host": [
+						"booksforyou",
+						"me"
+					],
+					"path": [
+						"api",
+						"authors"
+					]
+				},
+				"description": "Returns a list of all authors."
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://booksforyou.me/api/authors",
+							"protocol": "https",
+							"host": [
+								"booksforyou",
+								"me"
+							],
+							"path": [
+								"api",
+								"authors"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"authors\": [\n        {\n            \"avg_rating\": 3.875,\n            \"bestsellers\": true,\n            \"birthday\": \"1842-01-11\",\n            \"date_of_death\": \"1910-08-26\",\n            \"first_name\": \"James\",\n            \"gender\": \"M\",\n            \"genres\": [\n                \"'young adult fiction'\",\n                \"'juvenile fiction'\"\n            ],\n            \"id\": 0,\n            \"image\": \"https://images.randomhouse.com/author/94527\",\n            \"last_name\": \"Dashner\",\n            \"num_published_books\": 5,\n            \"occupation\": \"Philosopher\",\n            \"on_tour\": false,\n            \"spotlight\": \"James Dashner is the author of the #1 <i>New York Times</i> bestselling Maze Runner series: <i>The Maze Runner</i>, <i>The Scorch Trials</i>, <i>The Death Cure</i>, <i>The Kill Order</i> and <i>The Fever Code</i>, as well as the bestselling Mortality Doctrine series: <i>The Eye of Minds</i>,<i> The Rule of Thoughts, </i>and <i>The Game of Lives</i>.   Dashner was born and raised in  Georgia, but now lives and writes in  the  Rocky Mountains. To learn more  about him and his books, visit   JamesDashner.com, follow  @jamesdashner on Twitter, and find  dashnerjames  on Instagram.\"\n        },\n        {\n            \"avg_rating\": 3.7045454545454546,\n            \"bestsellers\": true,\n            \"birthday\": \"1757-11-28\",\n            \"date_of_death\": \"1827-08-12\",\n            \"first_name\": \"William T.\",\n            \"gender\": \"M\",\n            \"genres\": [\n                \"'fiction'\",\n                \"'philosophy'\",\n                \"'art'\",\n                \"'social science'\",\n                \"'biography & autobiography'\",\n                \"'atmospheric carbon dioxide'\",\n                \"'science'\",\n                \"'history'\",\n                \"'photography'\"\n            ],\n            \"id\": 1,\n            \"image\": \"https://images.randomhouse.com/author/32133\",\n            \"last_name\": \"Vollmann\",\n            \"num_published_books\": 29,\n            \"occupation\": \"Poet\",\n            \"on_tour\": false,\n            \"spotlight\": \"<b>William T. Vollmann</b> has won the Whiting Foundation Award and the Shiva Naipaul Memorial Award for his fiction.\"\n        },\n        ...\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET All Quotes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains quotes\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"quotes\");",
+							"});",
+							"",
+							"pm.test(\"First id is 0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.quotes[0].id).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Returned 261 quotes\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.quotes.length).to.eql(261);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://booksforyou.me/api/quotes",
+					"protocol": "https",
+					"host": [
+						"booksforyou",
+						"me"
+					],
+					"path": [
+						"api",
+						"quotes"
+					]
+				},
+				"description": "Returns a list of all quotes."
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://booksforyou.me/api/quotes",
+							"protocol": "https",
+							"host": [
+								"booksforyou",
+								"me"
+							],
+							"path": [
+								"api",
+								"quotes"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"quotes\": [\n        {\n            \"author\": \"James Dashner\",\n            \"author_id\": 0,\n            \"id\": 0,\n            \"language\": \"en\",\n            \"least_common_words\": [\n                \"'absence'\",\n                \"'they'\",\n                \"'it'\",\n                \"'mirror'\",\n                \"'no'\",\n                \"'her'\",\n                \"'waking'\",\n                \"'i'\",\n                \"'your'\",\n                \"'wouldnt'\",\n                \"'like'\",\n                \"'felt'\",\n                \"'need'\",\n                \"'was'\",\n                \"'in'\",\n                \"'teeth'\",\n                \"'you'\",\n                \"'with'\",\n                \"'the'\",\n                \"'up'\",\n                \"'gone'\",\n                \"'run'\",\n                \"'know'\",\n                \"'were'\",\n                \"'mouth'\",\n                \"'day'\",\n                \"'one\"\n            ],\n            \"length\": 141,\n            \"link\": \"https://theysaidso.com/quote/james-dashner-i-felt-her-absence-it-was-like-waking-up-one-day-with-no-teeth-in\",\n            \"most_common_words\": [\n                \"'to\"\n            ],\n            \"num_syllables\": 28,\n            \"num_unique_words\": 28,\n            \"quote\": \"I felt her absence. It was like waking up one day with no teeth in your mouth. You wouldn't need to run to the mirror to know they were gone\",\n            \"score\": 0.0772,\n            \"tags\": [\n                \"absence\",\n                \"alone\",\n                \"breakup\",\n                \"broken\",\n                \"day\",\n                \"felt\",\n                \"forgive\",\n                \"gone\",\n                \"her\",\n                \"i\",\n                \"i-love-you\",\n                \"in\",\n                \"it\",\n                \"know\",\n                \"like\",\n                \"loneliness\",\n                \"lonely\",\n                \"mirror\",\n                \"miss\",\n                \"mouth\",\n                \"need\",\n                \"no\",\n                \"one\",\n                \"run\",\n                \"sad\",\n                \"separated\",\n                \"sorry\",\n                \"teeth\",\n                \"the\",\n                \"they\",\n                \"to\",\n                \"up\",\n                \"waking\",\n                \"want\",\n                \"was\",\n                \"were\",\n                \"with\",\n                \"wouldn-t\",\n                \"you\",\n                \"your\"\n            ]\n        },\n        {\n            \"author\": \"William T. Vollmann\",\n            \"author_id\": 1,\n            \"id\": 1,\n            \"language\": \"en\",\n            \"least_common_words\": [\n                \"'had'\",\n                \"'have'\",\n                \"'they'\",\n                \"'usand'\",\n                \"'i'\",\n                \"'ants'\",\n                \"'curiosity'\",\n                \"'interest'\",\n                \"'cockroaches'\",\n                \"'just'\",\n                \"'great'\",\n                \"'alone'\",\n                \"'like'\",\n                \"'stolid'\",\n                \"'or'\",\n                \"'be'\",\n                \"'in'\",\n                \"'but'\",\n                \"'wanted'\",\n                \"'enthusiasm'\",\n                \"'such'\",\n                \"'only'\",\n                \"'said'\",\n                \"'cowardly'\",\n                \"'about'\",\n                \"'from'\",\n                \"'getting'\",\n                \"'bugs'\",\n                \"'left'\",\n                \"'blind\"\n            ],\n            \"length\": 253,\n            \"link\": \"https://theysaidso.com/quote/william-t-vollmann-but-as-i-have-said-the-bugs-had-no-interest-in-getting-usand\",\n            \"most_common_words\": [\n                \"'and'\",\n                \"'to'\",\n                \"'the\"\n            ],\n            \"num_syllables\": 60,\n            \"num_unique_words\": 38,\n            \"quote\": \"But, as I have said, the bugs had no interest in getting usand no great curiosity or enthusiasm about us as such; from the cowardly cockroaches to the blind stolid ants they wanted only to be left alone to eat and breed and eat and breed, just like us.\",\n            \"score\": 0.4215,\n            \"tags\": [\n                \"human-nature\",\n                \"perspective\"\n            ]\n        },\n        ...\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Single Book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains book\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"book\");",
+							"});",
+							"",
+							"pm.test(\"Book id is 0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.book.id).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Check book name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.book.name).to.eql(\"The Kill Order\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://booksforyou.me/api/book/0",
+					"protocol": "https",
+					"host": [
+						"booksforyou",
+						"me"
+					],
+					"path": [
+						"api",
+						"book",
+						"0"
+					]
+				},
+				"description": "Returns the information of a single book.\nThe id of the book is required as a parameter."
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://booksforyou.me/api/book/id=<id>",
+							"protocol": "https",
+							"host": [
+								"booksforyou",
+								"me"
+							],
+							"path": [
+								"api",
+								"book",
+								"id=<id>"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"author_ids\": [\n        {\n            \"author_id\": 0,\n            \"book_id\": 0\n        }\n    ],\n    \"book\": {\n        \"authors\": [\n            \"'James Dashner'\"\n        ],\n        \"avg_rating\": 3.0,\n        \"description\": \"Traces the fateful period after the Earth is decimated by catastrophic solar flares and reveals the stories behind the formation of WICKED, the construction of the Glade, and Thomas' entry into the Maze.\",\n        \"genres\": [\n            \"'JUVENILE FICTION'\"\n        ],\n        \"id\": 0,\n        \"image\": \"http://books.google.com/books/content?id=hRfTCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api\",\n        \"language\": \"en\",\n        \"maturity_rating\": \"NOT_MATURE\",\n        \"name\": \"The Kill Order\",\n        \"num_ratings\": 46,\n        \"page_count\": 329,\n        \"price\": null,\n        \"purchase_link\": null,\n        \"year\": \"2014-01-07\"\n    },\n    \"quote_ids\": [\n        {\n            \"book_id\": 0,\n            \"quote_id\": 0\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Single Author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains author\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"author\");",
+							"});",
+							"",
+							"pm.test(\"Author id is 0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.author.id).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Check author name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.author.first_name).to.eql(\"James\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://booksforyou.me/api/author/0",
+					"protocol": "https",
+					"host": [
+						"booksforyou",
+						"me"
+					],
+					"path": [
+						"api",
+						"author",
+						"0"
+					]
+				},
+				"description": "Returns the information of a single author.\nThe id of the author is required as a parameter."
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://booksforyou.me/api/author/id=<id>",
+							"protocol": "https",
+							"host": [
+								"booksforyou",
+								"me"
+							],
+							"path": [
+								"api",
+								"author",
+								"id=<id>"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"author\": {\n        \"avg_rating\": 3.875,\n        \"bestsellers\": true,\n        \"birthday\": \"1842-01-11\",\n        \"date_of_death\": \"1910-08-26\",\n        \"first_name\": \"James\",\n        \"gender\": \"M\",\n        \"genres\": [\n            \"'young adult fiction'\",\n            \"'juvenile fiction'\"\n        ],\n        \"id\": 0,\n        \"image\": \"https://images.randomhouse.com/author/94527\",\n        \"last_name\": \"Dashner\",\n        \"num_published_books\": 5,\n        \"occupation\": \"Philosopher\",\n        \"on_tour\": false,\n        \"spotlight\": \"James Dashner is the author of the #1 <i>New York Times</i> bestselling Maze Runner series: <i>The Maze Runner</i>, <i>The Scorch Trials</i>, <i>The Death Cure</i>, <i>The Kill Order</i> and <i>The Fever Code</i>, as well as the bestselling Mortality Doctrine series: <i>The Eye of Minds</i>,<i> The Rule of Thoughts, </i>and <i>The Game of Lives</i>.   Dashner was born and raised in  Georgia, but now lives and writes in  the  Rocky Mountains. To learn more  about him and his books, visit   JamesDashner.com, follow  @jamesdashner on Twitter, and find  dashnerjames  on Instagram.\"\n    },\n    \"book_ids\": [\n        {\n            \"author_id\": 0,\n            \"book_id\": 0\n        },\n        {\n            \"author_id\": 0,\n            \"book_id\": 1\n        },\n        {\n            \"author_id\": 0,\n            \"book_id\": 2\n        },\n        {\n            \"author_id\": 0,\n            \"book_id\": 3\n        },\n        {\n            \"author_id\": 0,\n            \"book_id\": 4\n        }\n    ],\n    \"quote_ids\": [\n        {\n            \"author_id\": 0,\n            \"quote_id\": 0\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Single Quote",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Body contains quote\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"quote\");",
+							"});",
+							"",
+							"pm.test(\"Quote id is 0\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.quote.id).to.eql(0);",
+							"});",
+							"",
+							"pm.test(\"Check quote\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.quote.quote).to.eql(\"I felt her absence. It was like waking up one day with no teeth in your mouth. You wouldn't need to run to the mirror to know they were gone\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://booksforyou.me/api/quote/0",
+					"protocol": "https",
+					"host": [
+						"booksforyou",
+						"me"
+					],
+					"path": [
+						"api",
+						"quote",
+						"0"
+					]
+				},
+				"description": "Returns the information of a single quote. The id of the quote is required as a parameter."
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://booksforyou.me/api/quote/id=<id>",
+							"protocol": "https",
+							"host": [
+								"booksforyou",
+								"me"
+							],
+							"path": [
+								"api",
+								"quote",
+								"id=<id>"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"book_ids\": [\n        {\n            \"book_id\": 0,\n            \"quote_id\": 0\n        },\n        {\n            \"book_id\": 1,\n            \"quote_id\": 0\n        },\n        {\n            \"book_id\": 2,\n            \"quote_id\": 0\n        },\n        {\n            \"book_id\": 3,\n            \"quote_id\": 0\n        },\n        {\n            \"book_id\": 4,\n            \"quote_id\": 0\n        }\n    ],\n    \"quote\": {\n        \"author\": \"James Dashner\",\n        \"author_id\": 0,\n        \"id\": 0,\n        \"language\": \"en\",\n        \"least_common_words\": [\n            \"'absence'\",\n            \"'they'\",\n            \"'it'\",\n            \"'mirror'\",\n            \"'no'\",\n            \"'her'\",\n            \"'waking'\",\n            \"'i'\",\n            \"'your'\",\n            \"'wouldnt'\",\n            \"'like'\",\n            \"'felt'\",\n            \"'need'\",\n            \"'was'\",\n            \"'in'\",\n            \"'teeth'\",\n            \"'you'\",\n            \"'with'\",\n            \"'the'\",\n            \"'up'\",\n            \"'gone'\",\n            \"'run'\",\n            \"'know'\",\n            \"'were'\",\n            \"'mouth'\",\n            \"'day'\",\n            \"'one\"\n        ],\n        \"length\": 141,\n        \"link\": \"https://theysaidso.com/quote/james-dashner-i-felt-her-absence-it-was-like-waking-up-one-day-with-no-teeth-in\",\n        \"most_common_words\": [\n            \"'to\"\n        ],\n        \"num_syllables\": 28,\n        \"num_unique_words\": 28,\n        \"quote\": \"I felt her absence. It was like waking up one day with no teeth in your mouth. You wouldn't need to run to the mirror to know they were gone\",\n        \"score\": 0.0772,\n        \"tags\": [\n            \"absence\",\n            \"alone\",\n            \"breakup\",\n            \"broken\",\n            \"day\",\n            \"felt\",\n            \"forgive\",\n            \"gone\",\n            \"her\",\n            \"i\",\n            \"i-love-you\",\n            \"in\",\n            \"it\",\n            \"know\",\n            \"like\",\n            \"loneliness\",\n            \"lonely\",\n            \"mirror\",\n            \"miss\",\n            \"mouth\",\n            \"need\",\n            \"no\",\n            \"one\",\n            \"run\",\n            \"sad\",\n            \"separated\",\n            \"sorry\",\n            \"teeth\",\n            \"the\",\n            \"they\",\n            \"to\",\n            \"up\",\n            \"waking\",\n            \"want\",\n            \"was\",\n            \"were\",\n            \"with\",\n            \"wouldn-t\",\n            \"you\",\n            \"your\"\n        ]\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
