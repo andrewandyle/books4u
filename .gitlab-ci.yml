@@ -14,7 +14,7 @@ books4u_postman:
 
 books4u_jest:
   image:
-    name: mcgenius/pp_mocha
+    name: saimadd2021/books4u:frontend_unit
     entrypoint: [""]
   script:
     - cd frontend
