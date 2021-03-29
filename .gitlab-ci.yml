@@ -37,15 +37,16 @@ books4u_selenium:
     # - https://askubuntu.com/a/510186/196148
     - curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
     
-    # add repo and install npm
+    # add repo and install yarn
     - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ 
       stable main" > /etc/apt/sources.list.d/google.list
     - apt-get update -q -y
     - apt-get install -y google-chrome-stable
+
+    - npm install yarn
     - yarn install
     
     # test the website
-    - cd src/tests
     - python3 guitests.py
 
 
