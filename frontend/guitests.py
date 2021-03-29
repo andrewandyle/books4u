@@ -10,12 +10,12 @@ class tests(unittest.TestCase):
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        chrome_options.add_argument('--window-size=2560,1440')
+        chrome_options.add_argument('--window-size=1920,1080')
         chrome_options.add_argument("--no-sandbox")
         self.driver = webdriver.Chrome(
             "./node_modules/chromedriver/bin/chromedriver", options=chrome_options
         )
-        self.wait_time = 30
+        self.wait_time = 50
         
 
     def test_landing(self):
