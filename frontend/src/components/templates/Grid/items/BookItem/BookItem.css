@@ -1,0 +1,29 @@
+.flip-card {
+  background-color: rgb(104, 68, 36);
+  text-align: center;
+  flex: 1;
+  justify-content: center;
+  width: 400px;
+  height: 200px;
+  border-radius: 5px;
+}
+
+.image-container {
+  border-radius: 5px;
+  max-width: 140px;
+  max-height: 200px;
+}
+
+.main-details {
+  width: 250px;
+  color: antiquewhite;
+  margin-left: 10px;
+}
+
+.back-details {
+  text-align: center;
+  padding-top: 20px;
+  color: antiquewhite;
+  font-size: 22px;
+  font-weight: 500;
+}

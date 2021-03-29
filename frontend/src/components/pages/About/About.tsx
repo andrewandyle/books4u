@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import TeamMember from "./TeamMember";
 import Loading from "../../features/Loading";
-import "./About.css";
 
 // Images
 import Logo from "../../media/logo.png";

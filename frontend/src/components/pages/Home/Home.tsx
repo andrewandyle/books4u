@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Marquee from "react-fast-marquee";
-import "./Home.css";
 
 // Icons
 import Logo from "../../media/logo.png";
