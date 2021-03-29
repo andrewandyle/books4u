@@ -10,12 +10,13 @@ class tests(unittest.TestCase):
     def setUp(self):
         chrome_options = Options()
         chrome_options.add_argument("--headless")
-        chrome_options.add_argument('--window-size=1920,1080')
+        chrome_options.add_argument('--window-size=2560,1440')
         chrome_options.add_argument("--no-sandbox")
         self.driver = webdriver.Chrome(
             "./node_modules/chromedriver/bin/chromedriver", options=chrome_options
         )
-        self.wait_time = 50
+        self.wait_time = 30
+        
 
     def test_landing(self):
         # test buttons on landing page
@@ -73,21 +74,10 @@ class tests(unittest.TestCase):
         self.driver.get("https://booksforyou.me/books")
         self.driver.implicitly_wait(self.wait_time)
         # test clicking on item
-        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/div/div[2]/div')
+        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/a[1]/div/div/div[2]/div')
         actions = ActionChains(self.driver)
-        actions.move_to_element(book_card).perform()
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/div/div[2]/div/div/a').click()
+        actions.move_to_element(book_card).click().perform()
         assert "https://booksforyou.me/book/0" in self.driver.current_url
-
-        # self.driver.get("https://booksforyou.me/books")
-        # self.driver.implicitly_wait(self.wait_time)
-        # test going to next page
-        # element = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[31]/nav/ul/li[2]')
-        # actions = ActionChains(self.driver)
-
-        # actions.move_to_element(element).click().perform()
-        # self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/a').click()
-        # assert "https://booksforyou.me/book/26" in self.driver.current_url
         
 
     def test_authors(self):
@@ -97,9 +87,6 @@ class tests(unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="MUIDataTableBodyRow-0"]').click()
         assert "https://booksforyou.me/author/0" in self.driver.current_url
 
-        # self.driver.get("https://booksforyou.me/books")
-        # self.driver.implicitly_wait(self.wait_time)
-
     def test_quotes(self):
         self.driver.get("https://booksforyou.me/quotes")
         self.driver.implicitly_wait(self.wait_time)
@@ -107,59 +94,54 @@ class tests(unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="MUIDataTableBodyRow-0"]').click()
         assert "https://booksforyou.me/quote/0" in self.driver.current_url
 
-        # self.driver.get("https://booksforyou.me/books")
-        # self.driver.implicitly_wait(self.wait_time)
-
     def test_book_instance(self):
         self.driver.get("https://booksforyou.me/book/0")
         self.driver.implicitly_wait(self.wait_time)
         # click on author link
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div/a').click()
+        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[1]/a').click()
         assert "https://booksforyou.me/author/0" in self.driver.current_url
         self.driver.get("https://booksforyou.me/book/0")
         self.driver.implicitly_wait(self.wait_time)
         # click on quote link
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);") 
-        self.driver.implicitly_wait(self.wait_time)
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div/div/a/h3').click()
+        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[2]/a').click()
         assert "https://booksforyou.me/quote/0" in self.driver.current_url
 
     def test_author_instance(self):
+        # click on book link
         self.driver.get("https://booksforyou.me/author/0")
         self.driver.implicitly_wait(self.wait_time)
-        # click on book link
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[1]/div/div/div[2]/div')
+        #self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[1]/a[1]/div/div/div[2]/div')
         actions = ActionChains(self.driver)
-        actions.move_to_element(book_card).perform()
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[1]/div/div/div[2]/div/div/a').click()
+        actions.move_to_element(book_card).click().perform()
         assert "https://booksforyou.me/book/0" in self.driver.current_url
         
         # click on quote link
         self.driver.get("https://booksforyou.me/author/0")
         self.driver.implicitly_wait(self.wait_time)
-        quote_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/div/div/a')
-        self.driver.execute_script("return arguments[0].scrollIntoView();", quote_card)
-        actions = ActionChains(self.driver)
-        quote_card.click()      
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        quote_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[2]/a')
+        # actions = ActionChains(self.driver)
+        # actions.move_to_element(quote_card).perform()   
+        quote_card.click()
         assert "https://booksforyou.me/quote/0" in self.driver.current_url
 
     def test_quote_instance(self):
+        # click on author link
         self.driver.get("https://booksforyou.me/quote/0")
         self.driver.implicitly_wait(self.wait_time)
-
-        # click on author link
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/ul/li[1]/a').click()
+        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/a').click()
         assert "https://booksforyou.me/author/0" in self.driver.current_url
 
         # click on book link
         self.driver.get("https://booksforyou.me/quote/0")
         self.driver.implicitly_wait(self.wait_time)
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/div/div[2]/div')
+        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div/a[1]/div/div/div[2]/div')
         actions = ActionChains(self.driver)
-        actions.move_to_element(book_card).perform()
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/div/div[2]/div/div/a').click()
+        actions.move_to_element(book_card).click().perform()
+        #self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/div/div[2]/div/div/a').click()
         assert "https://booksforyou.me/book/0" in self.driver.current_url
 
     def tearDown(self):
