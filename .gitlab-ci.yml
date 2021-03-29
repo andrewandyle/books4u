@@ -43,7 +43,7 @@ books4u_selenium:
     - apt-get update -q -y
     - apt-get install -y google-chrome-stable
 
-    - npm install yarn
+    - npm install --global yarn
     - yarn install
     
     # test the website
