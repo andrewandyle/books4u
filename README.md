@@ -1,47 +1,37 @@
-# Books4u
+# Books For You (Books4U)
 
-### Necessary information related to the grading of this project.
+Platform for users to browse their favorite books, authors, and quotes and explore the literary world.
 
-Git SHA: ab7919469cf6671145cac295bcda2b90b6b1981b
+## Members
 
-Project Leader: Andrew Le
-Pipelines: N/A
+|  Name | UTEID  | GitLab ID  |
+|---|---|---|
+|Andrew Le|aal2797|andrewandyle|
+|Sai Kiran Maddela|sm68866|saikm22000|
+|Rahul Ramaswamy|rrr3228|rahulramaswamy|
+|Byungik Hyun|bh26948|quddlr9015|
+|Maria Sierra|mjs5855|mjscs|
+
+
+## Git SHA
+* Phase 1: ab7919469cf6671145cac295bcda2b90b6b1981b
+* Phase 2: 
+
+## Project Leader
+* Phase 1: Andrew Le
+* Phase 2: Sai Kiran Maddela
+
+Pipelines: https://gitlab.com/cs373-group14/books4u/-/pipelines
 
 Website: https://booksforyou.me/
 
-Comments: N/A
+## Completion Times
 
-#### Byungik Hyun
+| Name | Estimated - Phase 1 | Actual - Phase 1 | Estimated - Phase 2| Actual - Phase 2|
+|------|-----------|--------|---------|-------|
+|Andrew Le|15|21|30|60|
+|Sai Kiran Maddela|15|21|||
+|Rahul Ramaswamy|15|21|||
+|Byungik Hyun|15|21|||
+|Maria Sierra|15|21|||
 
-EID: bh26948  
-GitLab ID: quddlr9015  
-Estimated Completion Time: 15  
-Actual Completion Time: 21  
-
-#### Andrew Le
-
-EID: aal2797  
-GitLab ID: andrewandyle  
-Estimated Completion Time: 15  
-Actual Completion Time: 21  
-
-#### Sai Kiran Maddela
-
-EID: sm68866  
-GitLab ID: saikm22000  
-Estimated Completion Time: 15  
-Actual Completion Time: 21  
-
-#### Rahul Ramaswamy
-
-EID: rrr3228  
-GitLab ID: rahulramaswamy  
-Estimated Completion Time: 15  
-Actual Completion Time: 21  
-
-#### Maria Sierra
-
-EID: mjs5855  
-GitLab ID: mjscs  
-Estimated Completion Time: 15  
-Actual Completion Time: 21  
