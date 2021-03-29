@@ -1,0 +1,4 @@
+# Dockerfile for frontend_unit container
+FROM mcgenius/pp_mocha
+
+CMD bash

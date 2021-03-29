@@ -1,0 +1,4 @@
+# Dockerfile for postman container
+FROM postman/newman_alpine33
+
+CMD bash

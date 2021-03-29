@@ -1,0 +1,4 @@
+# Dockerfile for flask container
+FROM mcgenius/pp_python
+
+CMD bash
