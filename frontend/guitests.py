@@ -97,54 +97,45 @@ class tests(unittest.TestCase):
     def test_book_instance(self):
         self.driver.get("https://booksforyou.me/book/0")
         self.driver.implicitly_wait(self.wait_time)
-        # click on author link
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[1]/a').click()
-        assert "https://booksforyou.me/author/0" in self.driver.current_url
-        self.driver.get("https://booksforyou.me/book/0")
-        self.driver.implicitly_wait(self.wait_time)
-        # click on quote link
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);") 
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[2]/a').click()
-        assert "https://booksforyou.me/quote/0" in self.driver.current_url
+        # Check title
+        title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/h1').text
+        assert "The Kill Order" in self.driver.page_source
+        # Check author
+        author = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/h3').text
+        assert "James Dashner" in author
 
     def test_author_instance(self):
-        # click on book link
+        # Check title
         self.driver.get("https://booksforyou.me/author/0")
         self.driver.implicitly_wait(self.wait_time)
-        #self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[1]/a[1]/div/div/div[2]/div')
-        actions = ActionChains(self.driver)
-        actions.move_to_element(book_card).click().perform()
-        assert "https://booksforyou.me/book/0" in self.driver.current_url
+        title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/h1').text
+        assert "James Dashner" in title
         
-        # click on quote link
-        self.driver.get("https://booksforyou.me/author/0")
-        self.driver.implicitly_wait(self.wait_time)
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        quote_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[2]/a')
-        # actions = ActionChains(self.driver)
-        # actions.move_to_element(quote_card).perform()   
-        quote_card.click()
-        assert "https://booksforyou.me/quote/0" in self.driver.current_url
+        # Check books
+        book = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[1]/a[1]/div/div/div[1]/div/div/h4').text
+        assert "The Kill Order" in book
+
+        # Check quotes
+        quote = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[2]/a/h3').text
+        assert "I felt her absence." in quote
 
     def test_quote_instance(self):
-        # click on author link
+        # Check title
         self.driver.get("https://booksforyou.me/quote/0")
         self.driver.implicitly_wait(self.wait_time)
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/a').click()
-        assert "https://booksforyou.me/author/0" in self.driver.current_url
+        title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/h1').text
+        assert "I felt her absence." in title
+        
+        # Check author
+        author = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/a/h3').text
+        assert "James Dashner" in author
 
-        # click on book link
-        self.driver.get("https://booksforyou.me/quote/0")
-        self.driver.implicitly_wait(self.wait_time)
-        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div/a[1]/div/div/div[2]/div')
-        actions = ActionChains(self.driver)
-        actions.move_to_element(book_card).click().perform()
-        #self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/div/div[2]/div/div/a').click()
-        assert "https://booksforyou.me/book/0" in self.driver.current_url
+        # Check book
+        book = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div/a[1]/div/div/div[1]/div/div/h4').text
+        assert "The Kill Order" in book
 
     def tearDown(self):
+        self.driver.close()
         self.driver.quit()
 
 if __name__ == "__main__":
