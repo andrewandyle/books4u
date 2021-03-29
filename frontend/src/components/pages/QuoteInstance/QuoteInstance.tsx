@@ -17,27 +17,124 @@ function QuoteInstance() {
   return loading ? (
     <Loading />
   ) : (
-    <div className="container d-flex flex-column align-items-center">
-      <h4 className="p-2">"{data.quote.quote}"</h4>
-      <ul className="list-group">
-        <li className="list-group-item">
-          <Link to={`/author/${data.quote.author_id}`}>Author: {data.quote.author}</Link>
-        </li>
-        <li className="list-group-item">Length in Words: {data.quote.length}</li>
-        <li className="list-group-item">Tags: {data.quote.tags.join(", ")}</li>
-      </ul>
-      <h2>{data.quote.author}'s Books</h2>
-      {bookLoading ? (
-        <Loading />
-      ) : (
-        <div className="row d-flex flex-row py-5" style={{ width: "100%" }}>
-          {bookData.books
-            .filter((book: any) => getListOfBookIds().includes(book.id))
-            .map((book: any) => (
-              <BookItem item={book} excludeAuthor />
-            ))}
+    <div className="d-flex flex-column align-items-center">
+      <div className="author-header">
+        <div className="container d-flex flex-row align-items-center mt-5 mb-3">
+          {/* TODO: Once author connection is established correctly, add author image here */}
+          {/* {data.author.image && (
+            <img
+              src={data.author.image}
+              alt="Book"
+              style={{ marginRight: 15 }}
+            />
+          )} */}
+          <div>
+            <h1>"{data.quote.quote}"</h1>
+            <Link
+              to={`/author/${data.quote.author_id}`}
+              style={{ color: "white" }}
+            >
+              <h3>&ndash; {data.quote.author}</h3>
+            </Link>
+          </div>
         </div>
+        {data.quote.tags && (
+          <div className="container d-flex flex-row flex-wrap align-items-center justify-content-start mb-3">
+            <u>
+              <b>Tags:</b>
+            </u>
+            {data.quote.tags.map((genre: any) => (
+              <div className="chip">{genre.replace(/^'|'$/g, "")}</div>
+            ))}
+          </div>
+        )}
+        {data.quote.most_common_words && (
+          <div className="container mb-3">
+            <u>
+              <b>Most Common Words:</b>
+            </u>{" "}
+            {data.quote.most_common_words
+              .map((word: any) => word.replace(/^'|'$/g, ""))
+              .join(", ")}
+          </div>
+        )}
+        {data.quote.least_common_words && (
+          <div className="container mb-3">
+            <u>
+              <b>Least Common Words:</b>
+            </u>{" "}
+            {data.quote.least_common_words
+              .map((word: any) => word.replace(/^'|'$/g, ""))
+              .join(", ")}
+          </div>
+        )}
+        <div className="container">
+          <div className="row mb-3">
+            <div className="col-sm">
+              <u>
+                <b>Quote Length:</b>
+              </u>{" "}
+              {data.quote.length}
+            </div>
+            <div className="col-sm">
+              <u>
+                <b>Language:</b>
+              </u>{" "}
+              {data.quote.language.toUpperCase()}
+            </div>
+            <div className="col-sm">
+              <u>
+                <b>Score:</b>
+              </u>{" "}
+              {data.quote.score}
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-sm">
+              <u>
+                <b>Number of Unique Words:</b>
+              </u>{" "}
+              {data.quote.num_unique_words}
+            </div>
+            <div className="col-sm">
+              <u>
+                <b>Number of Syllables:</b>
+              </u>{" "}
+              {data.quote.num_syllables}
+            </div>
+            <div className="col-sm d-flex"></div>
+          </div>
+        </div>
+      </div>
+
+      {data.quote.link && (
+        <a
+          className="btn btn-primary btn-lg mb-5"
+          href={data.quote.link}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Link to the quote!
+        </a>
       )}
+
+      <div className="container d-flex flex-column align-items-center">
+        <h1>{data.quote.author}'s Books</h1>
+        {bookLoading ? (
+          <Loading />
+        ) : (
+          <div
+            className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
+            style={{ width: "100%" }}
+          >
+            {bookData.books
+              .filter((book: any) => getListOfBookIds().includes(book.id))
+              .map((book: any) => (
+                <BookItem item={book} excludeAuthor />
+              ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

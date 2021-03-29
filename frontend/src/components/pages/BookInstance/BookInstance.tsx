@@ -41,7 +41,7 @@ function BookInstance() {
           </div>
         </div>
         {data.book.genres && (
-          <div className="container d-flex flex-row align-items-center justify-content-start mb-3">
+          <div className="container d-flex flex-row flex-wrap align-items-center justify-content-start mb-3">
             <u>
               <b>Genres:</b>
             </u>
@@ -125,7 +125,7 @@ function BookInstance() {
           <Loading />
         ) : (
           <div
-            className="row d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
+            className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
             style={{ width: "100%" }}
           >
             {authorData.authors
@@ -145,7 +145,7 @@ function BookInstance() {
         {quoteLoading ? (
           <Loading />
         ) : (
-          <div className="row d-flex flex-row pt-3 pb-5" style={{ width: "100%" }}>
+          <div className="d-flex flex-row flex-wrap pt-3 pb-5 align-items-center" style={{ width: "100%" }}>
             {quoteData.quotes
               .filter((quote: any) => getListOfQuoteIds().includes(quote.id))
               .map((quote: any) => (
