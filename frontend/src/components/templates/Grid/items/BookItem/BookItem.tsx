@@ -49,7 +49,7 @@ function BookItem({ item }: any) {
                 }`
               : "N/A"}
             <br />
-            Year: {year.substring(0, 4) || "N/A"}
+            Year: {year ? year.substring(0, 4) : "N/A"}
             <br />
             Page Count: {page_count || "N/A"}
             <br />

@@ -3,8 +3,8 @@ import React from "react";
 function TeamMember({ member }: any) {
   return (
     <div className="card mb-3" style={{ borderRadius: 10, maxWidth: 450 }}>
-      <div className="d-flex flex-row p-2 border-bottom memberInfo">
-        <img className="profilePic" src={member.image} alt="Person" />
+      <div className="d-flex flex-row p-2 border-bottom member-info">
+        <img className="profile-pic" src={member.image} alt="Person" />
         <div className="p-2">
           <h3>{member.name}</h3>
           {member.status}

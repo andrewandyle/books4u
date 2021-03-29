@@ -212,7 +212,7 @@ function About() {
           <img
             src="https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png"
             alt="GitLab"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a href="https://about.gitlab.com/" target="_blank" rel="noreferrer">
             GitLab
@@ -224,7 +224,7 @@ function About() {
           <img
             src="https://miro.medium.com/max/512/1*fVBL9mtLJmHIH6YpU7WvHQ.png"
             alt="Postman"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a href="https://www.postman.com/" target="_blank" rel="noreferrer">
             Postman
@@ -235,7 +235,7 @@ function About() {
           <img
             src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"
             alt="React"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
             React
@@ -246,7 +246,7 @@ function About() {
           <img
             src="https://miro.medium.com/max/320/0*_rAD9NgK7l6KSlNc.png"
             alt="Bootstrap"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a href="https://getbootstrap.com/" target="_blank" rel="noreferrer">
             Bootstrap
@@ -257,7 +257,7 @@ function About() {
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png"
             alt="AWS"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a href="https://aws.amazon.com/" target="_blank" rel="noreferrer">
             AWS
@@ -269,7 +269,7 @@ function About() {
           <img
             src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png"
             alt="Docker"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
             Docker
@@ -281,7 +281,7 @@ function About() {
           <img
             src="https://cdn.iconscout.com/icon/free/png-256/namecheap-283654.png"
             alt="Namecheap"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a href="https://www.namecheap.com/" target="_blank" rel="noreferrer">
             Namecheap
@@ -292,7 +292,7 @@ function About() {
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1200px-Python-logo-notext.svg.png"
             alt="Python"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a
             href="https://flask.palletsprojects.com/en/1.1.x/"
@@ -307,7 +307,7 @@ function About() {
           <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Postgresql_elephant.svg/1200px-Postgresql_elephant.svg.png"
             alt="PostgreSQL"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a
             href="https://www.postgresql.org/"
@@ -323,7 +323,7 @@ function About() {
           <img
             src="https://heliocentrix.co.uk/wp-content/uploads/2020/04/microsoft-teams-logo-png_480-480.png"
             alt="Teams"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a
             href="https://www.microsoft.com/en-us/microsoft-teams/group-chat-software"
@@ -340,7 +340,7 @@ function About() {
           <img
             src="https://static.wikia.nocookie.net/logopedia/images/6/62/Google_Play_Books_icon.png/revision/latest/scale-to-width-down/340?cb=20201206055407"
             alt="Google Books"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a
             href="https://developers.google.com/books"
@@ -355,7 +355,7 @@ function About() {
           <img
             src="https://upload.wikimedia.org/wikipedia/en/thumb/1/1c/Penguin_logo.svg/1200px-Penguin_logo.svg.png"
             alt="Penguin Random House"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a
             href="https://developer.penguinrandomhouse.com/docs"
@@ -370,7 +370,7 @@ function About() {
           <img
             src="https://theysaidso.com/branding/theysaidso.png"
             alt="They Said So"
-            className="toolIcon"
+            className="tool-icon"
           />
           <a
             href="https://theysaidso.com/api/"
