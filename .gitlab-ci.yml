@@ -5,7 +5,7 @@ before_script:
 
 books4u_postman:
   image:
-    name: postman/newman_alpine33
+    name: saimadd2021/books4u:postman_test
     entrypoint: [""]
   script:
     - cd backend
@@ -30,41 +30,41 @@ books4u_python:
     - pip install -r requirements.txt
     - python tests.py
 
-books4u_selenium:
-  image:
-    name: python:3.7
-  script:
-    - pip install selenium
-    - pip install requests
-    - pip install pytest
-    - cd frontend
+# books4u_selenium:
+#   image:
+#     name: python:3.7
+#   script:
+#     - pip install selenium
+#     - pip install requests
+#     - pip install pytest
+#     - cd frontend
 
-    # code from texas votes
-    # Dependencies for chromedriver, 
-    # https://gist.github.com/mikesmullin/2636776#gistcomment-1742414
-    - apt-get update -q -y
-    - apt-get install nodejs npm -y
-    - apt-get --yes install libnss3
-    - apt-get --yes install libgconf-2-4
-    - apt-get install libx11-xcb1
+#     # code from texas votes
+#     # Dependencies for chromedriver, 
+#     # https://gist.github.com/mikesmullin/2636776#gistcomment-1742414
+#     - apt-get update -q -y
+#     - apt-get install nodejs npm -y
+#     - apt-get --yes install libnss3
+#     - apt-get --yes install libgconf-2-4
+#     - apt-get install libx11-xcb1
 
-    # install chrome and add key
-    # based off of
-    # - https://gitlab.com/gitlab-org/gitlab-build-images
-    # /blob/9dadb28021f15913a49897126a0cd6ab0149e44f/scripts/install-chrome
-    # - https://askubuntu.com/a/510186/196148
-    - curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+#     # install chrome and add key
+#     # based off of
+#     # - https://gitlab.com/gitlab-org/gitlab-build-images
+#     # /blob/9dadb28021f15913a49897126a0cd6ab0149e44f/scripts/install-chrome
+#     # - https://askubuntu.com/a/510186/196148
+#     - curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
     
-    # add repo and install yarn
-    - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ 
-      stable main" > /etc/apt/sources.list.d/google.list
-    - apt-get update -q -y
-    - apt-get install -y google-chrome-stable
+#     # add repo and install yarn
+#     - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ 
+#       stable main" > /etc/apt/sources.list.d/google.list
+#     - apt-get update -q -y
+#     - apt-get install -y google-chrome-stable
 
-    - npm install --global yarn
-    - yarn install
+#     - npm install --global yarn
+#     - yarn install
     
-    # test the website
-    - python3 guitests.py
+#     # test the website
+#     - python3 guitests.py
 
 
