@@ -56,7 +56,6 @@ class tests(unittest.TestCase):
         # go to about us page
         self.driver.get("https://booksforyou.me/about")
         self.driver.implicitly_wait(self.wait_time)
-        assert "about" in self.driver.current_url
         # verify title
         title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/h1[1]').text
         assert title == "About Us"
