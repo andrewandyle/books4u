@@ -8,6 +8,10 @@
 
 # CMD bash
 
-FROM mcgenius/pp_python
+# FROM mcgenius/pp_python
+
+# CMD bash
+
+FROM python:3.7
 
 CMD bash
