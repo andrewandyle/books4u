@@ -12,3 +12,40 @@ books4u_jest:
     - yarn install --ignore-engines
     - yarn test
 
+books4u_selenium:
+  image:
+    name: python:3.7
+    script:
+      - pip install selenium
+      - pip install requests
+      - pip install pytest
+      - cd frontend
+
+      # code from texas votes
+      # Dependencies for chromedriver, 
+      # https://gist.github.com/mikesmullin/2636776#gistcomment-1742414
+      - apt-get update -q -y
+      - apt-get install nodejs npm -y
+      - apt-get --yes install libnss3
+      - apt-get --yes install libgconf-2-4
+      - apt-get install libx11-xcb1
+
+      # install chrome and add key
+      # based off of
+      # - https://gitlab.com/gitlab-org/gitlab-build-images
+      # /blob/9dadb28021f15913a49897126a0cd6ab0149e44f/scripts/install-chrome
+      # - https://askubuntu.com/a/510186/196148
+      - curl -sS -L https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+      
+      # add repo and install npm
+      - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ 
+        stable main" > /etc/apt/sources.list.d/google.list
+      - apt-get update -q -y
+      - apt-get install -y google-chrome-stable
+      - yarn install
+      
+      # test the website
+      - cd src/tests
+      - python3 guitests.py
+
+
