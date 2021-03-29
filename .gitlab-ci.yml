@@ -9,6 +9,6 @@ books4u_jest:
     entrypoint: [""]
   script:
     - cd frontend
-    - yarn install
+    - yarn install --ignore-engines
     - yarn test
 
