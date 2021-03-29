@@ -1,0 +1,12 @@
+before_script:
+  - date
+  - uname -a
+  - printenv | sort
+
+books4u_jest:
+  image:
+    name: postman/newman_alpine33
+    entrypoint: [""]
+  script:
+    - cd front
+    - yarn test

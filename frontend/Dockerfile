@@ -16,6 +16,7 @@ RUN git pull --force
 
 EXPOSE 80
 
-CMD git pull --force && cd backend && yarn test
+CMD cd frontend && yarn test
+CMD bash
 
 # Run docker run -p 80:80 <name of image> - in order to test api locally
