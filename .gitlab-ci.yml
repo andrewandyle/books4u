@@ -5,8 +5,10 @@ before_script:
 
 books4u_jest:
   image:
-    name: postman/newman_alpine33
+    name: mcgenius/pp_mocha
     entrypoint: [""]
   script:
-    - cd front
+    - cd frontend
+    - yarn install
     - yarn test
+
