@@ -135,7 +135,6 @@ class tests(unittest.TestCase):
         assert "The Kill Order" in book
 
     def tearDown(self):
-        self.driver.close()
         self.driver.quit()
 
 if __name__ == "__main__":
