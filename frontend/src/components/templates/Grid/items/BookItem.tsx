@@ -15,7 +15,25 @@ function BookItem({ item, excludeAuthor }: any) {
           </div>
           <div onMouseLeave={() => setIsFlipped((prev) => !prev)} className="flip-card">
            <div className="flip-back">
-            This is back.
+           {!excludeAuthor && (
+             <div>
+               Author:{" "}
+               {authors
+                .map((author: any) => author.replace(/^'|'$/g, ""))
+                .join(", ")}
+               <br />
+            </div>
+           )}
+           
+           Year: {year ? year.substring(0, 4) : "N/A"}
+          <br />
+          Price: {price ? `$${price}` : "N/A"}
+          <br />
+          Page Count: {page_count}
+        <br />
+        <Link to={`/book/${id}`} className="btn btn-primary">
+          See More
+          </Link>
            </div>
            </div>
         </ReactCardFlip>    
