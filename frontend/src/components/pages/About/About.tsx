@@ -40,7 +40,7 @@ function About() {
           email: "andrewandyle@gmail.com",
           commits: 0,
           issues: 0,
-          unitTests: 6,
+          unitTests: 14,
           image: AndrewLe,
           bio:
             "Andrew is a senior CS student who enjoys full-stack app development. Enjoys biking, weightlifting, being a foodie, and playing video games.",
@@ -52,7 +52,7 @@ function About() {
           email: "saikiran.m00@gmail.com",
           commits: 0,
           issues: 0,
-          unitTests: 0,
+          unitTests: 10,
           image: SaiKiranMaddela,
           bio:
             "Sai is a third year CS student who is interested in AI/ML concepts, specifically neural networks and NLP. He enjoys playing basketball, biking, and reading.",
@@ -64,7 +64,7 @@ function About() {
           email: "rahul.ramaswamy@utexas.edu",
           commits: 0,
           issues: 0,
-          unitTests: 6,
+          unitTests: 10,
           image: RahulRamaswamy,
           bio:
             "Rahul is a junior double majoring in computer science and math. He loves to try new food, travel, play poker, and watch new TV shows/movies.",
@@ -76,7 +76,7 @@ function About() {
           email: "quddlr9015@gmail.com",
           commits: 0,
           issues: 0,
-          unitTests: 0,
+          unitTests: 10,
           image: ByungikHyun,
           bio:
             "Byungik is a senior CS student who likes to watch Premier League soccer games, play League of Legends, and watch old movies.",
@@ -88,7 +88,7 @@ function About() {
           email: "69916283+mjscs@users.noreply.github.com",
           commits: 0,
           issues: 0,
-          unitTests: 0,
+          unitTests: 10,
           image: MariaSierra,
           bio:
             "Maria is a senior CS student who is a fan of hiking, exploring new eateries in Austin, and watching the latest series in the Marvel cinematic universe.",
@@ -166,42 +166,40 @@ function About() {
             <div className="d-flex flex-wrap justify-content-evenly mb-3">
               <h3 className="text-center">Total Commits: {stats.commits} </h3>
               <h3 className="text-center">Total Issues: {stats.issues}</h3>
-              <h3 className="text-center">Total Unit Tests: 12</h3>
+              <h3 className="text-center">Total Unit Tests: 54</h3>
             </div>
             <div className="d-flex flex-wrap justify-content-evenly">
-
-        
               <button className="click">
-              <a 
-              className='a'
-              href="https://gitlab.com/cs373-group14/books4u"
-              target="_blank"
-              rel="noreferrer"
-              >
-              <img
-                src="https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png"
-                alt="GitLab"
-                width={40}
-                style={{ marginRight: 10 }}
-              />
-                GitLab Repo
+                <a
+                  className="a"
+                  href="https://gitlab.com/cs373-group14/books4u"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src="https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png"
+                    alt="GitLab"
+                    width={40}
+                    style={{ marginRight: 10 }}
+                  />
+                  GitLab Repo
                 </a>
               </button>
 
               <button className="click">
-              <a 
-              className='a'
-              href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6"
-              target="_blank"
-              rel="noreferrer"
-              >
-              <img
-                src="https://miro.medium.com/max/512/1*fVBL9mtLJmHIH6YpU7WvHQ.png"
-                alt="Postman"
-                width={40}
-                style={{ marginRight: 10 }}
-              />
-                Postman Documentation
+                <a
+                  className="a"
+                  href="https://documenter.getpostman.com/view/10839542/Tz5jcyx6"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <img
+                    src="https://miro.medium.com/max/512/1*fVBL9mtLJmHIH6YpU7WvHQ.png"
+                    alt="Postman"
+                    width={40}
+                    style={{ marginRight: 10 }}
+                  />
+                  Postman Documentation
                 </a>
               </button>
             </div>
@@ -220,7 +218,8 @@ function About() {
           <a href="https://about.gitlab.com/" target="_blank" rel="noreferrer">
             GitLab
           </a>
-          : DevOps platform used to manage our Git repository, issues, and pipelines.
+          : DevOps platform used to manage our Git repository, issues, and
+          pipelines.
         </div>
         <div>
           <img
@@ -264,7 +263,8 @@ function About() {
           <a href="https://aws.amazon.com/" target="_blank" rel="noreferrer">
             AWS
           </a>
-          : Cloud platform used to host our website and manage storage/databases (EC2, Elastic Beanstalk, CloudFront, RDS)
+          : Cloud platform used to host our website and manage storage/databases
+          (EC2, Elastic Beanstalk, CloudFront, RDS)
         </div>
         <div>
           <img
@@ -275,7 +275,8 @@ function About() {
           <a href="https://www.docker.com/" target="_blank" rel="noreferrer">
             Docker
           </a>
-          : Platform as a service (PaaS) used to package our toolchain and dependencies into containers.
+          : Platform as a service (PaaS) used to package our toolchain and
+          dependencies into containers.
         </div>
         <div>
           <img
@@ -316,7 +317,8 @@ function About() {
           >
             PostgreSQL
           </a>
-          : Object-relational database system used to store our data in the backend.
+          : Object-relational database system used to store our data in the
+          backend.
         </div>
         <div>
           <img
