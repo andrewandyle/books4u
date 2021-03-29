@@ -15,7 +15,7 @@ Platform for users to browse their favorite books, authors, and quotes and explo
 
 ## Git SHA
 * Phase 1: ab7919469cf6671145cac295bcda2b90b6b1981b
-* Phase 2: 
+* Phase 2: 039cc987dba22d9eac41da93a223f8499f7cda68
 
 ## Project Leader
 * Phase 1: Andrew Le
@@ -32,6 +32,6 @@ Website: https://booksforyou.me/
 |Andrew Le|15|21|30|60|
 |Sai Kiran Maddela|15|21|25|40|
 |Rahul Ramaswamy|15|21|25|35|
-|Byungik Hyun|15|21|||
-|Maria Sierra|15|21|||
+|Byungik Hyun|15|21|25|30|
+|Maria Sierra|15|21|25|25|
 
