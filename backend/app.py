@@ -1,7 +1,7 @@
 import json
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
-from models import Book, Author, Quote, BooksToAuthors, BooksToQuotes, AuthorsToQuotes, BookSchema, AuthorSchema, QuoteSchema, BooksToAuthorsSchema, BooksToQuotesSchema, AuthorsToQuotesSchema
+from models import Book, Author, Quote, BookSchema, AuthorSchema, QuoteSchema
 from init import app
 
 book_schema = BookSchema()
@@ -10,9 +10,6 @@ author_schema = AuthorSchema()
 authors_schema = AuthorSchema(many=True)
 quote_schema = QuoteSchema()
 quotes_schema = QuoteSchema(many=True)
-books_to_authors_schema = BooksToAuthorsSchema(many=True)
-books_to_quotes_schema = BooksToQuotesSchema(many=True)
-authors_to_quotes_schema = AuthorsToQuotesSchema(many=True)
 
 
 @app.route("/")
@@ -41,24 +38,19 @@ def get_quotes():
 @app.route('/api/book/<id>', methods=["GET"])
 def get_book(id):
     book = Book.query.get(id)
-    connected_author_ids = BooksToAuthors.query.filter_by(book_id=id)
-    connected_quote_ids = BooksToQuotes.query.filter_by(book_id=id)
-    return jsonify({"book": book_schema.dump(book), "author_ids": books_to_authors_schema.dump(connected_author_ids), "quote_ids": books_to_quotes_schema.dump(connected_quote_ids)})
+    return book_schema.dump(book)
 
 
 @app.route('/api/author/<id>', methods=["GET"])
 def get_author(id):
     author = Author.query.get(id)
-    connected_book_ids = BooksToAuthors.query.filter_by(author_id=id)
-    connected_quote_ids = AuthorsToQuotes.query.filter_by(author_id=id)
-    return jsonify({"author": author_schema.dump(author), "book_ids": books_to_authors_schema.dump(connected_book_ids), "quote_ids": authors_to_quotes_schema.dump(connected_quote_ids)})
+    return author_schema.dump(author)
 
 
 @app.route('/api/quote/<id>', methods=["GET"])
 def get_quote(id):
     quote = Quote.query.get(id)
-    connected_book_ids = BooksToQuotes.query.filter_by(quote_id=id)
-    return jsonify({"quote": quote_schema.dump(quote), "book_ids": books_to_quotes_schema.dump(connected_book_ids)})
+    return quote_schema.dump(quote)
 
 
 if __name__ == '__main__':

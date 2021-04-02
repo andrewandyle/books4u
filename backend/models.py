@@ -1,171 +1,158 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import ARRAY
 from init import db, ma
-# db = SQLAlchemy()
 
-###### MODELS ######
+# Books and Authors Association
+books_to_authors = db.Table('books_to_authors',
+    db.Column('book_id', db.Integer, db.ForeignKey('book.book_id')),
+    db.Column('author_id', db.Integer, db.ForeignKey('author.author_id'))
+)
 
+# Books and Quotes Association
+books_to_quotes = db.Table('books_to_quotes',
+    db.Column('book_id', db.Integer, db.ForeignKey('book.book_id')),
+    db.Column('quote_id', db.Integer, db.ForeignKey('quote.quote_id'))
+)
 
 # Book Model
 class Book(db.Model):
     __tablename__ = 'book'
-    id              = db.Column(db.Integer, primary_key=True)
+    book_id         = db.Column(db.Integer, primary_key=True)
+
+    # Model Details
     name            = db.Column(db.String())
-    genres          = db.Column(ARRAY(db.String()))
+    author_names    = db.Column(ARRAY(db.String()))
     year            = db.Column(db.String())
-    page_count      = db.Column(db.Integer)
     price           = db.Column(db.Float)
+    page_count      = db.Column(db.Integer)
+
+    # Instance Details
+    description     = db.Column(db.String())
+    genres          = db.Column(ARRAY(db.String()))
     avg_rating      = db.Column(db.Float)
     num_ratings     = db.Column(db.Integer)
     maturity_rating = db.Column(db.String())
     language        = db.Column(db.String())
-    authors         = db.Column(ARRAY(db.String()))
 
-    description     = db.Column(db.String())
+    # Media
     image           = db.Column(db.String())
     purchase_link   = db.Column(db.String())
 
-    # authors association
-    author_ids      = db.relationship('Author', secondary='books_to_authors')
+    # Associations
+    authors         = db.relationship('Author', secondary=books_to_authors, backref=db.backref('books', lazy='dynamic'))
+    quotes          = db.relationship('Quote', secondary=books_to_quotes, backref=db.backref('books', lazy='dynamic'))
 
 
 # Author model
 class Author(db.Model):
     __tablename__ = 'author'
-    id                  = db.Column(db.Integer, primary_key=True)
+    author_id           = db.Column(db.Integer, primary_key=True)
+
+    # Model Details
     first_name          = db.Column(db.String())
     last_name           = db.Column(db.String())
-    on_tour             = db.Column(db.Boolean)
-    bestsellers         = db.Column(db.Boolean)
-    genres              = db.Column(ARRAY(db.String()))
-    occupation          = db.Column(db.String())
     num_published_books = db.Column(db.Integer)
+    occupation          = db.Column(db.String())
     avg_rating          = db.Column(db.Float)
-    gender              = db.Column(db.String())
-    birthday            = db.Column(db.String())
-    date_of_death       = db.Column(db.String())
 
+    # Instance Details
     spotlight           = db.Column(db.String())
+    bestsellers         = db.Column(db.Boolean)
+    on_tour             = db.Column(db.Boolean)
+    genres              = db.Column(ARRAY(db.String()))
+    gender              = db.Column(db.String())
+
+    # Media
     image               = db.Column(db.String())
 
-    book_ids            = db.relationship('Book', secondary='books_to_authors')
-    quote_ids           = db.relationship('Quote', secondary='author_to_quotes')
+    # Associations
+    quotes              = db.relationship('Quote', backref='author')
 
 
 # Quote model
 class Quote(db.Model):
     __tablename__ = 'quote'
-    id                  = db.Column(db.Integer, primary_key=True)
-    author              = db.Column(db.String())
+    quote_id            = db.Column(db.Integer, primary_key=True)
+
+    # Model Details
+    quote               = db.Column(db.String())
+    author_name         = db.Column(db.String())
     length              = db.Column(db.Integer)
+    num_unique_words    = db.Column(db.Integer)
+    score               = db.Column(db.Float)
+
+    # Instance Details
     tags                = db.Column(ARRAY(db.String()))
     language            = db.Column(db.String())
-    num_unique_words        = db.Column(db.Integer)
     num_syllables       = db.Column(db.Integer)
-    score               = db.Column(db.Float)
     most_common_words   = db.Column(ARRAY(db.String()))
     least_common_words  = db.Column(ARRAY(db.String()))
 
-    quote               = db.Column(db.String())
+    # Media
     link                = db.Column(db.String())
 
-    author_id           = db.Column(db.Integer, db.ForeignKey('author.id'))
-    
-
-class BooksToAuthors(db.Model):
-    __tablename__ = 'books_to_authors'
-    book_id     = db.Column(db.Integer, db.ForeignKey('book.id'), primary_key = True)
-    author_id   = db.Column(db.Integer, db.ForeignKey('author.id'), primary_key = True)
-
-
-class BooksToQuotes(db.Model):
-    __tablename__ = 'books_to_quotes'
-    book_id     = db.Column(db.Integer, db.ForeignKey('book.id'), primary_key = True)
-    quote_id    = db.Column(db.Integer, db.ForeignKey('quote.id'), primary_key = True)
-
-
-class AuthorsToQuotes(db.Model):
-    __tablename__ = 'author_to_quotes'
-    author_id   = db.Column(db.Integer, db.ForeignKey('author.id'), primary_key = True)
-    quote_id    = db.Column(db.Integer, db.ForeignKey('quote.id'), primary_key = True)
+    # Associations
+    author_id           = db.Column(db.Integer, db.ForeignKey('author.author_id'))
 
 
 class BookSchema(ma.Schema):
     class Meta:
         fields = (
-            "id",
+            "book_id",
             "name",
-            "genres",
+            "author_names",
             "year",
-            "page_count",
             "price",
+            "page_count",
+            "description",
+            "genres",
             "avg_rating",
             "num_ratings",
             "maturity_rating",
             "language",
-            "authors",
-            "description",
             "image",
             "purchase_link", 
+            "authors",
+            "quotes",
         )
 
 class AuthorSchema(ma.Schema):
     class Meta:
         fields = (
-            "id",
+            "author_id",
             "first_name",
             "last_name",
-            "on_tour",
-            "bestsellers",
-            "genres",
-            "occupation",
             "num_published_books",
+            "occupation",
             "avg_rating",
-            "gender",
-            "birthday",
-            "date_of_death",
             "spotlight",
-            "image"
+            "bestsellers",
+            "on_tour",
+            "genres",
+            "gender",
+            "image",
+            "books",
+            "quotes",
         )
 
 class QuoteSchema(ma.Schema):
     class Meta:
         fields = (
-            "id",
+            "quote_id",
             "quote",
+            "author_name",
             "length",
-            "author",
+            "num_unique_words",
+            "score",
             "tags",
             "language",
-            "num_unique_words",
             "num_syllables",
-            "score",
             "most_common_words",
             "least_common_words",
             "link",
-            "background",
-            "author_id"
-        )
-
-class BooksToAuthorsSchema(ma.Schema):
-    class Meta:
-        fields = (
-            "book_id",
-            "author_id"
-        )
-
-class BooksToQuotesSchema(ma.Schema):
-    class Meta:
-        fields = (
-            "book_id",
-            "quote_id"
-        )
-
-class AuthorsToQuotesSchema(ma.Schema):
-    class Meta:
-        fields = (
             "author_id",
-            "quote_id"
+            "books",
+            "author",
         )
 
 db.create_all()
