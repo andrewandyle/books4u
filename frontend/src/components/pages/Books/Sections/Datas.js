@@ -31,4 +31,31 @@ const name = [
     }
 ]
 
-export default name
+const genre = [
+
+    {
+        id: 1, 
+        "name": "Any"
+    },
+
+    { 
+        id: 2,
+        "name": "Fiction"
+    },
+
+    {
+        id: 3,
+        "name": "History"
+    },
+
+    {
+        id: 4,
+        "name": "Juvenile Fiction"
+    }
+
+] 
+
+export {
+    genre, 
+    name
+}

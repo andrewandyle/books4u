@@ -4,8 +4,10 @@ import Pagination from "../../templates/Pagination";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 import RadioBox from "./Sections/RadioBox"
+import CheckBox from "./Sections/CheckBox"
 import { Col, Card, Row } from 'antd';
-import name from "./Sections/Datas"
+import { name, genre } from "./Sections/Datas";
+
 
 function Books() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,8 +15,8 @@ function Books() {
   const [{ data, loading }] = useAxios("/api/books");
   const [currentBooks, setCurrentBooks] = useState([]);
   const [Filters, setFilters] = useState({
-    continents: [],
-    price: []
+    name: [],
+    genre: []
 })
 
   const onPageChanged = (paginationData) => {
@@ -80,6 +82,12 @@ function Books() {
       <div className="row d-flex flex-row py-5">
         <h2>Discover Books</h2>
         <Row gutter={[16, 16]}>
+                <Col lg={12} xs={24}>
+                    <CheckBox
+                    list = {genre}
+                    handleFilters={filters => handleFilters(filters, "genre")}
+                    />
+                </Col>
                 <Col lg={12} xs={24}>
                     <RadioBox
                     list = {name}
