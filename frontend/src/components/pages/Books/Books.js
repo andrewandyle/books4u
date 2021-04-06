@@ -3,18 +3,21 @@ import BookItem from "../../templates/Grid/items/BookItem";
 import Pagination from "../../templates/Pagination";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
+import RadioBox from "./Sections/RadioBox"
+import { Col, Card, Row } from 'antd';
+import name from "./Sections/Datas"
 
 function Books() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [{ data, loading }] = useAxios("/api/books");
   const [currentBooks, setCurrentBooks] = useState([]);
+  const [Filters, setFilters] = useState({
+    continents: [],
+    price: []
+})
 
-  const onPageChanged = (paginationData: {
-    currentPage: any;
-    totalPages: any;
-    pageLimit: any;
-  }) => {
+  const onPageChanged = (paginationData) => {
     const { currentPage, totalPages, pageLimit } = paginationData;
     const offset = (currentPage - 1) * pageLimit;
     const currBooks = data.books.slice(offset, offset + pageLimit);
@@ -34,15 +37,62 @@ function Books() {
     .join(" ")
     .trim();
 
+  const getProducts = (variables) => {
+    
+  }
+  const handleName = (value) => {
+    const data = name;
+    let array = [];
+
+    for (let key in data) {
+        // console.log(key)
+        // console.log('value', value)
+        if (data[key]._id === parseInt(value, 10)) {
+            array = data[key].array;
+        }
+    }
+    console.log('array', array)
+    return array
+  }
+
+  const handleFilters = (filters, category) => {
+
+    const newFilters = { ...Filters }
+
+    newFilters[category] = filters
+    console.log(filters)
+    console.log(newFilters)
+    if (category === "name") {
+        let nameValues = handleName(filters)
+        newFilters[category] = nameValues
+
+    }
+
+    // console.log(newFilters)
+
+    // showFilteredResults(newFilters)
+    setFilters(newFilters)
+  }
   return loading ? (
     <Loading />
   ) : (
     <div className="container">
       <div className="row d-flex flex-row py-5">
         <h2>Discover Books</h2>
-        {currentBooks.map((book: any) => (
+        <Row gutter={[16, 16]}>
+                <Col lg={12} xs={24}>
+                    <RadioBox
+                    list = {name}
+                    handleFilters={filters => handleFilters(filters, "name")}
+                    />
+                </Col>
+        </Row>
+
+        {currentBooks.map((book) => (
           <BookItem item={book} />
         ))}
+
+        
         <div className="d-flex flex-row py-4 align-items-center justify-content-between">
           <h2 className={headerClass}>
             <strong className="text-secondary">{data.books.length}</strong>{" "}
@@ -65,5 +115,6 @@ function Books() {
     </div>
   );
 }
+
 
 export default Books;

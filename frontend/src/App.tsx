@@ -19,7 +19,7 @@ function App() {
         <Navbar />
         <Route path="/" exact component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/books" component={Books} />
+        <Route path="/Books" component={Books} />
         <Route path="/authors" component={Authors} />
         <Route path="/quotes" component={Quotes} />
         <Route path="/book" component={BookInstance} />
