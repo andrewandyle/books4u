@@ -6,7 +6,8 @@ import useAxios from "axios-hooks";
 import RadioBox from "./Sections/RadioBox"
 import CheckBox from "./Sections/CheckBox"
 import { Col, Card, Row } from 'antd';
-import { name, genre } from "./Sections/Datas";
+import SearchFeature from './Sections/SearchFeature';
+import { title, genre, price, year, rating } from "./Sections/Datas";
 
 
 function Books() {
@@ -14,9 +15,14 @@ function Books() {
   const [totalPages, setTotalPages] = useState(0);
   const [{ data, loading }] = useAxios("/api/books");
   const [currentBooks, setCurrentBooks] = useState([]);
+
+  const [SearchTerms, setSearchTerms] = useState("")
   const [Filters, setFilters] = useState({
-    name: [],
-    genre: []
+    title: [],
+    genres: [],
+    price: [],
+    year: [],
+    rating
 })
 
   const onPageChanged = (paginationData) => {
@@ -42,8 +48,22 @@ function Books() {
   const getProducts = (variables) => {
     
   }
-  const handleName = (value) => {
-    const data = name;
+  const updateSearchTerms = (newSearchTerm) => {
+
+    // const variables = {
+    //     skip: 0,
+    //     limit: Limit,
+    //     filters: Filters,
+    //     searchTerm: newSearchTerm
+    // }
+
+    // setSkip(0)
+    // setSearchTerms(newSearchTerm)
+
+    // getProducts(variables)
+}
+  const handleTitle = (value) => {
+    const data = title;
     let array = [];
 
     for (let key in data) {
@@ -64,11 +84,18 @@ function Books() {
     newFilters[category] = filters
     console.log(filters)
     console.log(newFilters)
-    if (category === "name") {
-        let nameValues = handleName(filters)
-        newFilters[category] = nameValues
+    // if (category === "genre") {
+    //   let genreValues = handleName(filters)
+    //   newFilters[category] = genreValues
 
-    }
+    // }
+    if (category === "title") {
+        let titleValues = handleTitle(filters)
+        newFilters[category] = titleValues
+    } else if (category === "price") {
+      let priceValues = 0//handlePrice(filters)
+      newFilters[category] = priceValues
+  }
 
     // console.log(newFilters)
 
@@ -84,17 +111,52 @@ function Books() {
         <Row gutter={[16, 16]}>
                 <Col lg={12} xs={24}>
                     <CheckBox
+                    name = "Genres"
                     list = {genre}
                     handleFilters={filters => handleFilters(filters, "genre")}
                     />
                 </Col>
+
+                <Col lg={12} xs={24}>
+                    <CheckBox
+                    name = "Year"
+                    list = {year}
+                    handleFilters={filters => handleFilters(filters, "year")}
+                    />
+                </Col>
+
+                <Col lg={12} xs={24}>
+                    <CheckBox
+                    name = "Rating"
+                    list = {rating}
+                    handleFilters={filters => handleFilters(filters, "rating")}
+                    />
+                </Col>
+
                 <Col lg={12} xs={24}>
                     <RadioBox
-                    list = {name}
-                    handleFilters={filters => handleFilters(filters, "name")}
+                    name = "Title"
+                    list = {title}
+                    handleFilters={filters => handleFilters(filters, "title")}
+                    />
+                </Col>
+
+                <Col lg={12} xs={24}>
+                    <RadioBox
+                    name = "Price"
+                    list = {price}
+                    handleFilters={filters => handleFilters(filters, "price")}
                     />
                 </Col>
         </Row>
+
+        <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
+
+                <SearchFeature
+                    refreshFunction={updateSearchTerms}
+                />
+
+        </div>
 
         {currentBooks.map((book) => (
           <BookItem item={book} />
