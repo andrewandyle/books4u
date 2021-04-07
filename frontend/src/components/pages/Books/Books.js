@@ -8,8 +8,43 @@ import CheckBox from "./Sections/CheckBox"
 import { Col, Row, Select } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
 import { title, genre, price, year, rating } from "./Sections/Datas";
+import ProductTable from "./Sections/SortBox"
 
 const { Option } = Select;
+
+const useSortableData = (items, config = null) => {
+  const [sortConfig, setSortConfig] = React.useState(config);
+
+  const sortedItems = React.useMemo(() => {
+    let sortableItems = [...items];
+    if (sortConfig !== null) {
+      sortableItems.sort((a, b) => {
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.direction === 'ascending' ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return sortableItems;
+  }, [items, sortConfig]);
+
+  const requestSort = (key) => {
+    let direction = 'ascending';
+    if (
+      sortConfig &&
+      sortConfig.key === key &&
+      sortConfig.direction === 'ascending'
+    ) {
+      direction = 'descending';
+    }
+    setSortConfig({ key, direction });
+  };
+
+  return { items: sortedItems, requestSort, sortConfig };
+};
 
 function Books() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,7 +52,7 @@ function Books() {
   const [{ data, loading }] = useAxios("/api/books");
   const [currentBooks, setCurrentBooks] = useState([]);
 
-  const [sort, setSort] = useState("default");
+  const [sortValue, setSortValue] = useState("default");
   const [SearchTerms, setSearchTerms] = useState("")
   const [Filters, setFilters] = useState({
     title: [],
@@ -47,9 +82,43 @@ function Books() {
     .join(" ")
     .trim();
 
+  // Sort function
+  const useSortableData = (items, config = null) => {
+    const [sortConfig, setSortConfig] = React.useState(config);
+  
+    const sortedItems = React.useMemo(() => {
+      let sortableItems = [...items];
+      if (sortConfig !== null) {
+        sortableItems.sort((a, b) => {
+          if (a[sortConfig.key] < b[sortConfig.key]) {
+            return sortConfig.direction === 'ascending' ? -1 : 1;
+          }
+          if (a[sortConfig.key] > b[sortConfig.key]) {
+            return sortConfig.direction === 'ascending' ? 1 : -1;
+          }
+          return 0;
+        });
+      }
+      return sortableItems;
+    }, [items, sortConfig]);
+  
+    const requestSort = (key) => {
+      let direction = 'ascending';
+      if (
+        sortConfig &&
+        sortConfig.key === key &&
+        sortConfig.direction === 'ascending'
+      ) {
+        direction = 'descending';
+      }
+      setSortConfig({ key, direction });
+    };
+  
+    return { items: sortedItems, requestSort, sortConfig };
+  };
   // Todo: implement handleSortChange function for Sort
   function handleSortChange(value) {
-      setSort(value);
+    setSortValue(value);
   }
 
 
@@ -105,12 +174,20 @@ function Books() {
       let priceValues = 0//handlePrice(filters)
       newFilters[category] = priceValues
   }
-
     // console.log(newFilters)
-
     // showFilteredResults(newFilters)
     setFilters(newFilters)
   }
+
+  // Sort functions
+  const { items, requestSort, sortConfig } = useSortableData(currentBooks);
+    const getClassNamesFor = (name) => {
+      if (!sortConfig) {
+        return;
+      }
+      return sortConfig.key === name ? sortConfig.direction : undefined;
+  };
+
   return loading ? (
     <Loading />
   ) : (
@@ -158,15 +235,15 @@ function Books() {
                     />
                 </Col>
 
-                <Col lg={12} xs={24}>
-                  <select value="default" style={{ width: 120 }} onChange={handleSortChange}>
+                {/* <Col lg={12} xs={24}>
+                  <select value={sortValue} style={{ width: 120 }} onChange={handleSortChange}>
                     <option value="default">Default</option>
                     <option value="title_ascending">Title Ascending</option>
                     <option value="title_descending">Title Descending</option>
                     <option value="rating_ascending">Rating Ascending</option>
                     <option value="rating_descending">Rating Descending</option>
                   </select>
-                </Col>
+                </Col> */}
         </Row>
         
 
@@ -177,10 +254,48 @@ function Books() {
                 />
 
         </div>
-
-        {currentBooks.map((book) => (
+        <caption>Sorts</caption>
+        <thead>
+          <tr>
+            <th>
+              <button
+                type="button"
+                onClick={() => requestSort('name')}
+                className={getClassNamesFor('name')}
+              >
+                Name
+              </button>
+            </th>
+            <th>
+              <button
+                type="button"
+                onClick={() => requestSort('price')}
+                className={getClassNamesFor('price')}
+              >
+                Price
+              </button>
+            </th>
+            <th>
+              <button
+                type="button"
+                onClick={() => requestSort('stock')}
+                className={getClassNamesFor('stock')}
+              >
+                In Stock
+              </button>
+            </th>
+          </tr>
+        </thead>
+       
+           {items.map((book) => (
           <BookItem item={book} />
-        ))}
+            ))}
+        
+
+
+        {/* {currentBooks.map((book) => (
+          <BookItem item={book} />
+        ))} */}
 
         
         <div className="d-flex flex-row py-4 align-items-center justify-content-between">
@@ -205,6 +320,7 @@ function Books() {
     </div>
   );
 }
+
 
 
 export default Books;
