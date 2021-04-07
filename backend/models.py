@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.postgresql import ARRAY
-from init import db, ma
+from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
+from init import db
 
 # Books and Authors Association
 books_to_authors = db.Table('books_to_authors',
@@ -95,64 +96,25 @@ class Quote(db.Model):
     author_id           = db.Column(db.Integer, db.ForeignKey('author.author_id'))
 
 
-class BookSchema(ma.Schema):
+# Book Schema
+class BookSchema(SQLAlchemyAutoSchema):
     class Meta:
-        fields = (
-            "book_id",
-            "name",
-            "author_names",
-            "year",
-            "price",
-            "page_count",
-            "description",
-            "genres",
-            "avg_rating",
-            "num_ratings",
-            "maturity_rating",
-            "language",
-            "image",
-            "purchase_link", 
-            "authors",
-            "quotes",
-        )
+        model = Book
+        include_relationships = True
+        load_instance = True
 
-class AuthorSchema(ma.Schema):
+# Author Schema
+class AuthorSchema(SQLAlchemyAutoSchema):
     class Meta:
-        fields = (
-            "author_id",
-            "first_name",
-            "last_name",
-            "num_published_books",
-            "occupation",
-            "avg_rating",
-            "spotlight",
-            "bestsellers",
-            "on_tour",
-            "genres",
-            "gender",
-            "image",
-            "books",
-            "quotes",
-        )
+        model = Author
+        include_relationships = True
+        load_instance = True
 
-class QuoteSchema(ma.Schema):
+# Quote Schema
+class QuoteSchema(SQLAlchemyAutoSchema):
     class Meta:
-        fields = (
-            "quote_id",
-            "quote",
-            "author_name",
-            "length",
-            "num_unique_words",
-            "score",
-            "tags",
-            "language",
-            "num_syllables",
-            "most_common_words",
-            "least_common_words",
-            "link",
-            "author_id",
-            "books",
-            "author",
-        )
+        model = Quote
+        include_relationships = True
+        load_instance = True
 
 db.create_all()
