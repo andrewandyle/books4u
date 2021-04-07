@@ -13,7 +13,7 @@ const columns = [
     },
   },
   { name: "quote", label: "Quote" },
-  { name: "author", label: "Author" },
+  { name: "author_name", label: "Author" },
   { name: "length", label: "Length" },
   { name: "num_unique_words", label: "No. of Unique Words" },
   { name: "score", label: "Score" },

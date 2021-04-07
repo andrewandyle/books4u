@@ -38,7 +38,7 @@ function AuthorInstance() {
               <b>Genres:</b>
             </u>
             {data.author.genres.map((genre: any) => (
-              <div className="chip">{genre.replace(/^'|'$/g, "")}</div>
+              <div className="chip">{genre}</div>
             ))}
           </div>
         )}

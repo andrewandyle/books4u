@@ -38,8 +38,8 @@ function QuoteInstance() {
             <u>
               <b>Tags:</b>
             </u>
-            {data.quote.tags.map((genre: any) => (
-              <div className="chip">{genre.replace(/^'|'$/g, "")}</div>
+            {data.quote.tags.map((tag: any) => (
+              <div className="chip">{tag}</div>
             ))}
           </div>
         )}
@@ -48,9 +48,7 @@ function QuoteInstance() {
             <u>
               <b>Most Common Words:</b>
             </u>{" "}
-            {data.quote.most_common_words
-              .map((word: any) => word.replace(/^'|'$/g, ""))
-              .join(", ")}
+            {data.quote.most_common_words.join(", ")}
           </div>
         )}
         {data.quote.least_common_words && (
@@ -58,9 +56,7 @@ function QuoteInstance() {
             <u>
               <b>Least Common Words:</b>
             </u>{" "}
-            {data.quote.least_common_words
-              .map((word: any) => word.replace(/^'|'$/g, ""))
-              .join(", ")}
+            {data.quote.least_common_words.join(", ")}
           </div>
         )}
         <div className="container">

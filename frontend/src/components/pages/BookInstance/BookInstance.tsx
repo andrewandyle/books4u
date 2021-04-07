@@ -21,12 +21,7 @@ function BookInstance() {
           )}
           <div>
             <h1>{data.book.name}</h1>
-            <h3>
-              by{" "}
-              {data.book.author_names
-                .map((author: any) => author.replace(/^'|'$/g, ""))
-                .join(", ")}
-            </h3>
+            <h3>by {data.book.author_names.join(", ")}</h3>
             {data.book.description}
           </div>
         </div>
@@ -36,7 +31,7 @@ function BookInstance() {
               <b>Genres:</b>
             </u>
             {data.book.genres.map((genre: any) => (
-              <div className="chip">{genre.replace(/^'|'$/g, "")}</div>
+              <div className="chip">{genre}</div>
             ))}
           </div>
         )}

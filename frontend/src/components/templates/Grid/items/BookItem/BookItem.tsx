@@ -34,7 +34,7 @@ function BookItem({ item }: any) {
           <div className="main-details">
             <h4 className="title">{name}</h4>
             <div>
-              by {author_names[0].replace(/^'|'$/g, "")}
+              by {author_names[0]}
               {author_names.length > 1 ? ` + ${author_names.length - 1}` : ""}
               <br />
             </div>
@@ -44,7 +44,7 @@ function BookItem({ item }: any) {
           <div className="back-details">
             Genre:{" "}
             {genres
-              ? `${genres[0].replace(/^'|'$/g, "")}${
+              ? `${genres[0]}${
                   genres.length > 1 ? ` + ${genres.length - 1}` : ""
                 }`
               : "N/A"}
