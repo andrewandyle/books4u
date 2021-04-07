@@ -5,9 +5,9 @@ import Placeholder from "./media/placeholder.png";
 
 function BookItem({ item }: any) {
   const {
-    id,
+    book_id,
     name,
-    authors,
+    author_names,
     genres,
     year,
     page_count,
@@ -18,7 +18,7 @@ function BookItem({ item }: any) {
   const [isFlipped, setIsFlipped] = React.useState(false);
   return (
     <Link
-      to={`/book/${id}`}
+      to={`/book/${book_id}`}
       className="p-2 col-lg-4 col-md-6"
       style={{ textDecoration: "none" }}
       onMouseEnter={() => setIsFlipped(true)}
@@ -34,8 +34,8 @@ function BookItem({ item }: any) {
           <div className="main-details">
             <h4 className="title">{name}</h4>
             <div>
-              by {authors[0].replace(/^'|'$/g, "")}
-              {authors.length > 1 ? ` + ${authors.length - 1}` : ""}
+              by {author_names[0].replace(/^'|'$/g, "")}
+              {author_names.length > 1 ? ` + ${author_names.length - 1}` : ""}
               <br />
             </div>
           </div>

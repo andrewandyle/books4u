@@ -9,14 +9,6 @@ function AuthorInstance() {
   const split_url = url.split("/");
   const id = split_url[split_url.length - 1];
   const [{ data, loading }] = useAxios(`/api/author/${id}`);
-  const [{ data: bookData, loading: bookLoading }] = useAxios("/api/books");
-  const [{ data: quoteData, loading: quoteLoading }] = useAxios("/api/quotes");
-
-  const getListOfBookIds = () =>
-    data.book_ids.map((book_obj: any) => book_obj.book_id);
-
-  const getListOfQuoteIds = () =>
-    data.quote_ids.map((quote_obj: any) => quote_obj.quote_id);
 
   return loading ? (
     <Loading />
@@ -100,7 +92,7 @@ function AuthorInstance() {
               <u>
                 <b>Gender:</b>
               </u>{" "}
-              {data.author.gender === 'M' ? (
+              {data.author.gender === "M" ? (
                 <div>Male &#x2642;</div>
               ) : (
                 <div>Female &#x2640;</div>
@@ -114,37 +106,25 @@ function AuthorInstance() {
         <h1>
           {data.author.first_name} {data.author.last_name}'s Books
         </h1>
-        {bookLoading ? (
-          <Loading />
-        ) : (
-          <div
-            className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
-            style={{ width: "100%" }}
-          >
-            {bookData.books
-              .filter((book: any) => getListOfBookIds().includes(book.id))
-              .map((book: any) => (
-                <BookItem item={book} excludeAuthor />
-              ))}
-          </div>
-        )}
+        <div
+          className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
+          style={{ width: "100%" }}
+        >
+          {data.related_books.map((book: any) => (
+            <BookItem item={book} excludeAuthor />
+          ))}
+        </div>
         <h1>
           {data.author.first_name} {data.author.last_name}'s Quotes
         </h1>
-        {quoteLoading ? (
-          <Loading />
-        ) : (
-          <div
-            className="d-flex flex-row flex-wrap pt-3 pb-5 align-items-center"
-            style={{ width: "100%" }}
-          >
-            {quoteData.quotes
-              .filter((quote: any) => getListOfQuoteIds().includes(quote.id))
-              .map((quote: any) => (
-                <QuoteItem item={quote} />
-              ))}
-          </div>
-        )}
+        <div
+          className="d-flex flex-row flex-wrap pt-3 pb-5 align-items-center"
+          style={{ width: "100%" }}
+        >
+          {data.related_quotes.map((quote: any) => (
+            <QuoteItem item={quote} />
+          ))}
+        </div>
       </div>
     </div>
   );

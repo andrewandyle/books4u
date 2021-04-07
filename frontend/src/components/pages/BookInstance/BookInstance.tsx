@@ -9,16 +9,6 @@ function BookInstance() {
   const split_url = url.split("/");
   const id = split_url[split_url.length - 1];
   const [{ data, loading }] = useAxios(`/api/book/${id}`);
-  const [{ data: authorData, loading: authorLoading }] = useAxios(
-    "/api/authors"
-  );
-  const [{ data: quoteData, loading: quoteLoading }] = useAxios("/api/quotes");
-
-  const getListOfAuthorIds = () =>
-    data.author_ids.map((author_obj: any) => author_obj.author_id);
-
-  const getListOfQuoteIds = () =>
-    data.quote_ids.map((quote_obj: any) => quote_obj.quote_id);
 
   return loading ? (
     <Loading />
@@ -33,7 +23,7 @@ function BookInstance() {
             <h1>{data.book.name}</h1>
             <h3>
               by{" "}
-              {data.book.authors
+              {data.book.author_names
                 .map((author: any) => author.replace(/^'|'$/g, ""))
                 .join(", ")}
             </h3>
@@ -121,38 +111,29 @@ function BookInstance() {
 
       <div className="container d-flex flex-column align-items-center">
         <h1>Author Pages</h1>
-        {authorLoading ? (
-          <Loading />
-        ) : (
-          <div
-            className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
-            style={{ width: "100%" }}
-          >
-            {authorData.authors
-              .filter((author: any) => getListOfAuthorIds().includes(author.id))
-              .map((author: any) => (
-                <Link className="author-link" to={`/author/${author.id}`}>
-                  <img
-                    src={author.image}
-                    alt={`${author.first_name} ${author.last_name}`}
-                  />
-                  {author.first_name} {author.last_name}
-                </Link>
-              ))}
-          </div>
-        )}
+        <div
+          className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
+          style={{ width: "100%" }}
+        >
+          {data.related_authors.map((author: any) => (
+            <Link className="author-link" to={`/author/${author.author_id}`}>
+              <img
+                src={author.image}
+                alt={`${author.first_name} ${author.last_name}`}
+              />
+              {author.first_name} {author.last_name}
+            </Link>
+          ))}
+        </div>
         <h1>Quotes From the Authors</h1>
-        {quoteLoading ? (
-          <Loading />
-        ) : (
-          <div className="d-flex flex-row flex-wrap pt-3 pb-5 align-items-center" style={{ width: "100%" }}>
-            {quoteData.quotes
-              .filter((quote: any) => getListOfQuoteIds().includes(quote.id))
-              .map((quote: any) => (
-                <QuoteItem item={quote} includeAuthor />
-              ))}
-          </div>
-        )}
+        <div
+          className="d-flex flex-row flex-wrap pt-3 pb-5 align-items-center"
+          style={{ width: "100%" }}
+        >
+          {data.related_quotes.map((quote: any) => (
+            <QuoteItem item={quote} includeAuthor />
+          ))}
+        </div>
       </div>
     </div>
   );
