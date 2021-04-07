@@ -17,23 +17,11 @@ function CheckBox(props) {
         } else {
             newChecked.splice(currentIndex, 1)
         }
-        // console.log("currIndex", currentIndex)
-        // console.log("value", value)
         setChecked(newChecked)
         props.handleFilters(newChecked)
         //update this checked information into Parent Component 
     
     }
-    // const renderCheckboxLists = () => genre.map((value,index) => (
-    //     <React.Fragment key={index}>
-    //         <Checkbox
-    //             onChange
-    //             type="checkbox"
-    //             checked
-    //         />
-    //         <span>{value.name}</span>;
-    //     </React.Fragment>
-    // ))
     const renderCheckboxLists = () => props.list && props.list.map((value, index) => (
         <React.Fragment key={index}>
             <Checkbox

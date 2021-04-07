@@ -5,10 +5,11 @@ import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 import RadioBox from "./Sections/RadioBox"
 import CheckBox from "./Sections/CheckBox"
-import { Col, Card, Row } from 'antd';
+import { Col, Row, Select } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
 import { title, genre, price, year, rating } from "./Sections/Datas";
 
+const { Option } = Select;
 
 function Books() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -16,13 +17,14 @@ function Books() {
   const [{ data, loading }] = useAxios("/api/books");
   const [currentBooks, setCurrentBooks] = useState([]);
 
+  const [sort, setSort] = useState("default");
   const [SearchTerms, setSearchTerms] = useState("")
   const [Filters, setFilters] = useState({
     title: [],
     genres: [],
     price: [],
     year: [],
-    rating
+    rating:[]
 })
 
   const onPageChanged = (paginationData) => {
@@ -45,6 +47,13 @@ function Books() {
     .join(" ")
     .trim();
 
+  // Todo: implement handleSortChange function for Sort
+  function handleSortChange(value) {
+      setSort(value);
+  }
+
+
+  // TODO: implement request data from backend with filter option
   const getProducts = (variables) => {
     
   }
@@ -148,7 +157,18 @@ function Books() {
                     handleFilters={filters => handleFilters(filters, "price")}
                     />
                 </Col>
+
+                <Col lg={12} xs={24}>
+                  <select value="default" style={{ width: 120 }} onChange={handleSortChange}>
+                    <option value="default">Default</option>
+                    <option value="title_ascending">Title Ascending</option>
+                    <option value="title_descending">Title Descending</option>
+                    <option value="rating_ascending">Rating Ascending</option>
+                    <option value="rating_descending">Rating Descending</option>
+                  </select>
+                </Col>
         </Row>
+        
 
         <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
 
