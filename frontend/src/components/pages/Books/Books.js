@@ -8,7 +8,7 @@ import CheckBox from "./Sections/CheckBox"
 import { Col, Row, Select } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
 import { title, genre, price, year, rating } from "./Sections/Datas";
-import ProductTable from "./Sections/SortBox"
+import SortStyle from "./Sections/SortStyle.css"
 
 const { Option } = Select;
 
@@ -261,7 +261,7 @@ function Books() {
                 />
         </div>
 
-        <caption>Sorts</caption>
+        <h3>Sorts</h3>
         <thead>
           <tr>
             <th>
@@ -289,6 +289,24 @@ function Books() {
                 className={getClassNamesFor('avg_rating')}
               >
                 Rating
+              </button>
+            </th>
+            <th>
+              <button
+                type="button"
+                onClick={() => requestSort('year')}
+                className={getClassNamesFor('year')}
+              >
+                Published Year
+              </button>
+            </th>
+            <th>
+              <button
+                type="button"
+                onClick={() => requestSort('page_count')}
+                className={getClassNamesFor('page_count')}
+              >
+                Pages
               </button>
             </th>
           </tr>
