@@ -90,11 +90,18 @@ function Books() {
       let sortableItems = [...items];
       if (sortConfig !== null) {
         sortableItems.sort((a, b) => {
-          if (a[sortConfig.key] < b[sortConfig.key]) {
+          if (a[sortConfig.key] === null) 
             return sortConfig.direction === 'ascending' ? -1 : 1;
-          }
-          if (a[sortConfig.key] > b[sortConfig.key]) {
-            return sortConfig.direction === 'ascending' ? 1 : -1;
+          if (b[sortConfig.key] === null)
+          return sortConfig.direction === 'ascending' ? 1 : -1;
+
+          if (a[sortConfig.key] != null && b[sortConfig.key] != null) {
+            if (a[sortConfig.key] < b[sortConfig.key]) {
+              return sortConfig.direction === 'ascending' ? -1 : 1;
+            }
+            if (a[sortConfig.key] > b[sortConfig.key]) {
+              return sortConfig.direction === 'ascending' ? 1 : -1;
+            }
           }
           return 0;
         });
@@ -178,7 +185,7 @@ function Books() {
     // showFilteredResults(newFilters)
     setFilters(newFilters)
   }
-
+  console.log(currentBooks)
   // Sort functions
   const { items, requestSort, sortConfig } = useSortableData(currentBooks);
     const getClassNamesFor = (name) => {
@@ -252,8 +259,8 @@ function Books() {
                 <SearchFeature
                     refreshFunction={updateSearchTerms}
                 />
-
         </div>
+
         <caption>Sorts</caption>
         <thead>
           <tr>
@@ -278,10 +285,10 @@ function Books() {
             <th>
               <button
                 type="button"
-                onClick={() => requestSort('stock')}
-                className={getClassNamesFor('stock')}
+                onClick={() => requestSort('avg_rating')}
+                className={getClassNamesFor('avg_rating')}
               >
-                In Stock
+                Rating
               </button>
             </th>
           </tr>
