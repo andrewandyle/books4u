@@ -1,5 +1,5 @@
 import json
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from models import Book, Author, Quote, BookSchema, AuthorSchema, QuoteSchema
 from init import app, db
 
@@ -11,14 +11,28 @@ authors_schema = AuthorSchema(many=True, exclude=['books', 'quotes'])
 quote_schema = QuoteSchema()
 quotes_schema = QuoteSchema(many=True, exclude=['books', 'author'])
 
+eq_query_filters = {'name'}
+rng_query_filters = {'year', 'avg_rating', 'page_count'}
+arr_query_filters = {'genres'}
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
-
 @app.route('/api/books', methods=["GET"])
 def get_books():
-    all_books = Book.query.all()
+    filters = []
+    args = request.args
+    for arg in args:
+        if arg in eq_query_filters:
+            filters.append(getattr(Book, arg) == args[arg])
+        elif arg in rng_query_filters:
+            lower_bound, upper_bound = args[arg].split('-')
+            filters.append(getattr(Book, arg) >= lower_bound)
+            filters.append(getattr(Book, arg) <= upper_bound)
+        elif arg in arr_query_filters:
+            filters.append(getattr(Book, arg).any(args[arg]))
+    all_books = Book.query.filter(*filters).all()
     return jsonify({"books": books_schema.dump(all_books)})
 
 
