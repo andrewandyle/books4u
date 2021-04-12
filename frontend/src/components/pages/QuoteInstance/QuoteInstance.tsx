@@ -9,10 +9,6 @@ function QuoteInstance() {
   const split_url = url.split("/");
   const id = split_url[split_url.length - 1];
   const [{ data, loading }] = useAxios(`/api/quote/${id}`);
-  const [{ data: bookData, loading: bookLoading }] = useAxios("/api/books");
-
-  const getListOfBookIds = () =>
-    data.book_ids.map((book_obj: any) => book_obj.book_id);
 
   return loading ? (
     <Loading />
@@ -20,21 +16,20 @@ function QuoteInstance() {
     <div className="d-flex flex-column align-items-center">
       <div className="author-header">
         <div className="container d-flex flex-row align-items-center mt-5 mb-3">
-          {/* TODO: Once author connection is established correctly, add author image here */}
-          {/* {data.author.image && (
+          {data.related_author.image && (
             <img
-              src={data.author.image}
-              alt="Book"
+              src={data.related_author.image}
+              alt="Author"
               style={{ marginRight: 15 }}
             />
-          )} */}
+          )}
           <div>
             <h1>"{data.quote.quote}"</h1>
             <Link
-              to={`/author/${data.quote.author_id}`}
+              to={`/author/${data.quote.author}`}
               style={{ color: "white" }}
             >
-              <h3>&ndash; {data.quote.author}</h3>
+              <h3>&ndash; {data.quote.author_name}</h3>
             </Link>
           </div>
         </div>
@@ -43,8 +38,8 @@ function QuoteInstance() {
             <u>
               <b>Tags:</b>
             </u>
-            {data.quote.tags.map((genre: any) => (
-              <div className="chip">{genre.replace(/^'|'$/g, "")}</div>
+            {data.quote.tags.map((tag: any) => (
+              <div className="chip">{tag}</div>
             ))}
           </div>
         )}
@@ -53,9 +48,7 @@ function QuoteInstance() {
             <u>
               <b>Most Common Words:</b>
             </u>{" "}
-            {data.quote.most_common_words
-              .map((word: any) => word.replace(/^'|'$/g, ""))
-              .join(", ")}
+            {data.quote.most_common_words.join(", ")}
           </div>
         )}
         {data.quote.least_common_words && (
@@ -63,9 +56,7 @@ function QuoteInstance() {
             <u>
               <b>Least Common Words:</b>
             </u>{" "}
-            {data.quote.least_common_words
-              .map((word: any) => word.replace(/^'|'$/g, ""))
-              .join(", ")}
+            {data.quote.least_common_words.join(", ")}
           </div>
         )}
         <div className="container">
@@ -119,21 +110,15 @@ function QuoteInstance() {
       )}
 
       <div className="container d-flex flex-column align-items-center">
-        <h1>{data.quote.author}'s Books</h1>
-        {bookLoading ? (
-          <Loading />
-        ) : (
-          <div
-            className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
-            style={{ width: "100%" }}
-          >
-            {bookData.books
-              .filter((book: any) => getListOfBookIds().includes(book.id))
-              .map((book: any) => (
-                <BookItem item={book} excludeAuthor />
-              ))}
-          </div>
-        )}
+        <h1>{data.quote.author_name}'s Books</h1>
+        <div
+          className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
+          style={{ width: "100%" }}
+        >
+          {data.related_books.map((book: any) => (
+            <BookItem item={book} excludeAuthor />
+          ))}
+        </div>
       </div>
     </div>
   );

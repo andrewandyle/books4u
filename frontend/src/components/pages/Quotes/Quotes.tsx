@@ -5,7 +5,7 @@ import useAxios from "axios-hooks";
 
 const columns = [
   {
-    name: "id",
+    name: "quote_id",
     label: "Quote ID",
     options: {
       filter: false,
@@ -13,7 +13,7 @@ const columns = [
     },
   },
   { name: "quote", label: "Quote" },
-  { name: "author", label: "Author" },
+  { name: "author_name", label: "Author" },
   { name: "length", label: "Length" },
   { name: "num_unique_words", label: "No. of Unique Words" },
   { name: "score", label: "Score" },
