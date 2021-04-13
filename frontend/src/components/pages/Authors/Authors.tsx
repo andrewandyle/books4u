@@ -99,7 +99,6 @@ function Authors(props : any) {
       name: "first_name", 
       label: "First Name",
       options: {
-        /* enable highlighting */
         filter: false,
         customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
         authorCustomBodyRender(val, tableMeta, updateVal),
@@ -109,7 +108,6 @@ function Authors(props : any) {
       name: "last_name", 
       label: "Last Name",
       options: {
-        /* enable highlighting */
         filter: false,
         customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
         authorCustomBodyRender(val, tableMeta, updateVal),
@@ -118,7 +116,6 @@ function Authors(props : any) {
     { name: "num_published_books",
      label: "No. of Published Books",
       options: {
-        /* enable highlighting */
         filter: false,
         customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
         authorCustomBodyRender(val, tableMeta, updateVal),
@@ -129,7 +126,6 @@ function Authors(props : any) {
       options: {
         filter : true,
         filterType : "dropdown" as any,
-        /* enable highlighting */
         customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
         authorCustomBodyRender(val, tableMeta, updateVal),
       }
@@ -147,7 +143,6 @@ function Authors(props : any) {
             return !show;
           },
         },
-        /* enable highlighting */
         customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
         authorCustomBodyRender(val, tableMeta, updateVal),
       }
@@ -155,7 +150,6 @@ function Authors(props : any) {
     { name: "avg_rating", 
       label: "Average Rating",
       options: {
-        /* enable highlighting */
         filter: false,
         customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
         authorCustomBodyRender(val, tableMeta, updateVal),
@@ -172,14 +166,14 @@ function Authors(props : any) {
           type="text"
           placeholder="Search Authors"
           ref={text_in}
-          style = {{"textAlign" : "center", "marginTop" : "100px"}}
+          style = {{"textAlign" : "center", "marginTop" : "0px"}}
           onKeyPress={(event: any) => {
             if (event.key === "Enter") {
               searchOnClick(); /* save search input */
             }
           }}
         />
-        <Button className = "btn btn-danger btn-lgc" variant="info" style = {{"width" : "100px", "height" : "30px", "marginBottom" : "20px"}}
+        <Button className = "btn btn-danger btn-lgc" variant="info" style = {{"width" : "100px", "height" : "30px", "marginBottom" : "0px"}}
         onClick={() => searchOnClick()}>
           Go!
         </Button>
