@@ -9,19 +9,19 @@
 
 ## Production DB Credentials
 
-# USERNAME = 'postgres'
-# PASSWORD = 'cs373group14'
-# DB_URL = 'books4u-db.cztd9xq7iwic.us-east-1.rds.amazonaws.com'
-# DB_PORT = '5432'
-# DB_NAME = 'postgres'
-
-## TEST DB Credentials
-
 USERNAME = 'postgres'
 PASSWORD = 'cs373group14'
-DB_URL = 'books4u-test.cztd9xq7iwic.us-east-1.rds.amazonaws.com'
+DB_URL = 'books4u-db.cztd9xq7iwic.us-east-1.rds.amazonaws.com'
 DB_PORT = '5432'
 DB_NAME = 'postgres'
+
+## TEST DB Credentials (Uncomment below and comment above when testing)
+
+# USERNAME = 'postgres'
+# PASSWORD = 'cs373group14'
+# DB_URL = 'books4u-test.cztd9xq7iwic.us-east-1.rds.amazonaws.com'
+# DB_PORT = '5432'
+# DB_NAME = 'postgres'
 
 SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://{USERNAME}:{PASSWORD}@{DB_URL}:{DB_PORT}/{DB_NAME}"
 
