@@ -15,6 +15,7 @@ eq_query_filters = {'name'}
 rng_query_filters = {'year', 'avg_rating', 'page_count'}
 arr_query_filters = {'genres'}
 
+@app.route("/", defaults = {"path" : ""})
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -79,4 +80,4 @@ def get_quote(id):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80, threaded=True, debug=True)
+    app.run(host="0.0.0.0", port=5000, threaded=True, debug=True)
