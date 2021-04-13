@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from config import *
 
-app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/public")
+app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
 CORS(app)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
