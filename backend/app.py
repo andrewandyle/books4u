@@ -1,6 +1,6 @@
 import json
 from flask import Flask, render_template, jsonify, request
-from sqlalchemy import or_
+from sqlalchemy import or_, nullslast
 from models import Book, Author, Quote, BookSchema, AuthorSchema, QuoteSchema
 from init import app, db
 
@@ -24,6 +24,7 @@ def index():
 def get_books():
     filters = []
     args = request.args
+    sort_by = None
     for arg in args:
         if arg in rng_query_filters:
             lower_bound, upper_bound = args[arg].split('-')
@@ -33,8 +34,12 @@ def get_books():
             for genre in args[arg].split(','):
                 genre_filters.append(getattr(Book, arg).any(genre))
             filters.append(or_(*genre_filters))
-    all_books = Book.query.filter(*filters).all()
-    return jsonify({"books": books_schema.dump(all_books)})
+        elif arg == "sort_by":
+            sort_attr, order = args[arg].split('-')
+            sort_by = nullslast(getattr(Book, sort_attr).desc()) if order == 'D' else nullslast(getattr(Book, sort_attr))
+    all_books = Book.query.filter(*filters).order_by(sort_by).all()
+    book_list = books_schema.dump(all_books)
+    return jsonify({"books": book_list})
 
 
 @app.route('/api/authors', methods=["GET"])
