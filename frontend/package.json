@@ -76,5 +76,5 @@
       "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|gif)$": "jest-transform-stub"
     }
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:80"
 }
