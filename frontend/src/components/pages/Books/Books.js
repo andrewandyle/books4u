@@ -306,7 +306,6 @@ function Books() {
             />
           </Col> */}
           <Col lg={12} xs={24}>
-            Price
             <Range
               marks={{
                 0: `$ 0`,
