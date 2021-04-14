@@ -9,6 +9,9 @@ import { Col, Row, Select } from 'antd';
 import SearchFeature from './Sections/SearchFeature';
 import { title, genre, price, year, rating } from "./Sections/Datas";
 import SortStyle from "./Sections/SortStyle.css"
+import SliderStyle from "./Sections/SliderStyle.css"
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 const { Option } = Select;
 
@@ -61,6 +64,14 @@ function Books() {
     year: [],
     rating:[]
 })
+
+  // testing slider value 
+  const [SliderValue, setSliderValue] = useState([30,40])
+  const updateRange = (data) => {
+    setSliderValue(data) 
+    console.log("SliderValue", SliderValue)
+  }
+
 
   const onPageChanged = (paginationData) => {
     const { currentPage, totalPages, pageLimit } = paginationData;
@@ -251,46 +262,48 @@ function Books() {
       <div className="row d-flex flex-row py-5">
         <h2>Discover Books</h2>
         <Row gutter={[16, 16]}>
-                <Col lg={12} xs={24}>
-                    <CheckBox
-                    name = "Genres"
-                    list = {genre}
-                    handleFilters={filters => handleFilters(filters, "genre")}
-                    />
-                </Col>
+          <Col lg={12} xs={24}>
+            <CheckBox
+            name = "Genres"
+            list = {genre}
+            handleFilters={filters => handleFilters(filters, "genre")}
+            />
+          </Col>
 
-                <Col lg={12} xs={24}>
-                    <CheckBox
-                    name = "Year"
-                    list = {year}
-                    handleFilters={filters => handleFilters(filters, "year")}
-                    />
-                </Col>
+          <Col lg={12} xs={24}>
+            <CheckBox
+            name = "Year"
+            list = {year}
+            handleFilters={filters => handleFilters(filters, "year")}
+            />
+          </Col>
 
-                <Col lg={12} xs={24}>
-                    <CheckBox
-                    name = "Rating"
-                    list = {rating}
-                    handleFilters={filters => handleFilters(filters, "rating")}
-                    />
-                </Col>
+          <Col lg={12} xs={24}>
+            <CheckBox
+            name = "Rating"
+            list = {rating}
+            handleFilters={filters => handleFilters(filters, "rating")}
+            />
+          </Col>
 
-                <Col lg={12} xs={24}>
-                    <RadioBox
-                    name = "Title"
-                    list = {title}
-                    handleFilters={filters => handleFilters(filters, "title")}
-                    />
-                </Col>
+          <Col lg={12} xs={24}>
+            <RadioBox
+            name = "Title"
+            list = {title}
+            handleFilters={filters => handleFilters(filters, "title")}
+            />
+          </Col>
 
-                <Col lg={12} xs={24}>
-                    <RadioBox
-                    name = "Price"
-                    list = {price}
-                    handleFilters={filters => handleFilters(filters, "price")}
-                    />
-                </Col>
+          <Col lg={12} xs={24}>
+            <RadioBox
+            name = "Price"
+            list = {price}
+            handleFilters={filters => handleFilters(filters, "price")}
+            />
+          </Col>
 
+
+                
                 {/* <Col lg={12} xs={24}>
                   <select value={sortValue} style={{ width: 120 }} onChange={handleSortChange}>
                     <option value="default">Default</option>
@@ -301,8 +314,24 @@ function Books() {
                   </select>
                 </Col> */}
         </Row>
-        
-
+        <div className = "sliderArea">
+        <Range
+              marks={{
+                0: `$ 0`,
+                100: `$ 100`
+              }}
+              min={0}
+              max={100}
+              defaultValue={[20, 30]}
+              value = {SliderValue}
+              onChange = {updateRange}
+              tipFormatter={value => `$ ${value}`}
+              tipProps={{
+                placement: "top",
+                visible: true
+              }}
+            />
+        </div>
         <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
 
                 <SearchFeature
