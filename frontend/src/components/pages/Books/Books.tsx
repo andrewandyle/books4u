@@ -9,7 +9,7 @@ function Books() {
   const [totalPages, setTotalPages] = useState(0);
   const [{ data, loading }] = useAxios({
     url: "/api/books",
-    params: { genres: ["etc", "Photography", "Atmospheric carbon dioxide"].join(",") },
+    params: { sort_by: 'avg_rating-D' },
   });
   const [currentBooks, setCurrentBooks] = useState([]);
 
