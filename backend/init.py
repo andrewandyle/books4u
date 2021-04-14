@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
 from config import *
 
 app = Flask(__name__, static_folder="../frontend/build/static", template_folder="../frontend/build")
@@ -14,4 +13,3 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # application.config['SECRET_KEY'] = SECRET_KEY
 
 db = SQLAlchemy(app)
-ma = Marshmallow(app)

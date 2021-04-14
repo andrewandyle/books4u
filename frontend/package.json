@@ -10,13 +10,23 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "@types/enzyme": "^3.10.8",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.22",
+    "@types/mui-datatables": "^3.7.1",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
+    "@types/react-bootstrap": "^0.32.25",
     "@types/react-dom": "^17.0.0",
+    "@types/react-highlight-words": "^0.16.2",
     "@types/react-router": "^5.1.11",
+<<<<<<< HEAD
     "algoliasearch": "^4.8.6",
     "antd": "^4.15.0",
+=======
+    "@types/react-router-dom": "^5.1.7",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0",
+>>>>>>> eb0f54f4bcd8e0f70a2e2db1ce1d2053b2f204f0
     "axios": "^0.21.1",
     "axios-hooks": "^2.5.0",
     "babel-preset-typescript": "^7.0.0-alpha.19",
@@ -28,10 +38,15 @@
     "jest-transform-stub": "^2.0.0",
     "mui-datatables": "^3.7.6",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.5.2",
     "react-card-flip": "^1.1.0",
     "react-dom": "^17.0.1",
     "react-fast-marquee": "^1.1.2",
+<<<<<<< HEAD
     "react-instantsearch-dom": "^6.10.3",
+=======
+    "react-highlight-words": "^0.17.0",
+>>>>>>> eb0f54f4bcd8e0f70a2e2db1ce1d2053b2f204f0
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-test-renderer": "^17.0.2",
@@ -64,6 +79,7 @@
       "last 1 safari version"
     ]
   },
+<<<<<<< HEAD
   "devDependencies": {
     "@types/enzyme": "^3.10.8",
     "@types/enzyme-adapter-react-16": "^1.0.6",
@@ -72,10 +88,13 @@
     "@types/react-router-dom": "^5.1.7",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.0"
   },
+=======
+  "devDependencies": {},
+>>>>>>> eb0f54f4bcd8e0f70a2e2db1ce1d2053b2f204f0
   "jest": {
     "moduleNameMapper": {
       "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|gif)$": "jest-transform-stub"
     }
   },
-  "proxy": "http://localhost:80"
+  "proxy": "http://localhost:5000"
 }
