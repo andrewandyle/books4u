@@ -4,12 +4,18 @@ import Pagination from "../../templates/Pagination";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 
+import { Range, createSliderWithTooltip } from "rc-slider";
+import "rc-slider/assets/index.css";
+const RangeWithTooltip = createSliderWithTooltip(Range);
+
 function Books() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [{ data, loading }] = useAxios({
     url: "/api/books",
-    params: { genres: ["etc", "Photography", "Atmospheric carbon dioxide"].join(",") },
+    params: {
+      genres: ["etc", "Photography", "Atmospheric carbon dioxide"].join(","),
+    },
   });
   const [currentBooks, setCurrentBooks] = useState([]);
 
@@ -43,6 +49,32 @@ function Books() {
     <div className="container">
       <div className="row d-flex flex-row py-5">
         <h2>Discover Books</h2>
+        <RangeWithTooltip
+          min={0}
+          max={100}
+          defaultValue={[40, 60]}
+          tipFormatter={(amount) => `$${amount}`}
+          onAfterChange={(e) => console.log(e)}
+          trackStyle={[
+            {
+              backgroundImage: `linear-gradient(
+              to right,
+              #30b5c1,
+              #2fbcb2 32%,
+              #4cbea2 67%,
+              #5ebf94)`,
+              height: "0.4rem",
+            },
+          ]}
+          railStyle={{ height: "0.4rem" }}
+          handleStyle={[
+            {
+              border: "3px solid #30b5c1",
+              width: "1rem",
+              height: "1rem",
+            },
+          ]}
+        />
         {currentBooks.map((book: any) => (
           <BookItem item={book} />
         ))}
