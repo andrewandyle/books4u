@@ -68,12 +68,16 @@ function Books() {
 })
 
   // testing slider value 
-  const [SliderValue, setSliderValue] = useState([30,40])
-  const updateRange = (data) => {
-    
-    setSliderValue(data) 
-    handleFilters(SliderValue, "price")
-    //console.log("SliderValue", SliderValue)
+  const [Price, setPrice] = useState([0,100])
+  const updatePrice = (data) => {
+    setPrice(data) 
+    handleFilters(Price, "price")
+  }
+
+  const [Year, setYear] = useState([1800,2021])
+  const updateYear = (data) => {
+    setYear(data) 
+    handleFilters(Year, "year")
   }
 
 
@@ -276,14 +280,6 @@ function Books() {
 
           <Col lg={12} xs={24}>
             <CheckBox
-            name = "Year"
-            list = {year}
-            handleFilters={filters => handleFilters(filters, "year")}
-            />
-          </Col>
-
-          <Col lg={12} xs={24}>
-            <CheckBox
             name = "Rating"
             list = {rating}
             handleFilters={filters => handleFilters(filters, "rating")}
@@ -299,6 +295,33 @@ function Books() {
           </Col>
 
           {/* <Col lg={12} xs={24}>
+            <CheckBox
+            name = "Year"
+            list = {year}
+            handleFilters={filters => handleFilters(filters, "year")}
+            />
+          </Col> */}
+          <Col lg={12} xs={24}>
+            Year
+            <Range
+              marks={{
+                1800: `1800`,
+                2021: `Present`
+              }}
+              min={1800}
+              max={2021}
+              defaultValue={[1800, 2021]}
+              value = {Year}
+              onChange = {updateYear}
+              tipFormatter={value => `${value}`}
+              tipProps={{
+                placement: "top",
+                visible: true
+              }}
+            />
+          </Col>
+
+          {/* <Col lg={12} xs={24}>
             <RadioBox
             name = "Price"
             list = {price}
@@ -306,6 +329,7 @@ function Books() {
             />
           </Col> */}
           <Col lg={12} xs={24}>
+            Price
             <Range
               marks={{
                 0: `$ 0`,
@@ -313,9 +337,9 @@ function Books() {
               }}
               min={0}
               max={100}
-              defaultValue={[20, 30]}
-              value = {SliderValue}
-              onChange = {updateRange}
+              defaultValue={[0, 100]}
+              value = {Price}
+              onChange = {updatePrice}
               tipFormatter={value => `$ ${value}`}
               tipProps={{
                 placement: "top",
@@ -336,24 +360,6 @@ function Books() {
                   </select>
                 </Col> */}
         </Row>
-        {/* <div className = "sliderArea">
-        <Range
-              marks={{
-                0: `$ 0`,
-                100: `$ 100`
-              }}
-              min={0}
-              max={100}
-              defaultValue={[20, 30]}
-              value = {SliderValue}
-              onChange = {updateRange}
-              tipFormatter={value => `$ ${value}`}
-              tipProps={{
-                placement: "top",
-                visible: true
-              }}
-            />
-        </div> */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
 
                 <SearchFeature
