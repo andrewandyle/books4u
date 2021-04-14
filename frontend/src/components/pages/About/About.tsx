@@ -339,7 +339,7 @@ function About() {
         <hr />
         <div>
           <img
-            src="https://static.wikia.nocookie.net/logopedia/images/6/62/Google_Play_Books_icon.png/revision/latest/scale-to-width-down/340?cb=20201206055407"
+            src="https://i.pinimg.com/originals/e2/c4/5d/e2c45dbfac497352070e2adc136d76f4.png"
             alt="Google Books"
             className="tool-icon"
           />

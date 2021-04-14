@@ -7,7 +7,10 @@ import useAxios from "axios-hooks";
 function Books() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [{ data, loading }] = useAxios("/api/books");
+  const [{ data, loading }] = useAxios({
+    url: "/api/books",
+    params: { genres: ["etc", "Photography", "Atmospheric carbon dioxide"].join(",") },
+  });
   const [currentBooks, setCurrentBooks] = useState([]);
 
   const onPageChanged = (paginationData: {

@@ -1,5 +1,6 @@
 import json
 from flask import Flask, render_template, jsonify, request
+from sqlalchemy import or_
 from models import Book, Author, Quote, BookSchema, AuthorSchema, QuoteSchema
 from init import app, db
 
@@ -11,8 +12,7 @@ authors_schema = AuthorSchema(many=True, exclude=['books', 'quotes'])
 quote_schema = QuoteSchema()
 quotes_schema = QuoteSchema(many=True, exclude=['books', 'author'])
 
-eq_query_filters = {'name'}
-rng_query_filters = {'year', 'avg_rating', 'page_count'}
+rng_query_filters = {'year', 'avg_rating', 'page_count', 'price'}
 arr_query_filters = {'genres'}
 
 @app.route("/", defaults = {"path" : ""})
@@ -25,14 +25,14 @@ def get_books():
     filters = []
     args = request.args
     for arg in args:
-        if arg in eq_query_filters:
-            filters.append(getattr(Book, arg) == args[arg])
-        elif arg in rng_query_filters:
+        if arg in rng_query_filters:
             lower_bound, upper_bound = args[arg].split('-')
-            filters.append(getattr(Book, arg) >= lower_bound)
-            filters.append(getattr(Book, arg) <= upper_bound)
+            filters.append(getattr(Book, arg).between(lower_bound, upper_bound))
         elif arg in arr_query_filters:
-            filters.append(getattr(Book, arg).any(args[arg]))
+            genre_filters = []
+            for genre in args[arg].split(','):
+                genre_filters.append(getattr(Book, arg).any(genre))
+            filters.append(or_(*genre_filters))
     all_books = Book.query.filter(*filters).all()
     return jsonify({"books": books_schema.dump(all_books)})
 
