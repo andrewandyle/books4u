@@ -10,8 +10,10 @@ import SearchFeature from './Sections/SearchFeature';
 import { title, genre, price, year, rating } from "./Sections/Datas";
 import SortStyle from "./Sections/SortStyle.css"
 import SliderStyle from "./Sections/SliderStyle.css"
-import Slider, { Range } from 'rc-slider';
+import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+const { createSliderWithTooltip } = Slider;
+const Range = createSliderWithTooltip(Slider.Range);
 
 const { Option } = Select;
 
@@ -68,8 +70,10 @@ function Books() {
   // testing slider value 
   const [SliderValue, setSliderValue] = useState([30,40])
   const updateRange = (data) => {
+    
     setSliderValue(data) 
-    console.log("SliderValue", SliderValue)
+    handleFilters(SliderValue, "price")
+    //console.log("SliderValue", SliderValue)
   }
 
 
@@ -221,7 +225,7 @@ function Books() {
     newFilters[category] = filters
     console.log("filter",filters)
     console.log("newFilter",newFilters)
-    if (category === "title" || category === "price") {
+    if (category === "title") {
       let titleValues = handleCategory(filters, category)
       newFilters[category] = titleValues
     }
@@ -294,11 +298,30 @@ function Books() {
             />
           </Col>
 
-          <Col lg={12} xs={24}>
+          {/* <Col lg={12} xs={24}>
             <RadioBox
             name = "Price"
             list = {price}
             handleFilters={filters => handleFilters(filters, "price")}
+            />
+          </Col> */}
+          <Col lg={12} xs={24}>
+            Price
+            <Range
+              marks={{
+                0: `$ 0`,
+                100: `$ 100`
+              }}
+              min={0}
+              max={100}
+              defaultValue={[20, 30]}
+              value = {SliderValue}
+              onChange = {updateRange}
+              tipFormatter={value => `$ ${value}`}
+              tipProps={{
+                placement: "top",
+                visible: true
+              }}
             />
           </Col>
 
@@ -314,7 +337,7 @@ function Books() {
                   </select>
                 </Col> */}
         </Row>
-        <div className = "sliderArea">
+        {/* <div className = "sliderArea">
         <Range
               marks={{
                 0: `$ 0`,
@@ -331,7 +354,7 @@ function Books() {
                 visible: true
               }}
             />
-        </div>
+        </div> */}
         <div style={{ display: 'flex', justifyContent: 'flex-end', margin: '1rem auto' }}>
 
                 <SearchFeature
