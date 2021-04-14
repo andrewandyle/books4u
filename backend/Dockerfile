@@ -14,7 +14,7 @@ RUN pwd && ls
 RUN pip3 install -r backend/requirements.txt
 RUN git pull --force
 
-EXPOSE 5000
+EXPOSE 80
 
 CMD git pull --force && python backend/app.py
 
