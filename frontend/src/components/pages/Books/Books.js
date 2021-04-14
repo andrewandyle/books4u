@@ -56,7 +56,7 @@ function Books() {
   const [SearchTerms, setSearchTerms] = useState("")
   const [Filters, setFilters] = useState({
     title: [],
-    genres: [],
+    genre: [],
     price: [],
     year: [],
     rating:[]
@@ -66,6 +66,28 @@ function Books() {
     const { currentPage, totalPages, pageLimit } = paginationData;
     const offset = (currentPage - 1) * pageLimit;
     const currBooks = data.books.slice(offset, offset + pageLimit);
+
+    // finding all genres
+    
+    const genreSet = new Set();
+    const books = data.books;
+    let genreList = []
+    function myFunction(book) {
+      let genres = book.genres;
+      if (genres != null) {
+        for (let i=0; i<genres.length; i++) {
+          console.log("A")
+          genreSet.add(genres[i])
+        }
+      }
+      
+    }
+    books.forEach((book) => (
+      myFunction(book)
+        ))
+    console.log(genreSet);
+    //console.log(data.books)
+
     setCurrentBooks(currBooks);
     setCurrentPage(currentPage);
     setTotalPages(totalPages);
@@ -133,6 +155,15 @@ function Books() {
   const getProducts = (variables) => {
     
   }
+  const showFilteredResults = (filters) => {
+
+    const variables = {
+      // do we need to pass any other attrubute?
+        filters: filters
+    }
+    getProducts(variables)
+
+  }
   const updateSearchTerms = (newSearchTerm) => {
 
     // const variables = {
@@ -146,9 +177,18 @@ function Books() {
     // setSearchTerms(newSearchTerm)
 
     // getProducts(variables)
-}
-  const handleTitle = (value) => {
-    const data = title;
+  }
+  const handleCategory = (value, category) => {
+    let data = title;
+    if (category === "price")
+      data = price;
+    else if (category === "genre")
+      data = genre;
+    else if (category === "year")
+      data = year;
+    else if (category === "rating")
+      data = rating;
+    
     let array = [];
 
     for (let key in data) {
@@ -161,31 +201,40 @@ function Books() {
     console.log('array', array)
     return array
   }
+  
 
   const handleFilters = (filters, category) => {
 
     const newFilters = { ...Filters }
 
     newFilters[category] = filters
-    console.log(filters)
-    console.log(newFilters)
-    // if (category === "genre") {
-    //   let genreValues = handleName(filters)
+    console.log("filter",filters)
+    console.log("newFilter",newFilters)
+    if (category === "title" || category === "price") {
+      let titleValues = handleCategory(filters, category)
+      newFilters[category] = titleValues
+    }
+    
+    // if (category === "title") {
+    //     let titleValues = handleTitle(filters, category)
+    //     newFilters[category] = titleValues
+    // } else if (category === "price") {
+    //   let priceValues = handlePrice(filters)
+    //   newFilters[category] = priceValues
+    // } else if (category === "genre") {
+    //   let genreValues = handleGenre(filters)
     //   newFilters[category] = genreValues
-
-    // }
-    if (category === "title") {
-        let titleValues = handleTitle(filters)
-        newFilters[category] = titleValues
-    } else if (category === "price") {
-      let priceValues = 0//handlePrice(filters)
-      newFilters[category] = priceValues
-  }
-    // console.log(newFilters)
+    // } else if (category === " ") {
+    //   let genreValues = handleGenre(filters)
+    //   newFilters[category] = genreValues
+    // } 
+    console.log(newFilters)
     // showFilteredResults(newFilters)
     setFilters(newFilters)
   }
-  console.log(currentBooks)
+
+
+  //console.log(currentBooks)
   // Sort functions
   const { items, requestSort, sortConfig } = useSortableData(currentBooks);
     const getClassNamesFor = (name) => {
