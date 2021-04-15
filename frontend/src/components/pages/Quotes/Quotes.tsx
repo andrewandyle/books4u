@@ -95,6 +95,7 @@ function Quotes() {
       name: "score",
       label: "Score",
       options: {
+        hint: "A quote's score indicates the quote's NLP score, or the level of sentiment/emotional tone behind the words.",
         filter: false,
         customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
           quoteCustomBodyRender(val, tableMeta, updateVal),

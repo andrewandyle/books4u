@@ -76,7 +76,11 @@ function Books() {
           <h2>Discover Books</h2>
           <div className="books-search input-group">
             <div className="form-outline">
-              <input type="search" className="form-control" placeholder="Search books..." />
+              <input
+                type="search"
+                className="form-control"
+                placeholder="Search books..."
+              />
             </div>
             <button type="button" className="btn btn-primary">
               <FontAwesomeIcon icon={faSearch} />
