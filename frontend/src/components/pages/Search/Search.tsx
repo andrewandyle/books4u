@@ -5,27 +5,48 @@ import BookCard from "./BookCard";
 // My Algolia Account:
 const mySearch = algoliasearch("0R6QT9BHIM", "a6a3ab0dbac35b08cc1287f38c395079");
 
-// const BookHit = ({hits} : any) => (
-//     <Highlight attribute="author_names" hit={hits} tagName="mark"/> 
-// )
 
-//const CustomBookHits = connectHits(BookHit);
-
-const myHits = ({ hits } : any) => (
+const bookHits = ({ hits } : any) => (
   <ol>
     {hits.map((hit:any) => (
-      <li key={hit.objectID}>{hit.name}</li>
+        <div>
+            {hit.name}
+            {hit.author_names}
+            {hit.genres}
+        </div>
     ))}
   </ol>
 );
 
-const CustomHits = connectHits(myHits);
+const CustomBookHits = connectHits(bookHits);
   
-// const BookContent = connectStateResults(({ searchState }) =>
-//   searchState && searchState.query ? (
-//     <BookHit/>
-//   ) : null
-// );
+const authorHits = ({ hits } : any) => (
+    <ol>
+      {hits.map((hit:any) => (
+          <div>
+              {hit.first_name}
+              {hit.last_name}
+              {hit.genres}
+          </div>
+      ))}
+    </ol>
+  );
+
+  const CustomAuthorHits = connectHits(authorHits);
+
+  const quoteHits = ({ hits } : any) => (
+    <ol>
+      {hits.map((hit:any) => (
+          <div>
+              {hit.author_name}
+              {hit.language}
+              {hit.tags}
+          </div>
+      ))}
+    </ol>
+  );
+
+  const CustomQuoteHits = connectHits(quoteHits);
 
 function Search(q:any){
     return(
@@ -39,7 +60,21 @@ function Search(q:any){
             <Index indexName="books_search">
                 <div>
                     <h1>Books Results</h1>
-                    <CustomHits/>
+                    <CustomBookHits/>
+                </div>
+            </Index>
+
+            <Index indexName="author_search">
+                <div>
+                    <h1>Author Results</h1>
+                    <CustomAuthorHits/>
+                </div>
+            </Index>
+
+            <Index indexName="quote_search">
+                <div>
+                    <h1>Quote Results</h1>
+                    <CustomQuoteHits/>
                 </div>
             </Index>
             </InstantSearch>
