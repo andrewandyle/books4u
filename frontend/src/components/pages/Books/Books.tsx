@@ -4,18 +4,19 @@ import Pagination from "../../templates/Pagination";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 
-import { Range, createSliderWithTooltip } from "rc-slider";
-import "rc-slider/assets/index.css";
-const RangeWithTooltip = createSliderWithTooltip(Range);
+import RangeFilter from "./features/RangeFilter";
 
 function Books() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
+  const [activeFilters, setActiveFilters] = useState({});
+  const [isPriceFilterVisible, setIsPriceFilterVisible] = useState(false);
+  const [isYearFilterVisible, setIsYearFilterVisible] = useState(false);
+  const [isPageFilterVisible, setIsPageFilterVisible] = useState(false);
+  const [isRatingFilterVisible, setIsRatingFilterVisible] = useState(false);
   const [{ data, loading }] = useAxios({
     url: "/api/books",
-    params: {
-      genres: ["etc", "Photography", "Atmospheric carbon dioxide"].join(","),
-    },
+    params: { ...activeFilters },
   });
   const [currentBooks, setCurrentBooks] = useState([]);
 
@@ -43,59 +44,222 @@ function Books() {
     .join(" ")
     .trim();
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div className="container">
       <div className="row d-flex flex-row py-5">
         <h2>Discover Books</h2>
-        <RangeWithTooltip
-          min={0}
-          max={100}
-          defaultValue={[40, 60]}
-          tipFormatter={(amount) => `$${amount}`}
-          onAfterChange={(e) => console.log(e)}
-          trackStyle={[
-            {
-              backgroundImage: `linear-gradient(
-              to right,
-              #30b5c1,
-              #2fbcb2 32%,
-              #4cbea2 67%,
-              #5ebf94)`,
-              height: "0.4rem",
-            },
-          ]}
-          railStyle={{ height: "0.4rem" }}
-          handleStyle={[
-            {
-              border: "3px solid #30b5c1",
-              width: "1rem",
-              height: "1rem",
-            },
-          ]}
-        />
-        {currentBooks.map((book: any) => (
-          <BookItem item={book} />
-        ))}
-        <div className="d-flex flex-row py-4 align-items-center justify-content-between">
-          <h2 className={headerClass}>
-            <strong className="text-secondary">{data.books.length}</strong>{" "}
-            Results
-          </h2>
-          {currentPage && (
-            <span className="current-page d-inline-block h-100 pl-4 text-secondary">
-              Page <span className="font-weight-bold">{currentPage}</span> /{" "}
-              <span className="font-weight-bold">{totalPages}</span>
-            </span>
-          )}
-          <Pagination
-            totalRecords={data.books.length}
-            pageLimit={30}
-            pageNeighbours={1}
-            onPageChanged={onPageChanged}
-          />
+        <div
+          style={{
+            margin: "50px 0",
+            display: "flex",
+            justifyContent: "space-evenly",
+            flexWrap: "wrap",
+          }}
+        >
+          <div
+            style={{ width: 560 }}
+            className="d-flex flex-row align-items-center mb-2"
+          >
+            <h4 style={{ width: 200 }}>Name</h4>
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                setActiveFilters({ ...activeFilters, sort_by: "name-A" })
+              }
+            >
+              Sort
+            </button>
+          </div>
+          <div
+            style={{ width: 560 }}
+            className="d-flex flex-row align-items-center mb-2"
+          >
+            <h4 style={{ width: 200 }}>Genre</h4>
+            (dropdown goes here)
+          </div>
+          <div
+            style={{ width: 560 }}
+            className="d-flex flex-row align-items-center mb-2"
+          >
+            <h4 style={{ width: 200 }}>Price</h4>
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                setActiveFilters({ ...activeFilters, sort_by: "price-A" })
+              }
+            >
+              Sort
+            </button>
+            <button
+              className={`btn btn-${
+                isPriceFilterVisible ? "danger" : "success"
+              }`}
+              onClick={() => {
+                if (isPriceFilterVisible)
+                  setActiveFilters({ ...activeFilters, price: null });
+                setIsPriceFilterVisible(!isPriceFilterVisible);
+              }}
+            >
+              {isPriceFilterVisible ? "Reset" : "Filter"}
+            </button>
+            {isPriceFilterVisible && (
+              <RangeFilter
+                min={1}
+                max={60}
+                prefix="$"
+                onAfterChange={(priceRange: any) =>
+                  setActiveFilters({
+                    ...activeFilters,
+                    price: [priceRange[0] - 0.01, priceRange[1]].join("-"),
+                  })
+                }
+              />
+            )}
+          </div>
+          <div
+            style={{ width: 560 }}
+            className="d-flex flex-row align-items-center mb-2"
+          >
+            <h4 style={{ width: 200 }}>Year</h4>
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                setActiveFilters({ ...activeFilters, sort_by: "year-A" })
+              }
+            >
+              Sort
+            </button>
+            <button
+              className={`btn btn-${
+                isYearFilterVisible ? "danger" : "success"
+              }`}
+              onClick={() => {
+                if (isYearFilterVisible)
+                  setActiveFilters({ ...activeFilters, year: null });
+                setIsYearFilterVisible(!isYearFilterVisible);
+              }}
+            >
+              {isYearFilterVisible ? "Reset" : "Filter"}
+            </button>
+            {isYearFilterVisible && (
+              <RangeFilter
+                min={1940}
+                max={2021}
+                onAfterChange={(yearRange: any) =>
+                  setActiveFilters({
+                    ...activeFilters,
+                    year: yearRange.join("-"),
+                  })
+                }
+              />
+            )}
+          </div>
+          <div
+            style={{ width: 560 }}
+            className="d-flex flex-row align-items-center mb-2"
+          >
+            <h4 style={{ width: 200 }}>Page Count</h4>
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                setActiveFilters({ ...activeFilters, sort_by: "page_count-A" })
+              }
+            >
+              Sort
+            </button>
+            <button
+              className={`btn btn-${
+                isPageFilterVisible ? "danger" : "success"
+              }`}
+              onClick={() => {
+                if (isPageFilterVisible)
+                  setActiveFilters({ ...activeFilters, page_count: null });
+                setIsPageFilterVisible(!isPageFilterVisible);
+              }}
+            >
+              {isPageFilterVisible ? "Reset" : "Filter"}
+            </button>
+            {isPageFilterVisible && (
+              <RangeFilter
+                min={0}
+                max={3000}
+                step={10}
+                onAfterChange={(pageCountRange: any) =>
+                  setActiveFilters({
+                    ...activeFilters,
+                    page_count: pageCountRange.join("-"),
+                  })
+                }
+              />
+            )}
+          </div>
+          <div
+            style={{ width: 560 }}
+            className="d-flex flex-row align-items-center mb-2"
+          >
+            <h4 style={{ width: 200 }}>Average Rating</h4>
+            <button
+              className="btn btn-primary"
+              onClick={() =>
+                setActiveFilters({ ...activeFilters, sort_by: "avg_rating-A" })
+              }
+            >
+              Sort
+            </button>
+            <button
+              className={`btn btn-${
+                isRatingFilterVisible ? "danger" : "success"
+              }`}
+              onClick={() => {
+                if (isRatingFilterVisible)
+                  setActiveFilters({ ...activeFilters, avg_rating: null });
+                setIsRatingFilterVisible(!isRatingFilterVisible);
+              }}
+            >
+              {isRatingFilterVisible ? "Reset" : "Filter"}
+            </button>
+            {isRatingFilterVisible && (
+              <RangeFilter
+                min={0}
+                max={5}
+                step={0.5}
+                onAfterChange={(ratingRange: any) =>
+                  setActiveFilters({
+                    ...activeFilters,
+                    avg_rating: ratingRange.join("-"),
+                  })
+                }
+              />
+            )}
+          </div>
         </div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="row d-flex flex-row py-5">
+            {currentBooks.map((book: any) => (
+              <BookItem item={book} />
+            ))}
+            <div className="d-flex flex-row py-4 align-items-center justify-content-between">
+              <h2 className={headerClass}>
+                <strong className="text-secondary">{data.books.length}</strong>{" "}
+                Results
+              </h2>
+              {currentPage && (
+                <span className="current-page d-inline-block h-100 pl-4 text-secondary">
+                  Page <span className="font-weight-bold">{currentPage}</span> /{" "}
+                  <span className="font-weight-bold">{totalPages}</span>
+                </span>
+              )}
+              <Pagination
+                totalRecords={data.books.length}
+                pageLimit={30}
+                pageNeighbours={1}
+                onPageChanged={onPageChanged}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
