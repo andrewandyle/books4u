@@ -75,7 +75,7 @@ function QuoteInstance() {
             </div>
             <div className="col-sm">
               <u>
-                <b>Score:</b>
+                <b>Score*:</b>
               </u>{" "}
               {data.quote.score}
             </div>
@@ -95,6 +95,10 @@ function QuoteInstance() {
             </div>
             <div className="col-sm d-flex"></div>
           </div>
+          <p className="mt-3" style={{ fontSize: 14 }}>
+            * A quote's score indicates the quote's NLP score, or the level of
+            sentiment/emotional tone behind the words.
+          </p>
         </div>
       </div>
 
