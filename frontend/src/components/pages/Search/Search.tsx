@@ -1,7 +1,6 @@
 import algoliasearch from 'algoliasearch';
 import { InstantSearch, Index, SearchBox, Hits, Highlight, Configure, Pagination, ClearRefinements, RefinementList, connectHits, connectStateResults} from 'react-instantsearch-dom';
 import 'instantsearch.css/themes/satellite.css';
-import BookCard from "./BookCard";
 // My Algolia Account:
 const mySearch = algoliasearch("0R6QT9BHIM", "a6a3ab0dbac35b08cc1287f38c395079");
 
