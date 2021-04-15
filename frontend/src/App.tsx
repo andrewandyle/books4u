@@ -27,7 +27,10 @@ function App() {
         <Route path="/book" component={BookInstance} />
         <Route path="/author" component={AuthorInstance} />
         <Route path="/quote" component={QuoteInstance} />
-        <Route path="/search" component={Search} />
+        <Route path="/search/q=:q"
+        render={(props) => <Search q={props.match.params.q} />}
+/>
+
       </div>
     </BrowserRouter>
   );
