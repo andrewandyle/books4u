@@ -9,7 +9,7 @@ import AuthorInstance from "./components/pages/AuthorInstance";
 import BookInstance from "./components/pages/BookInstance";
 import QuoteInstance from "./components/pages/QuoteInstance";
 import Navbar from "./components/features/Navbar";
-import Search from "./components/pages/Search/Search.js";
+import Search from "./components/pages/Search/Search";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -27,7 +27,7 @@ function App() {
         <Route path="/book" component={BookInstance} />
         <Route path="/author" component={AuthorInstance} />
         <Route path="/quote" component={QuoteInstance} />
-        <Route path="/search" exact component={Search} />
+        <Route path="/search" component={Search} />
       </div>
     </BrowserRouter>
   );

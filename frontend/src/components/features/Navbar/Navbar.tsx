@@ -18,7 +18,7 @@ function Navbar() {
   const textInput: any = React.useRef();
   
   function searchOnClick() {
-    window.location.assign("/search/q=" + textInput.current.value);
+    window.location.assign("/search/" + textInput.current.value);
   }
 
   const styles = {
@@ -89,7 +89,6 @@ function Navbar() {
                 }
               }}
             />
-            {/* <div className="divider"/> */}
             <InputGroup.Append style={{fontSize: "1.1vw"}}>
               <Button
                 style={styles.searchButton}
