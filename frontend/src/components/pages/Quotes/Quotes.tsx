@@ -1,4 +1,5 @@
 import React from "react";
+import "./Quotes.css"
 import MUIDataTable from "mui-datatables";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
@@ -186,12 +187,17 @@ function Quotes() {
     setSearchText(text_in.current.value)
   }
 
+  function searchOnClickClear(){
+    setSearchText("")
+    text_in.current.value = "";
+  }
+
   const [{ data, loading }] = useAxios("/api/quotes");
 
   const quoteCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
     <div>
       <Highlighter
-        highlightClassName="highlight-color"
+        highlightClassName="highlight-class"
         searchWords={[search_text]}
         textToHighlight={val + ""}
       ></Highlighter>
@@ -215,9 +221,15 @@ function Quotes() {
             }
           }}
         />
-        <Button className = "btn btn-danger btn-lgc" variant="info" style = {{"width" : "100px", "height" : "30px", "marginBottom" : "0px"}}
+        <Button className = "btn btn-danger btn-lgc" variant="info" style = {{"width" : "100px", "height" : "30px", "marginBottom" : "10px",  "marginRight" : "10px", 
+                                                                              "backgroundColor" : "green", "padding" : "0px", "borderColor" : "black"}}
         onClick={() => searchOnClick()}>
-          Go!
+          Search
+        </Button>
+        <Button className = "btn btn-danger btn-lgc" variant="info" style = {{"width" : "100px", "height" : "30px", 
+                                                                              "marginBottom" : "10px", "padding" : "0px", "borderColor" : "black"}}
+        onClick={() => searchOnClickClear()}>
+          Clear
         </Button>
       </Form>
       <MUIDataTable
