@@ -57,6 +57,7 @@ function Books() {
   const [{ data, loading }] = useAxios("/api/books");
   const [currentBooks, setCurrentBooks] = useState([]);
 
+
   const [sortValue, setSortValue] = useState("default");
   const [SearchTerms, setSearchTerms] = useState("")
   const [Filters, setFilters] = useState({
@@ -67,7 +68,6 @@ function Books() {
     rating:[]
 })
 
-  // testing slider value 
   const [Price, setPrice] = useState([0,100])
   const updatePrice = (data) => {
     setPrice(data) 
@@ -85,27 +85,6 @@ function Books() {
     const { currentPage, totalPages, pageLimit } = paginationData;
     const offset = (currentPage - 1) * pageLimit;
     const currBooks = data.books.slice(offset, offset + pageLimit);
-
-    // finding all genres
-    
-    const genreSet = new Set();
-    const books = data.books;
-    let genreList = []
-    function myFunction(book) {
-      let genres = book.genres;
-      if (genres != null) {
-        for (let i=0; i<genres.length; i++) {
-          console.log("A")
-          genreSet.add(genres[i])
-        }
-      }
-      
-    }
-    books.forEach((book) => (
-      myFunction(book)
-        ))
-    console.log(genreSet);
-    //console.log(data.books)
 
     setCurrentBooks(currBooks);
     setCurrentPage(currentPage);
@@ -185,17 +164,14 @@ function Books() {
   }
   const updateSearchTerms = (newSearchTerm) => {
 
-    // const variables = {
-    //     skip: 0,
-    //     limit: Limit,
-    //     filters: Filters,
-    //     searchTerm: newSearchTerm
-    // }
+    const variables = {
+        filters: Filters,
+        searchTerm: newSearchTerm
+    }
+    console.log("variable",variables)
+    setSearchTerms(newSearchTerm)
 
-    // setSkip(0)
-    // setSearchTerms(newSearchTerm)
-
-    // getProducts(variables)
+    getProducts(variables)
   }
   const handleCategory = (value, category) => {
     let data = title;
@@ -250,6 +226,7 @@ function Books() {
     console.log(newFilters)
     // showFilteredResults(newFilters)
     setFilters(newFilters)
+
   }
 
 
@@ -345,6 +322,7 @@ function Books() {
                 placement: "top",
                 visible: true
               }}
+
             />
           </Col>
 
@@ -418,9 +396,9 @@ function Books() {
           </tr>
         </thead>
        
-           {items.map((book) => (
-          <BookItem item={book} />
-            ))}
+        {items.map((book) => (
+          <BookItem item={book} searchedTerm = {SearchTerms}/>
+        ))}
         
 
 
