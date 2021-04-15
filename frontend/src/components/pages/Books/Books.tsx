@@ -4,7 +4,13 @@ import Pagination from "../../templates/Pagination";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 
+import Select from "react-select";
 import RangeFilter from "./features/RangeFilter";
+
+import genreOptions from "./genreOptions";
+const dropdownGenres = genreOptions.sort().map((genre) => {
+  return { value: genre, label: genre };
+});
 
 function Books() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,20 +53,10 @@ function Books() {
   return (
     <div className="container">
       <div className="row d-flex flex-row py-5">
-        <h2>Discover Books</h2>
-        <div
-          style={{
-            margin: "50px 0",
-            display: "flex",
-            justifyContent: "space-evenly",
-            flexWrap: "wrap",
-          }}
-        >
-          <div
-            style={{ width: 560 }}
-            className="d-flex flex-row align-items-center mb-2"
-          >
-            <h4 style={{ width: 200 }}>Name</h4>
+        <h2 className="mb-5">Discover Books</h2>
+        <div className="filters">
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Name</h4>
             <button
               className="btn btn-primary"
               onClick={() =>
@@ -70,18 +66,25 @@ function Books() {
               Sort
             </button>
           </div>
-          <div
-            style={{ width: 560 }}
-            className="d-flex flex-row align-items-center mb-2"
-          >
-            <h4 style={{ width: 200 }}>Genre</h4>
-            (dropdown goes here)
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Genre</h4>
+            <Select
+              className="dropdown"
+              options={dropdownGenres}
+              onChange={(e: any) => {
+                const genreList = e.map((s: any) => s.value);
+                setActiveFilters({
+                  ...activeFilters,
+                  genres: genreList.length > 0 ? genreList.join(",") : null,
+                });
+              }}
+              isMulti
+              isClearable
+              isSearchable
+            />
           </div>
-          <div
-            style={{ width: 560 }}
-            className="d-flex flex-row align-items-center mb-2"
-          >
-            <h4 style={{ width: 200 }}>Price</h4>
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Price</h4>
             <button
               className="btn btn-primary"
               onClick={() =>
@@ -116,11 +119,8 @@ function Books() {
               />
             )}
           </div>
-          <div
-            style={{ width: 560 }}
-            className="d-flex flex-row align-items-center mb-2"
-          >
-            <h4 style={{ width: 200 }}>Year</h4>
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Year</h4>
             <button
               className="btn btn-primary"
               onClick={() =>
@@ -154,11 +154,8 @@ function Books() {
               />
             )}
           </div>
-          <div
-            style={{ width: 560 }}
-            className="d-flex flex-row align-items-center mb-2"
-          >
-            <h4 style={{ width: 200 }}>Page Count</h4>
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Page Count</h4>
             <button
               className="btn btn-primary"
               onClick={() =>
@@ -193,11 +190,8 @@ function Books() {
               />
             )}
           </div>
-          <div
-            style={{ width: 560 }}
-            className="d-flex flex-row align-items-center mb-2"
-          >
-            <h4 style={{ width: 200 }}>Average Rating</h4>
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Average Rating</h4>
             <button
               className="btn btn-primary"
               onClick={() =>

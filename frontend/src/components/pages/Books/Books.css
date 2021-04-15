@@ -1,0 +1,21 @@
+.filters {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.filter-block {
+  width: 580px;
+}
+
+.filter-block button {
+  margin-right: 10px;
+}
+
+.filter-block h4 {
+  width: 200px;
+}
+
+.dropdown {
+  width: 250px;
+}
