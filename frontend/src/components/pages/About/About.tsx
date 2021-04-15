@@ -64,7 +64,7 @@ function About() {
           email: "rahul.ramaswamy@utexas.edu",
           commits: 0,
           issues: 0,
-          unitTests: 10,
+          unitTests: 16,
           image: RahulRamaswamy,
           bio:
             "Rahul is a junior double majoring in computer science and math. He loves to try new food, travel, play poker, and watch new TV shows/movies.",
@@ -166,7 +166,7 @@ function About() {
             <div className="d-flex flex-wrap justify-content-evenly mb-3">
               <h3 className="text-center">Total Commits: {stats.commits} </h3>
               <h3 className="text-center">Total Issues: {stats.issues}</h3>
-              <h3 className="text-center">Total Unit Tests: 54</h3>
+              <h3 className="text-center">Total Unit Tests: 60</h3>
             </div>
             <div className="d-flex flex-wrap justify-content-evenly">
               <button className="click">
