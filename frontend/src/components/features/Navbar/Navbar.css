@@ -10,4 +10,8 @@
   display: inline-block;
 }
 
+.pull-left{
+  float: left;
+}
+
 

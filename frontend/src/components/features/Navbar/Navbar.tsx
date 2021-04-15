@@ -70,18 +70,15 @@ function Navbar() {
               Quotes
             </Link>
           </li>
-          
-          
-          <Form inline onSubmit={(e) => {
+        </ul>
+      </div>
+      
+      <Form inline onSubmit={(e) => {
             e.preventDefault();
           }}>
           <InputGroup>
-            {/* <form className="form-inline my-2 my-lg-0">
-              <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-              <Button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</Button>
-            </form> */}
             <FormControl
-              className="form-inline my-2 my-lg-0 mr-sm-0 my-sm-0"
+              className="mr-sm-2"
               type="text"
               placeholder="Search"
               ref={textInput}
@@ -92,9 +89,6 @@ function Navbar() {
                 }
               }}
             />
-
-
-
             {/* <div className="divider"/> */}
             <InputGroup.Append style={{fontSize: "1.1vw"}}>
               <Button
@@ -107,9 +101,9 @@ function Navbar() {
             </InputGroup.Append>
           </InputGroup>
         </Form>
-        </ul>
-      </div>
     </nav>
+
+    
   );
 }
 
