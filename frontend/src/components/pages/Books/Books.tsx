@@ -154,6 +154,7 @@ function Books() {
                 </span>
               )}
               <Pagination
+                data={data}
                 totalRecords={data.books.length}
                 pageLimit={30}
                 pageNeighbours={1}

@@ -162,6 +162,12 @@ class Pagination extends Component {
     this.gotoPage(1);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.data !== this.props.data) {
+      this.gotoPage(1);
+    }
+  }
+
   gotoPage = (page) => {
     const { onPageChanged = (f) => f } = this.props;
     const currentPage = Math.max(0, Math.min(page, this.totalPages));
@@ -192,6 +198,7 @@ class Pagination extends Component {
 }
 
 Pagination.propTypes = {
+  data: PropTypes.array,
   totalRecords: PropTypes.number.isRequired,
   pageLimit: PropTypes.number,
   pageNeighbours: PropTypes.number,
