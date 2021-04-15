@@ -1,5 +1,4 @@
 import React from "react";
-import "./Authors.css";
 import { useState } from "react";
 import MUIDataTable from "mui-datatables";
 import Loading from "../../features/Loading";
@@ -7,7 +6,8 @@ import useAxios from "axios-hooks";
 import Highlighter from "react-highlight-words";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
-import Button from "react-bootstrap/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 function Authors(props: any) {
   const [search_text, setSearchText] = useState<string>("");
@@ -167,10 +167,15 @@ function Authors(props: any) {
           },
         },
         customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          authorCustomBodyRender(Math.round(val * 100) / 100, tableMeta, updateVal),
+          authorCustomBodyRender(
+            Math.round(val * 100) / 100,
+            tableMeta,
+            updateVal
+          ),
       },
     },
   ];
+
   return loading ? (
     <Loading />
   ) : (
@@ -192,36 +197,29 @@ function Authors(props: any) {
             }
           }}
         />
-        <Button
-          className="btn btn-danger btn-lgc"
-          variant="info"
+        <button
+          className="btn btn-success"
           style={{
             width: "100px",
-            height: "30px",
             marginBottom: "10px",
             marginRight: "10px",
-            backgroundColor: "green",
-            padding: "0px",
-            borderColor: "black",
           }}
           onClick={() => searchOnClick()}
         >
+          <FontAwesomeIcon icon={faSearch} />
           Search
-        </Button>
-        <Button
-          className="btn btn-danger btn-lgc"
-          variant="info"
+        </button>
+        <button
+          className="btn btn-danger"
           style={{
             width: "100px",
-            height: "30px",
             marginBottom: "10px",
-            padding: "0px",
-            borderColor: "black",
           }}
           onClick={() => searchOnClickClear()}
         >
+          <FontAwesomeIcon icon={faTimesCircle} />
           Clear
-        </Button>
+        </button>
       </Form>
       <MUIDataTable
         title="Discover Authors"

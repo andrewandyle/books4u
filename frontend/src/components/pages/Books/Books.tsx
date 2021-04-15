@@ -4,12 +4,9 @@ import Pagination from "../../templates/Pagination";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
-
 import Select from "react-select";
 import SortButton from "./features/SortButton";
-import RangeFilter from "./features/RangeFilter";
+import FilterButton from "./features/FilterButton";
 
 import genreOptions from "./genreOptions";
 const dropdownGenres = genreOptions.sort().map((genre) => {
@@ -39,10 +36,6 @@ function Books() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [activeFilters, setActiveFilters] = useState<BookFilters>({});
-  const [isPriceFilterVisible, setIsPriceFilterVisible] = useState(false);
-  const [isYearFilterVisible, setIsYearFilterVisible] = useState(false);
-  const [isPageFilterVisible, setIsPageFilterVisible] = useState(false);
-  const [isRatingFilterVisible, setIsRatingFilterVisible] = useState(false);
   const [{ data, loading }] = useAxios({
     url: "/api/books",
     params: { ...activeFilters },
@@ -104,127 +97,22 @@ function Books() {
             <div className="filter-block d-flex flex-row align-items-center mb-2">
               <h4>Price</h4>
               <SortButton field="price" />
-              <button
-                className={`btn btn-${
-                  isPriceFilterVisible ? "danger" : "success"
-                } d-flex align-items-center justify-content-between`}
-                onClick={() => {
-                  if (isPriceFilterVisible)
-                    setActiveFilters({ ...activeFilters, price: undefined });
-                  setIsPriceFilterVisible(!isPriceFilterVisible);
-                }}
-              >
-                <FontAwesomeIcon icon={faFilter} />
-                {isPriceFilterVisible ? "Reset" : "Filter"}
-              </button>
-              {isPriceFilterVisible && (
-                <RangeFilter
-                  min={1}
-                  max={60}
-                  prefix="$"
-                  onAfterChange={(priceRange: any) =>
-                    setActiveFilters({
-                      ...activeFilters,
-                      price: [priceRange[0] - 0.01, priceRange[1]].join("-"),
-                    })
-                  }
-                />
-              )}
+              <FilterButton field="price" min={1} max={60} />
             </div>
             <div className="filter-block d-flex flex-row align-items-center mb-2">
               <h4>Year</h4>
               <SortButton field="year" />
-              <button
-                className={`btn btn-${
-                  isYearFilterVisible ? "danger" : "success"
-                } d-flex align-items-center justify-content-between`}
-                onClick={() => {
-                  if (isYearFilterVisible)
-                    setActiveFilters({ ...activeFilters, year: undefined });
-                  setIsYearFilterVisible(!isYearFilterVisible);
-                }}
-              >
-                <FontAwesomeIcon icon={faFilter} />
-                {isYearFilterVisible ? "Reset" : "Filter"}
-              </button>
-              {isYearFilterVisible && (
-                <RangeFilter
-                  min={1940}
-                  max={2021}
-                  onAfterChange={(yearRange: any) =>
-                    setActiveFilters({
-                      ...activeFilters,
-                      year: yearRange.join("-"),
-                    })
-                  }
-                />
-              )}
+              <FilterButton field="year" min={1940} max={2021} />
             </div>
             <div className="filter-block d-flex flex-row align-items-center mb-2">
               <h4>Page Count</h4>
               <SortButton field="page_count" />
-              <button
-                className={`btn btn-${
-                  isPageFilterVisible ? "danger" : "success"
-                } d-flex align-items-center justify-content-between`}
-                onClick={() => {
-                  if (isPageFilterVisible)
-                    setActiveFilters({
-                      ...activeFilters,
-                      page_count: undefined,
-                    });
-                  setIsPageFilterVisible(!isPageFilterVisible);
-                }}
-              >
-                <FontAwesomeIcon icon={faFilter} />
-                {isPageFilterVisible ? "Reset" : "Filter"}
-              </button>
-              {isPageFilterVisible && (
-                <RangeFilter
-                  min={0}
-                  max={3000}
-                  step={10}
-                  onAfterChange={(pageCountRange: any) =>
-                    setActiveFilters({
-                      ...activeFilters,
-                      page_count: pageCountRange.join("-"),
-                    })
-                  }
-                />
-              )}
+              <FilterButton field="page_count" min={0} max={3000} step={10} />
             </div>
             <div className="filter-block d-flex flex-row align-items-center mb-2">
               <h4>Average Rating</h4>
               <SortButton field="avg_rating" />
-              <button
-                className={`btn btn-${
-                  isRatingFilterVisible ? "danger" : "success"
-                } d-flex align-items-center justify-content-between`}
-                onClick={() => {
-                  if (isRatingFilterVisible)
-                    setActiveFilters({
-                      ...activeFilters,
-                      avg_rating: undefined,
-                    });
-                  setIsRatingFilterVisible(!isRatingFilterVisible);
-                }}
-              >
-                <FontAwesomeIcon icon={faFilter} />
-                {isRatingFilterVisible ? "Reset" : "Filter"}
-              </button>
-              {isRatingFilterVisible && (
-                <RangeFilter
-                  min={0}
-                  max={5}
-                  step={0.5}
-                  onAfterChange={(ratingRange: any) =>
-                    setActiveFilters({
-                      ...activeFilters,
-                      avg_rating: ratingRange.join("-"),
-                    })
-                  }
-                />
-              )}
+              <FilterButton field="avg_rating" min={0} max={5} step={0.5} />
             </div>
           </div>
         </FilterContext.Provider>
