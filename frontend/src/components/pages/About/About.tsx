@@ -52,7 +52,7 @@ function About() {
           email: "saikiran.m00@gmail.com",
           commits: 0,
           issues: 0,
-          unitTests: 10,
+          unitTests: 17,
           image: SaiKiranMaddela,
           bio:
             "Sai is a third year CS student who is interested in AI/ML concepts, specifically neural networks and NLP. He enjoys playing basketball, biking, and reading.",
@@ -76,7 +76,7 @@ function About() {
           email: "quddlr9015@gmail.com",
           commits: 0,
           issues: 0,
-          unitTests: 10,
+          unitTests: 16,
           image: ByungikHyun,
           bio:
             "Byungik is a senior CS student who likes to watch Premier League soccer games, play League of Legends, and watch old movies.",
@@ -88,7 +88,7 @@ function About() {
           email: "69916283+mjscs@users.noreply.github.com",
           commits: 0,
           issues: 0,
-          unitTests: 10,
+          unitTests: 16,
           image: MariaSierra,
           bio:
             "Maria is a senior CS student who is a fan of hiking, exploring new eateries in Austin, and watching the latest series in the Marvel cinematic universe.",
