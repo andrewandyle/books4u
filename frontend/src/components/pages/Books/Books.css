@@ -5,10 +5,11 @@
 }
 
 .filter-block {
-  width: 580px;
+  width: 640px;
 }
 
 .filter-block button {
+  width: 90px;
   margin-right: 10px;
 }
 
