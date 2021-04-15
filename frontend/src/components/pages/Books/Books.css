@@ -1,3 +1,12 @@
+.books-search {
+  margin-right: 50px;
+}
+
+.input-group {
+  height: 38px;
+  width: 316px !important;
+}
+
 .filters {
   display: flex;
   justify-content: space-evenly;

@@ -4,10 +4,8 @@ import MUIDataTable from "mui-datatables";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 import Highlighter from "react-highlight-words";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Authors(props: any) {
   const [search_text, setSearchText] = useState<string>("");
@@ -24,15 +22,6 @@ function Authors(props: any) {
     onRowClick: (authorData: any) =>
       window.location.assign("/author/" + authorData[0]),
   };
-
-  function searchOnClick() {
-    setSearchText(text_in.current.value);
-  }
-
-  function searchOnClickClear() {
-    setSearchText("");
-    text_in.current.value = "";
-  }
 
   const [{ data, loading }] = useAxios("/api/authors");
   const authorCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
@@ -176,57 +165,42 @@ function Authors(props: any) {
     },
   ];
 
-  return loading ? (
-    <Loading />
-  ) : (
+  return (
     <div className="align-items-center" style={{ textAlign: "center" }}>
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <FormControl
-          className="mr-sm-2 align-items-center"
-          type="text"
-          placeholder="Search Authors"
-          ref={text_in}
-          style={{ textAlign: "center", marginTop: "0px" }}
-          onKeyPress={(event: any) => {
-            if (event.key === "Enter") {
-              searchOnClick(); /* save search input */
-            }
-          }}
+      <div className="container mb-5 mt-5 d-flex flex-row flex-wrap justify-content-between">
+        <h2>Discover Authors</h2>
+        <div className="input-group">
+          <div className="form-outline" id="authors-search">
+            <input
+              type="search"
+              ref={text_in}
+              className="form-control"
+              placeholder="Search authors..."
+              onKeyPress={(event: any) => {
+                if (event.key === "Enter") {
+                  setSearchText(text_in.current.value);
+                }
+              }}
+            />
+          </div>
+          <button
+            className="btn btn-primary"
+            onClick={() => setSearchText(text_in.current.value)}
+          >
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
+        </div>
+      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <MUIDataTable
+          title=""
+          data={data.authors}
+          columns={columns}
+          options={options}
         />
-        <button
-          className="btn btn-success"
-          style={{
-            width: "100px",
-            marginBottom: "10px",
-            marginRight: "10px",
-          }}
-          onClick={() => searchOnClick()}
-        >
-          <FontAwesomeIcon icon={faSearch} />
-          Search
-        </button>
-        <button
-          className="btn btn-danger"
-          style={{
-            width: "100px",
-            marginBottom: "10px",
-          }}
-          onClick={() => searchOnClickClear()}
-        >
-          <FontAwesomeIcon icon={faTimesCircle} />
-          Clear
-        </button>
-      </Form>
-      <MUIDataTable
-        title="Discover Authors"
-        data={data.authors}
-        columns={columns}
-        options={options}
-      />
+      )}
     </div>
   );
 }

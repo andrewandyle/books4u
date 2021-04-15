@@ -4,6 +4,9 @@ import Pagination from "../../templates/Pagination";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 import Select from "react-select";
 import SortButton from "./features/SortButton";
 import FilterButton from "./features/FilterButton";
@@ -69,7 +72,18 @@ function Books() {
   return (
     <div className="container">
       <div className="row d-flex flex-row py-5">
-        <h2 className="mb-5">Discover Books</h2>
+        <div className="d-flex flex-row mb-5 flex-wrap justify-content-between">
+          <h2>Discover Books</h2>
+          <div className="books-search input-group">
+            <div className="form-outline">
+              <input type="search" className="form-control" placeholder="Search books..." />
+            </div>
+            <button type="button" className="btn btn-primary">
+              <FontAwesomeIcon icon={faSearch} />
+            </button>
+          </div>
+        </div>
+
         <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
           <div className="filters">
             <div className="filter-block d-flex flex-row align-items-center mb-2">
