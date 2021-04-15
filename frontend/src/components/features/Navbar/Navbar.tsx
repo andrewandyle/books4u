@@ -11,24 +11,19 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import { AiOutlineSearch } from "react-icons/ai";
 
 function Navbar() {
 
   const textInput: any = React.useRef();
-
+  
   function searchOnClick() {
     window.location.assign("/search/q=" + textInput.current.value);
   }
 
   const styles = {
-    tabs: {
-      color: "white",
-      fontFamily: "Raleway",
-      fontSize: "1.1vw",
-      display: "flex",
-    } as React.CSSProperties,
     searchButton: {
-      backgroundColor: "white",
+      backgroundColor: "antiquewhite",
       borderColor: "white",
       color: "black",
       fontSize: "1.1vw",
@@ -76,15 +71,17 @@ function Navbar() {
             </Link>
           </li>
           
-          <Form
-          inline onSubmit={(e) => {
+          
+          <Form inline onSubmit={(e) => {
             e.preventDefault();
-          }}
-        >
+          }}>
           <InputGroup>
-            {/* search bar */}
+            {/* <form className="form-inline my-2 my-lg-0">
+              <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+              <Button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</Button>
+            </form> */}
             <FormControl
-              className="mr-sm-2"
+              className="form-inline my-2 my-lg-0 mr-sm-0 my-sm-0"
               type="text"
               placeholder="Search"
               ref={textInput}
@@ -95,21 +92,21 @@ function Navbar() {
                 }
               }}
             />
-            {/* search button */}
+
+
+
+            {/* <div className="divider"/> */}
             <InputGroup.Append style={{fontSize: "1.1vw"}}>
               <Button
                 style={styles.searchButton}
                 variant="info"
                 onClick={() => searchOnClick()}
               >
+                <AiOutlineSearch/>
               </Button>
             </InputGroup.Append>
           </InputGroup>
         </Form>
-
-
-
-          
         </ul>
       </div>
     </nav>
