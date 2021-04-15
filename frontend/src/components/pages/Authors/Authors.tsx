@@ -1,4 +1,5 @@
 import React from "react";
+import "./Authors.css"
 import { useState } from "react";
 import MUIDataTable from "mui-datatables";
 import Loading from "../../features/Loading";
@@ -7,6 +8,7 @@ import Highlighter from "react-highlight-words";
 import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+
 
 function Authors(props : any) {
   const [search_text, setSearchText] = useState<string>("");
@@ -27,11 +29,17 @@ function Authors(props : any) {
   function searchOnClick(){
     setSearchText(text_in.current.value)
   }
+
+  function searchOnClickClear(){
+    setSearchText("")
+    text_in.current.value = "";
+  }
+
   const [{ data, loading }] = useAxios("/api/authors");
   const authorCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
     <div>
       <Highlighter
-        highlightClassName="highlight-color"
+        highlightClassName="highlight-class"
         searchWords={[search_text]}
         textToHighlight={val + ""}
       ></Highlighter>
@@ -173,9 +181,15 @@ function Authors(props : any) {
             }
           }}
         />
-        <Button className = "btn btn-danger btn-lgc" variant="info" style = {{"width" : "100px", "height" : "30px", "marginBottom" : "0px"}}
+        <Button className = "btn btn-danger btn-lgc" variant="info" style = {{"width" : "100px", "height" : "30px", "marginBottom" : "10px",  "marginRight" : "10px", 
+                                                                              "backgroundColor" : "green", "padding" : "0px", "borderColor" : "black"}}
         onClick={() => searchOnClick()}>
-          Go!
+          Search
+        </Button>
+        <Button className = "btn btn-danger btn-lgc" variant="info" style = {{"width" : "100px", "height" : "30px", 
+                                                                              "marginBottom" : "10px", "padding" : "0px", "borderColor" : "black"}}
+        onClick={() => searchOnClickClear()}>
+          Clear
         </Button>
       </Form>
       <MUIDataTable
