@@ -67,7 +67,7 @@ function BookCard(props:any) {
             attribute_id: 9
         },
         {
-            name: "Purchse Link",
+            name: "Purchase Link",
             attribute: "purchase_link",
             attribute_id: 9
         },
@@ -94,10 +94,10 @@ function BookCard(props:any) {
     return (
         <Card>
             <Card.Body>
-                <a href={"/books/" + props.hit.book_id}>
+                <a href={"books/" + props.hit.book_id}>
                     <u>
                         <Card.Title className="card-title-style">
-                            {props.hit.book_name}
+                            {props.hit.name}
                         </Card.Title>
                     </u>
                 </a>
