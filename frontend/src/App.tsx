@@ -21,16 +21,18 @@ function App() {
         <Navbar />
         <Route path="/" exact component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/Books" component={Books} />
+        <Route path="/books" component={Books} />
         <Route path="/authors" component={Authors} />
         <Route path="/quotes" component={Quotes} />
         <Route path="/book" component={BookInstance} />
         <Route path="/author" component={AuthorInstance} />
         <Route path="/quote" component={QuoteInstance} />
-        <Route path="/search/q=:q"
-        render={(props) => <Search q={props.match.params.q} />}
-/>
-
+        <Route
+          path="/search/q=:q/model=:model"
+          render={(props) => (
+            <Search q={props.match.params.q} model={props.match.params.model} />
+          )}
+        />
       </div>
     </BrowserRouter>
   );

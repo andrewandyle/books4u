@@ -18,7 +18,7 @@ function Navbar() {
   const textInput: any = React.useRef();
   
   function searchOnClick() {
-    window.location.assign("/search/q=" + textInput.current.value);
+    window.location.assign("/search/q=" + textInput.current.value + "/model=all");
   }
 
   const styles = {
