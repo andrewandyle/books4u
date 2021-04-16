@@ -34,4 +34,4 @@ Website: https://booksforyou.me/
 |Sai Kiran Maddela|15|21|25|40|25|30|
 |Rahul Ramaswamy|15|21|25|35|||
 |Byungik Hyun|15|21|25|30|||
-|Maria Sierra|15|21|25|25|||
+|Maria Sierra|15|21|25|25|30|30|
