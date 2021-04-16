@@ -110,7 +110,7 @@ function BookInstance() {
       <div className="container d-flex flex-column align-items-center">
         <h1>Author Pages</h1>
         <div
-          className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
+          className="d-flex flex-row pt-4 pb-5 align-items-center justify-content-center flex-wrap"
           style={{ width: "100%" }}
         >
           {data.related_authors.map((author: any) => (

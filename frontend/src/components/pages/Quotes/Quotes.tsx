@@ -6,6 +6,7 @@ import useAxios from "axios-hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import truncate from "truncate";
 
 function Quotes() {
   const searchText: any = useRef();
@@ -17,11 +18,6 @@ function Quotes() {
     jumpToPage: true,
     search: false,
     filterType: "checkbox" as any,
-    setRowProps: (row: any, dataIndex: any, rowIndex: any) => {
-      return {
-        style: { cursor: "pointer" },
-      };
-    },
     onRowClick: (authorData: any) =>
       window.location.assign("/quote/" + authorData[0]),
   };
@@ -42,6 +38,9 @@ function Quotes() {
       label: "Quote",
       options: {
         filter: false,
+        customBodyRender: (val: string) => {
+          return truncate(val, 300);
+        },
       },
     },
     {
@@ -60,10 +59,9 @@ function Quotes() {
     },
     {
       name: "num_unique_words",
-      label: "No. of Unique Words",
+      label: "Unique Words",
       options: {
         filter: true,
-        setCellHeaderProps: (val: any) => ({ style: { fontWeight: "bold" } }),
         display: true,
         filterOptions: {
           names: ["1 - 40", "41 - 80", "81 - 120", "121 - 200", "201+"],
@@ -84,8 +82,6 @@ function Quotes() {
               (filterVal.indexOf("201+") >= 0 && unique >= 201);
             return !show;
           },
-          customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-            quoteCustomBodyRender(val, tableMeta, updateVal),
         },
       },
     },
@@ -103,7 +99,6 @@ function Quotes() {
       label: "Language",
       options: {
         filter: true,
-        setCellHeaderProps: (val: any) => ({ style: { fontWeight: "bold" } }),
         display: false,
         filterOptions: {
           names: [
@@ -129,10 +124,9 @@ function Quotes() {
     },
     {
       name: "num_syllables",
-      label: "Number Syllables",
+      label: "Syllables",
       options: {
         filter: true,
-        setCellHeaderProps: (val: any) => ({ style: { fontWeight: "bold" } }),
         display: false,
         filterOptions: {
           names: ["1 - 40", "41 - 80", "81 - 120", "121 - 200", "201+"],
@@ -161,7 +155,6 @@ function Quotes() {
       label: "Length",
       options: {
         filter: true,
-        setCellHeaderProps: (val: any) => ({ style: { fontWeight: "bold" } }),
         display: false,
         filterOptions: {
           names: ["1 - 100", "101 - 200", "201 - 400", "401 - 800", "801+"],
@@ -187,10 +180,9 @@ function Quotes() {
     },
     {
       name: "author_name",
-      label: "Author First Initial",
+      label: "Author's First Initial",
       options: {
         filter: true,
-        setCellHeaderProps: (val: any) => ({ style: { fontWeight: "bold" } }),
         display: false,
         filterOptions: {
           names: ["A - E", "F - J", "K - O", "P - T", "U - Z"],

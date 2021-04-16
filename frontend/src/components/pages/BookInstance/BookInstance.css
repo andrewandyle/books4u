@@ -20,6 +20,7 @@
 .author-link {
   display: flex;
   width: 300px;
+  margin: 40px;
   flex-direction: column;
   text-decoration: none;
   padding: 0;
@@ -28,6 +29,7 @@
   font-size: 24px;
   font-weight: 500;
   text-align: center;
+  border: 10px solid #654321;
 }
 
 .author-link img {
