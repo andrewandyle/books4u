@@ -11,6 +11,8 @@ import {
 } from "react-instantsearch-dom";
 import "instantsearch.css/themes/satellite.css";
 import Placeholder from "../../media/placeholder.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faMars, faVenus } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 // My Algolia Account:
@@ -52,13 +54,34 @@ const bookHits = ({ hits }: any) => (
             </div>
           </div>
           <div className="d-flex flex-wrap">
-            <div className="attr-item">
-              <b>Average Rating: </b>
-              {hit.avg_rating ? hit.avg_rating.toFixed(2) : "N/A"}
+            <div className="attr-item d-flex">
+              <b style={{ marginRight: 5 }}>Average Rating: </b>
+              {hit.avg_rating ? (
+                <div>
+                  <FontAwesomeIcon icon={faStar} style={{ marginRight: 5 }} />
+                  <Highlight
+                    attribute="avg_rating"
+                    hit={hit}
+                    tagName="mark"
+                  />{" "}
+                  (
+                  <Highlight attribute="num_ratings" hit={hit} tagName="mark" />
+                  )
+                </div>
+              ) : (
+                "N/A"
+              )}
             </div>
-            <div className="attr-item">
-              <b>Price: </b>{" "}
-              <Highlight attribute="price" hit={hit} tagName="mark" />
+            <div className="attr-item d-flex">
+              <b style={{ marginRight: 5 }}>Price: </b>
+              {hit.price ? (
+                <div>
+                  $
+                  <Highlight attribute="price" hit={hit} tagName="mark" />
+                </div>
+              ) : (
+                "N/A"
+              )}
             </div>
           </div>
           <div className="d-flex flex-wrap">
@@ -68,7 +91,7 @@ const bookHits = ({ hits }: any) => (
             </div>
             <div className="attr-item">
               <b>Maturity Rating: </b>
-              {hit.maturity_rating === "MATURE" ? "Mature" : "Not Mature"}
+              <Highlight attribute="maturity_rating" hit={hit} tagName="mark" />
             </div>
           </div>
         </div>
@@ -113,12 +136,24 @@ const authorHits = ({ hits }: any) => (
             </div>
           </div>
           <div className="d-flex flex-wrap">
-            <div className="attr-item">
-              <b>Average Rating: </b>
-              {hit.avg_rating ? hit.avg_rating.toFixed(2) : "N/A"}
+            <div className="attr-item d-flex">
+              <b style={{ marginRight: 5 }}>Average Rating: </b>
+              {hit.avg_rating ? (
+                <div>
+                  <FontAwesomeIcon icon={faStar} style={{ marginRight: 5 }} />
+                  <Highlight attribute="avg_rating" hit={hit} tagName="mark" />
+                </div>
+              ) : (
+                "N/A"
+              )}
             </div>
             <div className="attr-item">
-              <b>Gender: </b>{" "}
+              <b style={{ marginRight: 5 }}>Gender: </b>{" "}
+              {hit.gender === "M" ? (
+                <FontAwesomeIcon icon={faMars} />
+              ) : (
+                <FontAwesomeIcon icon={faVenus} />
+              )}
               <Highlight attribute="gender" hit={hit} tagName="mark" />
             </div>
           </div>

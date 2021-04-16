@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import useAxios from "axios-hooks";
 import Loading from "../../features/Loading";
 import QuoteItem from "../../templates/Grid/items/QuoteItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function BookInstance() {
   const url = window.location.href;
@@ -43,7 +45,8 @@ function BookInstance() {
               </u>
               {data.book.avg_rating ? (
                 <div>
-                  &#9733; {data.book.avg_rating} ({data.book.num_ratings})
+                  <FontAwesomeIcon icon={faStar} style={{ marginLeft: 5 }} />{" "}
+                  {data.book.avg_rating} ({data.book.num_ratings})
                 </div>
               ) : (
                 <div>N/A</div>

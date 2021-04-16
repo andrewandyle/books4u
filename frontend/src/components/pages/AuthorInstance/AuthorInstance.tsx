@@ -3,6 +3,14 @@ import useAxios from "axios-hooks";
 import Loading from "../../features/Loading";
 import BookItem from "../../templates/Grid/items/BookItem";
 import QuoteItem from "../../templates/Grid/items/QuoteItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faStar,
+  faCheck,
+  faTimes,
+  faMars,
+  faVenus,
+} from "@fortawesome/free-solid-svg-icons";
 
 function AuthorInstance() {
   const url = window.location.href;
@@ -49,9 +57,15 @@ function AuthorInstance() {
                 <b>On Tour:</b>
               </u>
               {data.author.on_tour ? (
-                <div>&#x2705; Yes</div>
+                <div>
+                  <FontAwesomeIcon icon={faCheck} style={{ marginLeft: 5 }} />{" "}
+                  Yes
+                </div>
               ) : (
-                <div>&#x274C; No</div>
+                <div>
+                  <FontAwesomeIcon icon={faTimes} style={{ marginLeft: 5 }} />{" "}
+                  No
+                </div>
               )}
             </div>
             <div className="col-sm d-flex">
@@ -59,9 +73,15 @@ function AuthorInstance() {
                 <b>Has Bestsellers:</b>
               </u>
               {data.author.bestsellers ? (
-                <div>&#x2705; Yes</div>
+                <div>
+                  <FontAwesomeIcon icon={faCheck} style={{ marginLeft: 5 }} />{" "}
+                  Yes
+                </div>
               ) : (
-                <div>&#x274C; No</div>
+                <div>
+                  <FontAwesomeIcon icon={faTimes} style={{ marginLeft: 5 }} />{" "}
+                  No
+                </div>
               )}
             </div>
             <div className="col-sm">
@@ -83,7 +103,10 @@ function AuthorInstance() {
                 <b>Average Rating:</b>
               </u>{" "}
               {data.author.avg_rating ? (
-                <div>&#9733; {data.author.avg_rating.toFixed(1)}</div>
+                <div>
+                  <FontAwesomeIcon icon={faStar} style={{ marginLeft: 5 }} />{" "}
+                  {data.author.avg_rating.toFixed(2)}
+                </div>
               ) : (
                 <div>N/A</div>
               )}
@@ -93,9 +116,15 @@ function AuthorInstance() {
                 <b>Gender:</b>
               </u>{" "}
               {data.author.gender === "M" ? (
-                <div>Male &#x2642;</div>
+                <div>
+                  <FontAwesomeIcon icon={faMars} style={{ marginLeft: 5 }} />{" "}
+                  Male
+                </div>
               ) : (
-                <div>Female &#x2640;</div>
+                <div>
+                  <FontAwesomeIcon icon={faVenus} style={{ marginLeft: 5 }} />{" "}
+                  Female
+                </div>
               )}
             </div>
           </div>

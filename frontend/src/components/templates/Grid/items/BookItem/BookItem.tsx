@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ReactCardFlip from "react-card-flip";
 import Placeholder from "../../../../media/placeholder.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 function BookItem({ item }: any) {
   const {
@@ -55,7 +57,7 @@ function BookItem({ item }: any) {
             <br />
             {avg_rating ? (
               <div>
-                &#9733; {avg_rating} ({num_ratings})
+                <FontAwesomeIcon icon={faStar} /> {avg_rating} ({num_ratings})
               </div>
             ) : (
               <div>No rating data</div>
