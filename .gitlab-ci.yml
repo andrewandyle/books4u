@@ -64,6 +64,12 @@ books4u_selenium:
     - npm install --global yarn
     - yarn install
     
+    # deploy the website locally
+    - cd ../backend
+    - python app.py&
+    - cd ../frontend
+    - yarn start&
+
     # test the website
     - python3 guitests.py
 
