@@ -21,41 +21,41 @@ class tests(unittest.TestCase):
 
     def test_landing(self):
         # test buttons on landing page
-        self.driver.get("https://booksforyou.me")
+        self.driver.get("http://localhost:3000")
         self.driver.implicitly_wait(self.wait_time)
         assert self.driver.title == "Books For You"
         
         self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/div/a[1]').click()
-        assert "https://booksforyou.me/books" in self.driver.current_url
+        assert "http://localhost:3000/books" in self.driver.current_url
 
-        self.driver.get("https://booksforyou.me")
+        self.driver.get("http://localhost:3000")
         self.driver.implicitly_wait(self.wait_time)
         self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/div/a[2]').click()
-        assert "https://booksforyou.me/authors" in self.driver.current_url
+        assert "http://localhost:3000/authors" in self.driver.current_url
 
-        self.driver.get("https://booksforyou.me")
+        self.driver.get("http://localhost:3000")
         self.driver.implicitly_wait(self.wait_time)
         self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/div/a[3]').click()
-        assert "https://booksforyou.me/quotes" in self.driver.current_url
+        assert "http://localhost:3000/quotes" in self.driver.current_url
 
     def test_navBar(self):
-        self.driver.get("https://booksforyou.me")
+        self.driver.get("http://localhost:3000")
         self.driver.implicitly_wait(self.wait_time)
         self.driver.find_element_by_xpath('//*[@id="root"]/div/nav/div/ul/li[1]/a').click()
-        assert "https://booksforyou.me/about" in self.driver.current_url
+        assert "http://localhost:3000/about" in self.driver.current_url
         
         self.driver.find_element_by_xpath('//*[@id="root"]/div/nav/div/ul/li[2]/a').click()
-        assert "https://booksforyou.me/books" in self.driver.current_url
+        assert "http://localhost:3000/books" in self.driver.current_url
 
         self.driver.find_element_by_xpath('//*[@id="root"]/div/nav/div/ul/li[3]/a').click()
-        assert "https://booksforyou.me/authors" in self.driver.current_url
+        assert "http://localhost:3000/authors" in self.driver.current_url
 
         self.driver.find_element_by_xpath('//*[@id="root"]/div/nav/div/ul/li[4]/a').click()
-        assert "https://booksforyou.me/quotes" in self.driver.current_url
+        assert "http://localhost:3000/quotes" in self.driver.current_url
 
     def test_about(self):
         # go to about us page
-        self.driver.get("https://booksforyou.me/about")
+        self.driver.get("http://localhost:3000/about")
         self.driver.implicitly_wait(self.wait_time)
         # verify title
         title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/h1[1]').text
@@ -71,31 +71,31 @@ class tests(unittest.TestCase):
         assert "Total Unit Tests" in issues
 
     def test_books(self):
-        self.driver.get("https://booksforyou.me/books")
+        self.driver.get("http://localhost:3000/books")
         self.driver.implicitly_wait(self.wait_time)
         # test clicking on item
-        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/a[1]/div/div/div[2]/div')
+        book_card = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[3]/a[1]/div')
         actions = ActionChains(self.driver)
         actions.move_to_element(book_card).click().perform()
-        assert "https://booksforyou.me/book/0" in self.driver.current_url
+        assert "http://localhost:3000/book/0" in self.driver.current_url
         
 
     def test_authors(self):
-        self.driver.get("https://booksforyou.me/authors")
+        self.driver.get("http://localhost:3000/authors")
         self.driver.implicitly_wait(self.wait_time)
         # test clicking on item
         self.driver.find_element_by_xpath('//*[@id="MUIDataTableBodyRow-0"]').click()
-        assert "https://booksforyou.me/author/0" in self.driver.current_url
+        assert "http://localhost:3000/author/0" in self.driver.current_url
 
     def test_quotes(self):
-        self.driver.get("https://booksforyou.me/quotes")
+        self.driver.get("http://localhost:3000/quotes")
         self.driver.implicitly_wait(self.wait_time)
         # test clicking on item
         self.driver.find_element_by_xpath('//*[@id="MUIDataTableBodyRow-0"]').click()
-        assert "https://booksforyou.me/quote/0" in self.driver.current_url
+        assert "http://localhost:3000/quote/0" in self.driver.current_url
 
     def test_book_instance(self):
-        self.driver.get("https://booksforyou.me/book/0")
+        self.driver.get("http://localhost:3000/book/0")
         self.driver.implicitly_wait(self.wait_time)
         # Check title
         title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/h1').text
@@ -106,7 +106,7 @@ class tests(unittest.TestCase):
 
     def test_author_instance(self):
         # Check title
-        self.driver.get("https://booksforyou.me/author/0")
+        self.driver.get("http://localhost:3000/author/0")
         self.driver.implicitly_wait(self.wait_time)
         title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/h1').text
         assert "James Dashner" in title
@@ -116,12 +116,12 @@ class tests(unittest.TestCase):
         assert "The Kill Order" in book
 
         # Check quotes
-        quote = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[2]/a/h3').text
+        quote = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[2]/a/h5').text
         assert "I felt her absence." in quote
 
     def test_quote_instance(self):
         # Check title
-        self.driver.get("https://booksforyou.me/quote/0")
+        self.driver.get("http://localhost:3000/quote/0")
         self.driver.implicitly_wait(self.wait_time)
         title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div[1]/div/h1').text
         assert "I felt her absence." in title
