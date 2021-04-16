@@ -1,21 +1,16 @@
+import React, { useState } from "react";
 import algoliasearch from "algoliasearch";
 import {
   InstantSearch,
   Index,
   SearchBox,
-  Hits,
   Highlight,
-  Configure,
   Pagination,
-  ClearRefinements,
-  RefinementList,
   connectHits,
   Snippet,
-  connectStateResults,
 } from "react-instantsearch-dom";
 import "instantsearch.css/themes/satellite.css";
 import { Link } from "react-router-dom";
-import { htmlToText } from "html-to-text";
 import "./Search.css";
 // My Algolia Account:
 const mySearch = algoliasearch(
@@ -43,7 +38,7 @@ function displayGenres(genre: any) {
   var ret = "";
   for (i = 0; i < genre.length; i++) {
     ret += genre[i];
-    if (i == genre.length - 1) {
+    if (i === genre.length - 1) {
       break;
     }
     ret += ", ";
@@ -69,7 +64,7 @@ const authorHits = ({ hits }: any) => (
             Genres: {displayGenres(hit.genres)}
             <div>
               <strong>Rating: </strong>
-              {Math.round(hit.avg_rating * 100) / 100}
+              {hit.avg_rating.toFixed(2)}
               <strong> Gender: </strong> {hit.gender}
               <strong> Occupation: </strong>
               {hit.occupation}
@@ -100,6 +95,9 @@ const quoteHits = ({ hits }: any) => (
 const CustomQuoteHits = connectHits(quoteHits);
 
 function Search(q: any) {
+  const [bookPage, setBookPage] = useState(1);
+  const [authorPage, setAuthorPage] = useState(1);
+  const [quotePage, setQuotePage] = useState(1);
   return (
     <div className="container">
       <h1>Search Results: {q.q}</h1>
@@ -109,6 +107,16 @@ function Search(q: any) {
         searchClient={mySearch}
         searchState={{
           query: q.q,
+        }}
+        onSearchStateChange={(e) => {
+          const indices = Object.keys(e.indices);
+          if (indices.includes("books_search")) {
+            setBookPage(e.indices.books_search.page);
+          } else if (indices.includes("author_search")) {
+            setAuthorPage(e.indices.author_search.page);
+          } else {
+            setQuotePage(e.indices.quote_search.page);
+          }
         }}
       >
         {/*Hide searchbox on landing page */}
@@ -122,7 +130,7 @@ function Search(q: any) {
               <h1>Books Results</h1>
               <CustomBookHits />
             </div>
-            <Pagination />
+            <Pagination defaultRefinement={bookPage} />
           </Index>
         )}
 
@@ -132,7 +140,7 @@ function Search(q: any) {
               <h1>Author Results</h1>
               <CustomAuthorHits />
             </div>
-            <Pagination />
+            <Pagination defaultRefinement={authorPage} />
           </Index>
         )}
 
@@ -142,7 +150,7 @@ function Search(q: any) {
               <h1>Quote Results</h1>
               <CustomQuoteHits />
             </div>
-            <Pagination />
+            <Pagination defaultRefinement={quotePage} />
           </Index>
         )}
       </InstantSearch>
