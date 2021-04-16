@@ -17,8 +17,8 @@ class tests(unittest.TestCase):
             "./node_modules/chromedriver/bin/chromedriver", options=chrome_options
         )
         self.wait_time = 50
-        #self.root_url = "https://booksforyou.me"
-        self.root_url = "http://localhost:3000"
+        self.root_url = "https://booksforyou.me"
+        # self.root_url = "http://localhost:3000"
         
 
     def test_landing(self):
@@ -197,6 +197,7 @@ class tests(unittest.TestCase):
         assert "Book Results" in book_title
 
         author_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[4]/h2').text
+        print(author_title)
         assert "Author Results" in author_title
 
         quote_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[6]/h2').text
