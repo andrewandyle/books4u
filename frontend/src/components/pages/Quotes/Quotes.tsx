@@ -213,6 +213,19 @@ function Quotes() {
   const getMuiTheme = () =>
     createMuiTheme({
       overrides: {
+        // For the top row with the filter button
+        MuiToolbar: {
+          root: {
+            backgroundColor: "#dfd4c8",
+          },
+        },
+        // For the row with the column headers
+        MUIDataTableHeadCell: {
+          root: {
+            backgroundColor: "#dfd4c8 !important",
+          },
+        },
+        // For every row in the table
         MUIDataTableBodyCell: {
           root: {
             fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -221,6 +234,12 @@ function Quotes() {
             fontSize: 16,
             cursor: "pointer",
             backgroundColor: "#faebd7",
+          },
+        },
+        // For the footer with pagination
+        MuiTableCell: {
+          footer: {
+            backgroundColor: "#dfd4c8",
           },
         },
       },
