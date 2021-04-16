@@ -11,7 +11,8 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
-import { AiOutlineSearch } from "react-icons/ai";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
 
@@ -95,7 +96,7 @@ function Navbar() {
                 variant="info"
                 onClick={() => searchOnClick()}
               >
-                <AiOutlineSearch/>
+                <FontAwesomeIcon icon={faSearch} />
               </Button>
             </InputGroup.Append>
           </InputGroup>

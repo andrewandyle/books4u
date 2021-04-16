@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, useRef, createContext } from "react";
 import BookItem from "../../templates/Grid/items/BookItem";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
@@ -36,6 +36,7 @@ export const FilterContext = createContext<FilterContextObject>({
 });
 
 function Books() {
+  const searchText: any = useRef();
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedData, setDisplayedData] = useState([]);
   const [activeFilters, setActiveFilters] = useState<BookFilters>({});
@@ -68,12 +69,9 @@ function Books() {
     });
   };
 
-  const headerClass = [
-    "text-dark py-2 pr-4 m-0",
-    currentPage ? "border-gray border-right" : "",
-  ]
-    .join(" ")
-    .trim();
+  const searchBooks = (input: string) => {
+    window.location.assign(`/search/q=${searchText.current.value}/model=book`);
+  };
 
   return (
     <div className="container">
@@ -84,11 +82,20 @@ function Books() {
             <div className="form-outline">
               <input
                 type="search"
+                ref={searchText}
                 className="form-control"
                 placeholder="Search books..."
+                onKeyPress={(event: any) => {
+                  if (event.key === "Enter") {
+                    searchBooks(searchText.current.value);
+                  }
+                }}
               />
             </div>
-            <button type="button" className="btn btn-primary">
+            <button
+              className="btn btn-primary"
+              onClick={() => searchBooks(searchText.current.value)}
+            >
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>
@@ -149,7 +156,7 @@ function Books() {
               <BookItem item={book} />
             ))}
             <div className="d-flex flex-row py-4 align-items-center justify-content-between">
-              <h2 className={headerClass}>
+              <h2 className="text-dark py-2 pr-4 m-0">
                 <strong className="text-secondary">{data.results}</strong>{" "}
                 Results
               </h2>

@@ -64,7 +64,7 @@ const authorHits = ({ hits }: any) => (
             Genres: {displayGenres(hit.genres)}
             <div>
               <strong>Rating: </strong>
-              {hit.avg_rating.toFixed(2)}
+              {hit.avg_rating ? hit.avg_rating.toFixed(2) : 'N/A'}
               <strong> Gender: </strong> {hit.gender}
               <strong> Occupation: </strong>
               {hit.occupation}
