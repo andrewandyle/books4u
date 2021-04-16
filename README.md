@@ -16,6 +16,7 @@ Platform for users to browse their favorite books, authors, and quotes and explo
 ## Git SHA
 * Phase 1: ab7919469cf6671145cac295bcda2b90b6b1981b
 * Phase 2: 039cc987dba22d9eac41da93a223f8499f7cda68
+* Phase 3: b64b0f1b4fc3ac135a0fa792202ce0e40fa0f34e
 
 ## Project Leader
 * Phase 1: Andrew Le
