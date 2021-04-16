@@ -197,7 +197,8 @@ class tests(unittest.TestCase):
         assert "Book Results" in book_title
 
         author_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[4]/h2').text
-        print(author_title)
+        quote_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[6]/h2').text
+        print(author_title, quote_title)
         assert "Author Results" in author_title
 
         quote_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[6]/h2').text
