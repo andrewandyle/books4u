@@ -166,7 +166,7 @@ function About() {
             <div className="d-flex flex-wrap justify-content-evenly mb-3">
               <h3 className="text-center">Total Commits: {stats.commits} </h3>
               <h3 className="text-center">Total Issues: {stats.issues}</h3>
-              <h3 className="text-center">Total Unit Tests: 60</h3>
+              <h3 className="text-center">Total Unit Tests: 79</h3>
             </div>
             <div className="d-flex flex-wrap justify-content-evenly">
               <button className="click">

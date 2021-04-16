@@ -1,8 +1,8 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import BookItem from "../../templates/Grid/items/BookItem";
-import Pagination from "../../templates/Pagination";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
+import { Pagination } from "@material-ui/lab";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -37,25 +37,31 @@ export const FilterContext = createContext<FilterContextObject>({
 
 function Books() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [displayedData, setDisplayedData] = useState([]);
   const [activeFilters, setActiveFilters] = useState<BookFilters>({});
   const [{ data, loading }] = useAxios({
     url: "/api/books",
     params: { ...activeFilters },
   });
-  const [currentBooks, setCurrentBooks] = useState([]);
 
-  const onPageChanged = (paginationData: {
-    currentPage: any;
-    totalPages: any;
-    pageLimit: any;
-  }) => {
-    const { currentPage, totalPages, pageLimit } = paginationData;
-    const offset = (currentPage - 1) * pageLimit;
-    const currBooks = data.books.slice(offset, offset + pageLimit);
-    setCurrentBooks(currBooks);
-    setCurrentPage(currentPage);
-    setTotalPages(totalPages);
+  useEffect(() => {
+    if (data && data.books) {
+      setCurrentPage(1);
+      setDisplayedData(data.books.slice(0, numPerPage));
+    }
+  }, [data]);
+
+  const numPerPage = 30;
+
+  const onPageChange = (pageNumber: number) => {
+    const zeroIndexedPage = pageNumber - 1;
+    setDisplayedData(
+      data.books.slice(
+        zeroIndexedPage * numPerPage,
+        zeroIndexedPage * numPerPage + numPerPage
+      )
+    );
+    setCurrentPage(pageNumber);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -139,26 +145,22 @@ function Books() {
           <Loading />
         ) : (
           <div className="row d-flex flex-row py-5">
-            {currentBooks.map((book: any) => (
+            {displayedData.map((book: any) => (
               <BookItem item={book} />
             ))}
             <div className="d-flex flex-row py-4 align-items-center justify-content-between">
               <h2 className={headerClass}>
-                <strong className="text-secondary">{data.books.length}</strong>{" "}
+                <strong className="text-secondary">{data.results}</strong>{" "}
                 Results
               </h2>
-              {currentPage && (
-                <span className="current-page d-inline-block h-100 pl-4 text-secondary">
-                  Page <span className="font-weight-bold">{currentPage}</span> /{" "}
-                  <span className="font-weight-bold">{totalPages}</span>
-                </span>
-              )}
               <Pagination
-                data={data}
-                totalRecords={data.books.length}
-                pageLimit={30}
-                pageNeighbours={1}
-                onPageChanged={onPageChanged}
+                page={currentPage}
+                count={Math.ceil(data.books.length / numPerPage)}
+                onChange={(_, page: number) => onPageChange(page)}
+                showFirstButton
+                showLastButton
+                shape="rounded"
+                color="primary"
               />
             </div>
           </div>
