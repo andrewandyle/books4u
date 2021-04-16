@@ -20,6 +20,11 @@ function Quotes() {
     searchText: search_text,
     search: false,
     filterType: "checkbox" as any,
+    setRowProps: (row: any, dataIndex: any, rowIndex: any) => {
+      return {
+        style: {cursor : "pointer"},
+      };
+    },
     onRowClick: (authorData: any) =>
       window.location.assign("/quote/" + authorData[0]),
   };
@@ -232,7 +237,7 @@ function Quotes() {
   const [{ data, loading }] = useAxios("/api/quotes");
 
   const quoteCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
-    <div>
+    <div className = "row-class">
       <Highlighter
         highlightClassName="highlight-class"
         searchWords={[search_text]}

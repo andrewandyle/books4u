@@ -10,7 +10,6 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 function Authors(props: any) {
   const [search_text, setSearchText] = useState<string>("");
   const text_in: any = React.useRef();
-
   const options = {
     print: false,
     download: false,
@@ -19,17 +18,22 @@ function Authors(props: any) {
     searchText: search_text,
     search: false,
     filterType: "checkbox" as any,
+    setRowProps: (row: any, dataIndex: any, rowIndex: any) => {
+      return {
+        style: {cursor : "pointer"},
+      };
+    },
     onRowClick: (authorData: any) =>
-      window.location.assign("/author/" + authorData[0]),
+      window.location.assign("/author/" + authorData[0])
   };
 
   const [{ data, loading }] = useAxios("/api/authors");
   const authorCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
-    <div>
+    <div className = "row-class">
       <Highlighter
         highlightClassName="highlight-class"
         searchWords={[search_text]}
-        textToHighlight={val + ""}
+        textToHighlight={val + ""} 
       ></Highlighter>
     </div>
   );
