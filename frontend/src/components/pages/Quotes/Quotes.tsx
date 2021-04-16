@@ -182,8 +182,8 @@ function Quotes() {
     }
   ];
 
-  function searchOnClick(){
-    setSearchText(text_in.current.value)
+  function searchOnClick() {
+    window.location.assign("/search/q=" + text_in.current.value + "/model=quote");
   }
 
   const [{ data, loading }] = useAxios("/api/quotes");

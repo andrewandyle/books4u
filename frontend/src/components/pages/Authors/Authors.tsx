@@ -24,8 +24,8 @@ function Authors(props : any) {
       window.location.assign("/author/" + authorData[0]),
   };
 
-  function searchOnClick(){
-    setSearchText(text_in.current.value)
+  function searchOnClick() {
+    window.location.assign("/search/q=" + text_in.current.value + "/model=author");
   }
   const [{ data, loading }] = useAxios("/api/authors");
   const authorCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
