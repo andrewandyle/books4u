@@ -29,7 +29,7 @@ function Authors(props: any) {
 
   const [{ data, loading }] = useAxios("/api/authors");
   const authorCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
-    <div className = "row-class">
+    <div className = "row-class" style = {{"fontSize" : "16px"}}>
       <Highlighter
         highlightClassName="highlight-class"
         searchWords={[search_text]}
