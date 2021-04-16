@@ -10,6 +10,7 @@ import {
   Snippet,
 } from "react-instantsearch-dom";
 import "instantsearch.css/themes/satellite.css";
+import Placeholder from "../../media/placeholder.png";
 import { Link } from "react-router-dom";
 
 // My Algolia Account:
@@ -19,69 +20,128 @@ const mySearch = algoliasearch(
 );
 
 const bookHits = ({ hits }: any) => (
-  <ol>
+  <>
     {hits.map((hit: any) => (
-      <div>
-        {hit.name}
-        {hit.author_names}
-        {hit.genres}
-      </div>
-    ))}
-  </ol>
-);
-
-function displayGenres(genre: any) {
-  if (genre == null) {
-    return "N/A";
-  }
-  var i = 0;
-  var ret = "";
-  for (i = 0; i < genre.length; i++) {
-    ret += genre[i];
-    if (i === genre.length - 1) {
-      break;
-    }
-    ret += ", ";
-  }
-
-  return ret;
-}
-const CustomBookHits = connectHits(bookHits);
-
-const authorHits = ({ hits }: any) => (
-  <ol>
-    {hits.map((hit: any) => (
-      <div className="d-flex flex-row">
-        <img src={hit.image} alt="book" width={50}></img>
-        <div>
-          <Link to={`/author/${hit.author_id}`}>
-            <Highlight attribute="first_name" hit={hit} tagName="mark" />{" "}
-            <Highlight attribute="last_name" hit={hit} tagName="mark" />
+      <div className="d-flex flex-row align-items-start mb-3">
+        <img
+          className="result-image"
+          src={hit.image || Placeholder}
+          alt={`Cover of ${hit.name}`}
+        />
+        <div className="d-flex flex-column">
+          <Link to={`/book/${hit.book_id}`} className="result-link">
+            <Highlight attribute="name" hit={hit} tagName="mark" />
           </Link>
+          <Snippet attribute="description" hit={hit} tagName="mark" />
           <div>
-            <Snippet attribute="spotlight" hit={hit} tagName="mark" />
-            <br />
-            Genres: {displayGenres(hit.genres)}
-            <div>
-              <strong>Rating: </strong>
-              {hit.avg_rating ? hit.avg_rating.toFixed(2) : 'N/A'}
-              <strong> Gender: </strong> {hit.gender}
-              <strong> Occupation: </strong>
-              {hit.occupation}
-              <strong>Number of Published Books: </strong>
-              {hit.num_published_books}
+            <b>Author(s):</b>{" "}
+            <Highlight attribute="author_names" hit={hit} tagName="mark" />
+          </div>
+          <div>
+            <b>Genres:</b>{" "}
+            <Highlight attribute="genres" hit={hit} tagName="mark" />
+          </div>
+          <div className="d-flex flex-wrap">
+            <div className="attr-item">
+              <b>Published Date: </b>
+              <Highlight attribute="year" hit={hit} tagName="mark" />
+            </div>
+            <div className="attr-item">
+              <b>Page Count: </b>
+              <Highlight attribute="page_count" hit={hit} tagName="mark" />
+            </div>
+          </div>
+          <div className="d-flex flex-wrap">
+            <div className="attr-item">
+              <b>Average Rating: </b>
+              {hit.avg_rating ? hit.avg_rating.toFixed(2) : "N/A"}
+            </div>
+            <div className="attr-item">
+              <b>Price: </b>{" "}
+              <Highlight attribute="price" hit={hit} tagName="mark" />
+            </div>
+          </div>
+          <div className="d-flex flex-wrap">
+            <div className="attr-item">
+              <b>Language: </b>
+              <Highlight attribute="language" hit={hit} tagName="mark" />
+            </div>
+            <div className="attr-item">
+              <b>Maturity Rating: </b>
+              {hit.maturity_rating === "MATURE" ? "Mature" : "Not Mature"}
             </div>
           </div>
         </div>
       </div>
     ))}
-  </ol>
+  </>
+);
+
+const CustomBookHits = connectHits(bookHits);
+
+const authorHits = ({ hits }: any) => (
+  <>
+    {hits.map((hit: any) => (
+      <div className="d-flex flex-row align-items-start mb-3">
+        <img
+          className="result-image"
+          src={hit.image}
+          alt={`${hit.first_name} ${hit.last_name}`}
+        />
+        <div className="d-flex flex-column">
+          <Link to={`/author/${hit.author_id}`} className="result-link">
+            <Highlight attribute="first_name" hit={hit} tagName="mark" />{" "}
+            <Highlight attribute="last_name" hit={hit} tagName="mark" />
+          </Link>
+          <Snippet attribute="spotlight" hit={hit} tagName="mark" />
+          <div>
+            <b>Genres:</b>{" "}
+            <Highlight attribute="genres" hit={hit} tagName="mark" />
+          </div>
+          <div className="d-flex flex-wrap">
+            <div className="attr-item">
+              <b>Occupation: </b>
+              <Highlight attribute="occupation" hit={hit} tagName="mark" />
+            </div>
+            <div className="attr-item">
+              <b>Number of Published Books: </b>
+              <Highlight
+                attribute="num_published_books"
+                hit={hit}
+                tagName="mark"
+              />
+            </div>
+          </div>
+          <div className="d-flex flex-wrap">
+            <div className="attr-item">
+              <b>Average Rating: </b>
+              {hit.avg_rating ? hit.avg_rating.toFixed(2) : "N/A"}
+            </div>
+            <div className="attr-item">
+              <b>Gender: </b>{" "}
+              <Highlight attribute="gender" hit={hit} tagName="mark" />
+            </div>
+          </div>
+          <div className="d-flex flex-wrap">
+            <div className="attr-item">
+              <b>Has Bestsellers: </b>
+              {hit.bestsellers ? "Yes" : "No"}
+            </div>
+            <div className="attr-item">
+              <b>On Tour: </b>
+              {hit.on_tour ? "Yes" : "No"}
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </>
 );
 
 const CustomAuthorHits = connectHits(authorHits);
 
 const quoteHits = ({ hits }: any) => (
-  <ol>
+  <>
     {hits.map((hit: any) => (
       <div>
         {hit.author_name}
@@ -89,7 +149,7 @@ const quoteHits = ({ hits }: any) => (
         {hit.tags}
       </div>
     ))}
-  </ol>
+  </>
 );
 
 const CustomQuoteHits = connectHits(quoteHits);
@@ -100,7 +160,9 @@ function Search(q: any) {
   const [quotePage, setQuotePage] = useState(1);
   return (
     <div className="container">
-      <h1>Search Results: {q.q}</h1>
+      <h1 className="mt-5">
+        Search Results: <u>{q.q}</u>
+      </h1>
 
       <InstantSearch
         indexName="books_search"
@@ -127,7 +189,7 @@ function Search(q: any) {
         {(q.model === "all" || q.model === "book") && (
           <Index indexName="books_search">
             <div>
-              <h1>Books Results</h1>
+              <h2 className="mt-4 mb-4">Book Results</h2>
               <CustomBookHits />
             </div>
             <Pagination defaultRefinement={bookPage} />
@@ -137,7 +199,7 @@ function Search(q: any) {
         {(q.model === "all" || q.model === "author") && (
           <Index indexName="author_search">
             <div>
-              <h1>Author Results</h1>
+              <h2 className="mt-4 mb-4">Author Results</h2>
               <CustomAuthorHits />
             </div>
             <Pagination defaultRefinement={authorPage} />
@@ -147,7 +209,7 @@ function Search(q: any) {
         {(q.model === "all" || q.model === "quote") && (
           <Index indexName="quote_search">
             <div>
-              <h1>Quote Results</h1>
+              <h2 className="mt-4 mb-4">Quote Results</h2>
               <CustomQuoteHits />
             </div>
             <Pagination defaultRefinement={quotePage} />

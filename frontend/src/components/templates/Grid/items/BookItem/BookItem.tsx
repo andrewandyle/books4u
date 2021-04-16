@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ReactCardFlip from "react-card-flip";
-import Placeholder from "./media/placeholder.png";
+import Placeholder from "../../../../media/placeholder.png";
 
 function BookItem({ item }: any) {
   const {

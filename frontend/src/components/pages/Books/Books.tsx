@@ -126,11 +126,6 @@ function Books() {
               />
             </div>
             <div className="filter-block d-flex flex-row align-items-center mb-2">
-              <h4>Price</h4>
-              <SortButton field="price" />
-              <FilterButton field="price" min={1} max={60} />
-            </div>
-            <div className="filter-block d-flex flex-row align-items-center mb-2">
               <h4>Year</h4>
               <SortButton field="year" />
               <FilterButton field="year" min={1940} max={2021} />
@@ -144,6 +139,11 @@ function Books() {
               <h4>Average Rating</h4>
               <SortButton field="avg_rating" />
               <FilterButton field="avg_rating" min={0} max={5} step={0.5} />
+            </div>
+            <div className="filter-block d-flex flex-row align-items-center mb-2">
+              <h4>Price</h4>
+              <SortButton field="price" />
+              <FilterButton field="price" min={1} max={60} />
             </div>
           </div>
         </FilterContext.Provider>
