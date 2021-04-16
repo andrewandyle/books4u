@@ -143,10 +143,49 @@ const CustomAuthorHits = connectHits(authorHits);
 const quoteHits = ({ hits }: any) => (
   <>
     {hits.map((hit: any) => (
-      <div>
-        {hit.author_name}
-        {hit.language}
-        {hit.tags}
+      <div className="d-flex flex-row align-items-start mb-3">
+        <div className="d-flex flex-column">
+          <Link to={`/quote/${hit.quote_id}`} className="result-link">
+            <Snippet attribute="quote" hit={hit} tagName="mark" />
+          </Link>
+          <div>
+            <b>Author:</b>{" "}
+            <Highlight attribute="author_name" hit={hit} tagName="mark" />
+          </div>
+          <div>
+            <b>Tags:</b> <Highlight attribute="tags" hit={hit} tagName="mark" />
+          </div>
+          <div className="d-flex flex-wrap">
+            <div className="attr-item">
+              <b>Length: </b>
+              <Highlight attribute="length" hit={hit} tagName="mark" />
+            </div>
+            <div className="attr-item">
+              <b>Language: </b>
+              <Highlight attribute="language" hit={hit} tagName="mark" />
+            </div>
+          </div>
+          <div className="d-flex flex-wrap">
+            <div className="attr-item">
+              <b>Number of Unique Words: </b>
+              <Highlight
+                attribute="num_unique_words"
+                hit={hit}
+                tagName="mark"
+              />
+            </div>
+            <div className="attr-item">
+              <b>Number of Syllables: </b>{" "}
+              <Highlight attribute="num_syllables" hit={hit} tagName="mark" />
+            </div>
+          </div>
+          <div className="d-flex flex-wrap">
+            <div className="attr-item">
+              <b>Score: </b>
+              <Highlight attribute="score" hit={hit} tagName="mark" />
+            </div>
+          </div>
+        </div>
       </div>
     ))}
   </>
@@ -210,6 +249,10 @@ function Search(q: any) {
           <Index indexName="quote_search">
             <div>
               <h2 className="mt-4 mb-4">Quote Results</h2>
+              <p className="score-text">
+                A quote's score indicates the quote's NLP score, or the level of
+                sentiment/emotional tone behind the words.
+              </p>
               <CustomQuoteHits />
             </div>
             <Pagination defaultRefinement={quotePage} />
