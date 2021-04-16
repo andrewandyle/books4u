@@ -52,7 +52,7 @@ function About() {
           email: "saikiran.m00@gmail.com",
           commits: 0,
           issues: 0,
-          unitTests: 10,
+          unitTests: 17,
           image: SaiKiranMaddela,
           bio:
             "Sai is a third year CS student who is interested in AI/ML concepts, specifically neural networks and NLP. He enjoys playing basketball, biking, and reading.",
@@ -64,7 +64,7 @@ function About() {
           email: "rahul.ramaswamy@utexas.edu",
           commits: 0,
           issues: 0,
-          unitTests: 10,
+          unitTests: 16,
           image: RahulRamaswamy,
           bio:
             "Rahul is a junior double majoring in computer science and math. He loves to try new food, travel, play poker, and watch new TV shows/movies.",
@@ -76,7 +76,7 @@ function About() {
           email: "quddlr9015@gmail.com",
           commits: 0,
           issues: 0,
-          unitTests: 10,
+          unitTests: 16,
           image: ByungikHyun,
           bio:
             "Byungik is a senior CS student who likes to watch Premier League soccer games, play League of Legends, and watch old movies.",
@@ -88,7 +88,7 @@ function About() {
           email: "69916283+mjscs@users.noreply.github.com",
           commits: 0,
           issues: 0,
-          unitTests: 10,
+          unitTests: 16,
           image: MariaSierra,
           bio:
             "Maria is a senior CS student who is a fan of hiking, exploring new eateries in Austin, and watching the latest series in the Marvel cinematic universe.",
@@ -166,7 +166,7 @@ function About() {
             <div className="d-flex flex-wrap justify-content-evenly mb-3">
               <h3 className="text-center">Total Commits: {stats.commits} </h3>
               <h3 className="text-center">Total Issues: {stats.issues}</h3>
-              <h3 className="text-center">Total Unit Tests: 54</h3>
+              <h3 className="text-center">Total Unit Tests: 79</h3>
             </div>
             <div className="d-flex flex-wrap justify-content-evenly">
               <button className="click">
@@ -339,7 +339,7 @@ function About() {
         <hr />
         <div>
           <img
-            src="https://static.wikia.nocookie.net/logopedia/images/6/62/Google_Play_Books_icon.png/revision/latest/scale-to-width-down/340?cb=20201206055407"
+            src="https://i.pinimg.com/originals/e2/c4/5d/e2c45dbfac497352070e2adc136d76f4.png"
             alt="Google Books"
             className="tool-icon"
           />

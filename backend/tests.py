@@ -19,7 +19,7 @@ class FlaskTest(unittest.TestCase):
         tester = app.test_client(self)
         response = tester.get("/api/books")
         response_dict = response.json
-        self.assertEqual(set(response_dict), {'books'})
+        self.assertEqual(set(response_dict), {'results', 'books'})
 
     def test_book_status_code(self):
         tester = app.test_client(self)
@@ -53,7 +53,7 @@ class FlaskTest(unittest.TestCase):
         tester = app.test_client(self)
         response = tester.get("/api/authors")
         response_dict = response.json
-        self.assertEqual(set(response_dict), {'authors'})
+        self.assertEqual(set(response_dict), {'results', 'authors'})
 
     def test_author_status_code(self):
         tester = app.test_client(self)
@@ -87,7 +87,7 @@ class FlaskTest(unittest.TestCase):
         tester = app.test_client(self)
         response = tester.get("/api/quotes")
         response_dict = response.json
-        self.assertEqual(set(response_dict), {'quotes'})
+        self.assertEqual(set(response_dict), {'results', 'quotes'})
 
     def test_quote_status_code(self):
         tester = app.test_client(self)
