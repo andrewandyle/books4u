@@ -20,6 +20,7 @@ Platform for users to browse their favorite books, authors, and quotes and explo
 ## Project Leader
 * Phase 1: Andrew Le
 * Phase 2: Sai Kiran Maddela
+* Phase 3: Rahul Ramaswamy
 
 Pipelines: https://gitlab.com/cs373-group14/books4u/-/pipelines
 
@@ -27,11 +28,10 @@ Website: https://booksforyou.me/
 
 ## Completion Times
 
-| Name | Estimated - Phase 1 | Actual - Phase 1 | Estimated - Phase 2| Actual - Phase 2|
-|------|-----------|--------|---------|-------|
-|Andrew Le|15|21|30|60|
-|Sai Kiran Maddela|15|21|25|40|
-|Rahul Ramaswamy|15|21|25|35|
-|Byungik Hyun|15|21|25|30|
-|Maria Sierra|15|21|25|25|
-
+| Name | Estimated - Phase 1 | Actual - Phase 1 | Estimated - Phase 2| Actual - Phase 2| Estimated - Phase 3| Actual - Phase 3|
+|------|-----------|--------|---------|-------|-------|-------|
+|Andrew Le|15|21|30|60|25|50|
+|Sai Kiran Maddela|15|21|25|40|||
+|Rahul Ramaswamy|15|21|25|35|||
+|Byungik Hyun|15|21|25|30|||
+|Maria Sierra|15|21|25|25|||
