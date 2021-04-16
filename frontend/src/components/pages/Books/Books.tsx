@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, createContext } from "react";
 import BookItem from "../../templates/Grid/items/BookItem";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
-import { Pagination } from "@material-ui/lab";
+import Pagination from "@material-ui/lab/Pagination";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";

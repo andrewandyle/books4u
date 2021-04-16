@@ -57,7 +57,7 @@ test("renders About page not undefined", () => {
 /* Simple Unit Tests for About Page */
 test("About page divs check", () => {
   const wrapper = shallow(<About />);
-  expect(wrapper.find("div").length).toEqual(17);
+  expect(wrapper.find("div").length).toEqual(18);
 });
 
 /* Simple Unit Tests for About Page */
@@ -69,13 +69,13 @@ test("About page loading check", () => {
 /* Simple Unit Tests for divs in About Page */
 test("About page divs check", () => {
   const wrapper = shallow(<About />);
-  expect(wrapper.find("div").length).toEqual(17);
+  expect(wrapper.find("div").length).toEqual(18);
 });
 
 /* Simple Unit Tests for images in About Page */
 test("About page images check", () => {
   const wrapper = shallow(<About />);
-  expect(wrapper.find("img").length).toEqual(14);
+  expect(wrapper.find("img").length).toEqual(15);
 });
 
 /* Simple Unit Tests for headers in About Page */
