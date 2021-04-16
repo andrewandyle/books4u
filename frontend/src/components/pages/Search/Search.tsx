@@ -11,7 +11,7 @@ import {
 } from "react-instantsearch-dom";
 import "instantsearch.css/themes/satellite.css";
 import { Link } from "react-router-dom";
-import "./Search.css";
+
 // My Algolia Account:
 const mySearch = algoliasearch(
   "0R6QT9BHIM",

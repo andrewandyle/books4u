@@ -86,10 +86,10 @@
       "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|gif)$": "jest-transform-stub"
     }
   },
-  "proxy": "http://localhost:80",
   "devDependencies": {
     "@types/react-instantsearch-dom": "^6.10.0",
     "css-loader": "^4.3.0",
     "style-loader": "^1.3.0"
-  }
+  },
+  "proxy": "http://localhost:80"
 }

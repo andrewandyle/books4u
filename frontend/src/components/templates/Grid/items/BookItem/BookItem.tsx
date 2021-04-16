@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ReactCardFlip from "react-card-flip";
 import Placeholder from "./media/placeholder.png";
 
-function BookItem(props: any) {
+function BookItem({ item }: any) {
   const {
     book_id,
     name,
@@ -14,9 +14,8 @@ function BookItem(props: any) {
     avg_rating,
     num_ratings,
     image,
-  } = props.item;
+  } = item;
   const [isFlipped, setIsFlipped] = React.useState(false);
-
   return (
     <Link
       to={`/book/${book_id}`}
