@@ -256,6 +256,18 @@ function About() {
         </div>
         <div>
           <img
+            src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/12_Algolia_logo_logos-512.png"
+            alt="Algolia"
+            className="tool-icon"
+          />
+          <a href="https://www.algolia.com/" target="_blank" rel="noreferrer">
+            Algolia
+          </a>
+          : Search-as-a-service platform used to search across the entire
+          website.
+        </div>
+        <div>
+          <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png"
             alt="AWS"
             className="tool-icon"

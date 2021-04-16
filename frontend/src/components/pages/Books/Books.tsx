@@ -92,10 +92,7 @@ function Books() {
                 }}
               />
             </div>
-            <button
-              className="btn btn-primary"
-              onClick={() => searchBooks()}
-            >
+            <button className="btn btn-primary" onClick={() => searchBooks()}>
               <FontAwesomeIcon icon={faSearch} />
             </button>
           </div>

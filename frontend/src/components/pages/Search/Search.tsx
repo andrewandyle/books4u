@@ -259,6 +259,15 @@ function Search(q: any) {
           </Index>
         )}
       </InstantSearch>
+      <div className="mt-3 pb-3" style={{ color: "#5468ff" }}>
+        <img
+          src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/12_Algolia_logo_logos-512.png"
+          alt="Algolia Logo"
+          width={40}
+          style={{ marginRight: 10 }}
+        />
+        Search powered by Algolia
+      </div>
     </div>
   );
 }
