@@ -31,7 +31,7 @@ Website: https://booksforyou.me/
 | Name | Estimated - Phase 1 | Actual - Phase 1 | Estimated - Phase 2| Actual - Phase 2| Estimated - Phase 3| Actual - Phase 3|
 |------|-----------|--------|---------|-------|-------|-------|
 |Andrew Le|15|21|30|60|25|50|
-|Sai Kiran Maddela|15|21|25|40|||
+|Sai Kiran Maddela|15|21|25|40|25|30|
 |Rahul Ramaswamy|15|21|25|35|||
 |Byungik Hyun|15|21|25|30|||
 |Maria Sierra|15|21|25|25|||

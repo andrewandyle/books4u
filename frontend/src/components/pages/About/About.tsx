@@ -59,7 +59,7 @@ function About() {
         },
         {
           name: "Rahul Ramaswamy",
-          status: "Backend",
+          status: "Phase 3 Leader, Backend",
           username: "rahulramaswamy",
           email: "rahul.ramaswamy@utexas.edu",
           commits: 0,
