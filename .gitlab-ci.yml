@@ -35,7 +35,7 @@ books4u_selenium:
     name: saimadd2021/books4u:selenium_gui_test
   script:
     - cd backend
-    - pip install -r requiremens.txt
+    - pip install -r requirements.txt
     - cd ../frontend
 
     # code from texas votes
