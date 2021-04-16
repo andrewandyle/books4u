@@ -32,6 +32,6 @@ Website: https://booksforyou.me/
 |------|-----------|--------|---------|-------|-------|-------|
 |Andrew Le|15|21|30|60|25|50|
 |Sai Kiran Maddela|15|21|25|40|25|30|
-|Rahul Ramaswamy|15|21|25|35|||
+|Rahul Ramaswamy|15|21|25|35|25|30|
 |Byungik Hyun|15|21|25|30|30|40|
 |Maria Sierra|15|21|25|25|30|30|
