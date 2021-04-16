@@ -40,7 +40,7 @@ function About() {
           email: "andrewandyle@gmail.com",
           commits: 0,
           issues: 0,
-          unitTests: 14,
+          unitTests: 20,
           image: AndrewLe,
           bio:
             "Andrew is a senior CS student who enjoys full-stack app development. Enjoys biking, weightlifting, being a foodie, and playing video games.",
@@ -166,7 +166,7 @@ function About() {
             <div className="d-flex flex-wrap justify-content-evenly mb-3">
               <h3 className="text-center">Total Commits: {stats.commits} </h3>
               <h3 className="text-center">Total Issues: {stats.issues}</h3>
-              <h3 className="text-center">Total Unit Tests: 79</h3>
+              <h3 className="text-center">Total Unit Tests: 85</h3>
             </div>
             <div className="d-flex flex-wrap justify-content-evenly">
               <button className="click">
