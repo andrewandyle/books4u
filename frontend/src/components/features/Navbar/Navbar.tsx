@@ -11,24 +11,19 @@ import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import { AiOutlineSearch } from "react-icons/ai";
 
 function Navbar() {
 
   const textInput: any = React.useRef();
-
+  
   function searchOnClick() {
-    window.location.assign("/search/q=" + textInput.current.value);
+    window.location.assign("/search/q=" + textInput.current.value + "/model=all");
   }
 
   const styles = {
-    tabs: {
-      color: "white",
-      fontFamily: "Raleway",
-      fontSize: "1.1vw",
-      display: "flex",
-    } as React.CSSProperties,
     searchButton: {
-      backgroundColor: "white",
+      backgroundColor: "antiquewhite",
       borderColor: "white",
       color: "black",
       fontSize: "1.1vw",
@@ -75,14 +70,13 @@ function Navbar() {
               Quotes
             </Link>
           </li>
-          
-          <Form
-          inline onSubmit={(e) => {
+        </ul>
+      </div>
+      
+      <Form inline onSubmit={(e) => {
             e.preventDefault();
-          }}
-        >
+          }}>
           <InputGroup>
-            {/* search bar */}
             <FormControl
               className="mr-sm-2"
               type="text"
@@ -95,24 +89,20 @@ function Navbar() {
                 }
               }}
             />
-            {/* search button */}
             <InputGroup.Append style={{fontSize: "1.1vw"}}>
               <Button
                 style={styles.searchButton}
                 variant="info"
                 onClick={() => searchOnClick()}
               >
+                <AiOutlineSearch/>
               </Button>
             </InputGroup.Append>
           </InputGroup>
         </Form>
-
-
-
-          
-        </ul>
-      </div>
     </nav>
+
+    
   );
 }
 

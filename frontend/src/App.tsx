@@ -9,7 +9,7 @@ import AuthorInstance from "./components/pages/AuthorInstance";
 import BookInstance from "./components/pages/BookInstance";
 import QuoteInstance from "./components/pages/QuoteInstance";
 import Navbar from "./components/features/Navbar";
-import Search from "./components/pages/Search/Search.js";
+import Search from "./components/pages/Search/Search";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -21,13 +21,18 @@ function App() {
         <Navbar />
         <Route path="/" exact component={Home} />
         <Route path="/about" component={About} />
-        <Route path="/Books" component={Books} />
+        <Route path="/books" component={Books} />
         <Route path="/authors" component={Authors} />
         <Route path="/quotes" component={Quotes} />
         <Route path="/book" component={BookInstance} />
         <Route path="/author" component={AuthorInstance} />
         <Route path="/quote" component={QuoteInstance} />
-        <Route path="/search" exact component={Search} />
+        <Route
+          path="/search/q=:q/model=:model"
+          render={(props) => (
+            <Search q={props.match.params.q} model={props.match.params.model} />
+          )}
+        />
       </div>
     </BrowserRouter>
   );
