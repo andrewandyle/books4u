@@ -34,10 +34,9 @@ books4u_selenium:
   image:
     name: saimadd2021/books4u:selenium_gui_test
   script:
-    - pip install selenium
-    - pip install requests
-    - pip install pytest
-    - cd frontend
+    - cd backend
+    - pip install -r requiremens.txt
+    - cd ../frontend
 
     # code from texas votes
     # Dependencies for chromedriver, 
