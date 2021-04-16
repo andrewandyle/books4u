@@ -8,7 +8,9 @@ import Quotes from "./components/pages/Quotes";
 import AuthorInstance from "./components/pages/AuthorInstance";
 import BookInstance from "./components/pages/BookInstance";
 import QuoteInstance from "./components/pages/QuoteInstance";
+import Search from "./components/pages/Search";
 import Navbar from "./components/features/Navbar";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Route } from "react-router-dom";
 
@@ -25,6 +27,12 @@ function App() {
         <Route path="/book" component={BookInstance} />
         <Route path="/author" component={AuthorInstance} />
         <Route path="/quote" component={QuoteInstance} />
+        <Route
+          path="/search/q=:q/model=:model"
+          render={(props) => (
+            <Search q={props.match.params.q} model={props.match.params.model} />
+          )}
+        />
       </div>
     </BrowserRouter>
   );

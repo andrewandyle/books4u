@@ -10,7 +10,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Quotes() {
   const [search_text, setSearchText] = useState<string>("");
-  const text_in: any = React.useRef();
+  const searchText: any = React.useRef();
 
   const options = {
     print: false,
@@ -234,6 +234,10 @@ function Quotes() {
     },
   ];
 
+  function searchOnClick() {
+    window.location.assign("/search/q=" + searchText.current.value + "/model=quote");
+  }
+
   const [{ data, loading }] = useAxios("/api/quotes");
 
   const quoteCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
@@ -254,19 +258,19 @@ function Quotes() {
           <div className="form-outline" id="authors-search">
             <input
               type="search"
-              ref={text_in}
+              ref={searchText}
               className="form-control"
               placeholder="Search quotes..."
               onKeyPress={(event: any) => {
                 if (event.key === "Enter") {
-                  setSearchText(text_in.current.value);
+                  setSearchText(searchText.current.value);
                 }
               }}
             />
           </div>
           <button
             className="btn btn-primary"
-            onClick={() => setSearchText(text_in.current.value)}
+            onClick={() => setSearchText(searchText.current.value)}
           >
             <FontAwesomeIcon icon={faSearch} />
           </button>

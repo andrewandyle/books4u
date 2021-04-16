@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import MUIDataTable from "mui-datatables";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
@@ -9,7 +8,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Authors(props: any) {
   const [search_text, setSearchText] = useState<string>("");
-  const text_in: any = React.useRef();
+  const searchText: any = useRef();
   const options = {
     print: false,
     download: false,
@@ -26,6 +25,10 @@ function Authors(props: any) {
     onRowClick: (authorData: any) =>
       window.location.assign("/author/" + authorData[0])
   };
+
+  function searchOnClick() {
+    window.location.assign("/search/q=" + searchText.current.value + "/model=author");
+  }
 
   const [{ data, loading }] = useAxios("/api/authors");
   const authorCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
@@ -177,19 +180,19 @@ function Authors(props: any) {
           <div className="form-outline" id="authors-search">
             <input
               type="search"
-              ref={text_in}
+              ref={searchText}
               className="form-control"
               placeholder="Search authors..."
               onKeyPress={(event: any) => {
                 if (event.key === "Enter") {
-                  setSearchText(text_in.current.value);
+                  setSearchText(searchText.current.value);
                 }
               }}
             />
           </div>
           <button
             className="btn btn-primary"
-            onClick={() => setSearchText(text_in.current.value)}
+            onClick={() => setSearchText(searchText.current.value)}
           >
             <FontAwesomeIcon icon={faSearch} />
           </button>
