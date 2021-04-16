@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
 // Icons
@@ -7,29 +7,13 @@ import User from "../../media/user.png";
 import Book from "../../media/book.png";
 import Author from "../../media/author.png";
 import Quote from "../../media/quote.png";
-import Form from "react-bootstrap/Form";
-import FormControl from "react-bootstrap/FormControl";
-import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
-  const textInput: any = React.useRef();
-
-  function searchOnClick() {
-    window.location.assign(
-      "/search/q=" + textInput.current.value + "/model=all"
-    );
-  }
-
-  const styles = {
-    searchButton: {
-      backgroundColor: "antiquewhite",
-      borderColor: "white",
-      color: "black",
-      fontSize: "1.1vw",
-    } as React.CSSProperties,
+  const searchText: any = useRef();
+  const search = () => {
+    window.location.assign(`/search/q=${searchText.current.value}/model=all`);
   };
 
   return (
@@ -75,36 +59,24 @@ function Navbar() {
         </ul>
       </div>
 
-      <Form
-        inline
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <InputGroup>
-          <FormControl
-            className="mr-sm-2"
-            type="text"
-            placeholder="Search"
-            ref={textInput}
-            style={{ fontSize: "1.1vw" }}
+      <div className="search-margin input-group">
+        <div className="form-outline" id="authors-search">
+          <input
+            type="search"
+            ref={searchText}
+            className="form-control"
+            placeholder="Search all pages..."
             onKeyPress={(event: any) => {
               if (event.key === "Enter") {
-                searchOnClick();
+                search();
               }
             }}
           />
-          <InputGroup.Append style={{ fontSize: "1.1vw" }}>
-            <Button
-              style={styles.searchButton}
-              variant="info"
-              onClick={() => searchOnClick()}
-            >
-              <FontAwesomeIcon icon={faSearch} />
-            </Button>
-          </InputGroup.Append>
-        </InputGroup>
-      </Form>
+        </div>
+        <button className="btn btn-primary" onClick={() => search()}>
+          <FontAwesomeIcon icon={faSearch} />
+        </button>
+      </div>
     </nav>
   );
 }

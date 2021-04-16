@@ -1,33 +1,32 @@
-import React from "react";
-import "./Quotes.css";
+// @ts-nocheck
+import React, { useRef } from "react";
 import MUIDataTable from "mui-datatables";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
-import { useState } from "react";
-import Highlighter from "react-highlight-words";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 function Quotes() {
-  const [search_text, setSearchText] = useState<string>("");
-  const searchText: any = React.useRef();
-
+  const searchText: any = useRef();
   const options = {
     print: false,
     download: false,
+    viewColumns: false,
     selectableRowsHideCheckboxes: true,
     jumpToPage: true,
-    searchText: search_text,
     search: false,
     filterType: "checkbox" as any,
     setRowProps: (row: any, dataIndex: any, rowIndex: any) => {
       return {
-        style: {cursor : "pointer"},
+        style: { cursor: "pointer" },
       };
     },
     onRowClick: (authorData: any) =>
       window.location.assign("/quote/" + authorData[0]),
   };
+
+  const [{ data, loading }] = useAxios("/api/quotes");
 
   const columns = [
     {
@@ -43,8 +42,6 @@ function Quotes() {
       label: "Quote",
       options: {
         filter: false,
-        customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          quoteCustomBodyRender(val, tableMeta, updateVal),
       },
     },
     {
@@ -52,8 +49,6 @@ function Quotes() {
       label: "Author",
       options: {
         filter: false,
-        customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          quoteCustomBodyRender(val, tableMeta, updateVal),
       },
     },
     {
@@ -61,8 +56,6 @@ function Quotes() {
       label: "Length",
       options: {
         filter: false,
-        customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          quoteCustomBodyRender(val, tableMeta, updateVal),
       },
     },
     {
@@ -100,10 +93,9 @@ function Quotes() {
       name: "score",
       label: "Score",
       options: {
-        hint: "A quote's score indicates the quote's NLP score, or the level of sentiment/emotional tone behind the words.",
+        hint:
+          "A quote's score indicates the quote's NLP score, or the level of sentiment/emotional tone behind the words.",
         filter: false,
-        customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          quoteCustomBodyRender(val, tableMeta, updateVal),
       },
     },
     {
@@ -132,8 +124,6 @@ function Quotes() {
               (filterVal.indexOf("Portuguese") >= 0 && language === "pt");
             return !show;
           },
-          customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-            quoteCustomBodyRender(val, tableMeta, updateVal),
         },
       },
     },
@@ -163,8 +153,6 @@ function Quotes() {
               (filterVal.indexOf("201+") >= 0 && syllables >= 201);
             return !show;
           },
-          customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-            quoteCustomBodyRender(val, tableMeta, updateVal),
         },
       },
     },
@@ -194,8 +182,6 @@ function Quotes() {
               (filterVal.indexOf("801+") >= 0 && length >= 801);
             return !show;
           },
-          customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-            quoteCustomBodyRender(val, tableMeta, updateVal),
         },
       },
     },
@@ -227,32 +213,37 @@ function Quotes() {
                 name.charCodeAt(0) <= "Z".charCodeAt(0));
             return !show;
           },
-          customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-            quoteCustomBodyRender(val, tableMeta, updateVal),
         },
       },
     },
   ];
 
-  function searchOnClick() {
-    window.location.assign("/search/q=" + searchText.current.value + "/model=quote");
-  }
+  const getMuiTheme = () =>
+    createMuiTheme({
+      overrides: {
+        MUIDataTableBodyCell: {
+          root: {
+            fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+            sans-serif`,
+            fontSize: 16,
+            cursor: "pointer",
+            backgroundColor: "#faebd7",
+          },
+        },
+      },
+    });
 
-  const [{ data, loading }] = useAxios("/api/quotes");
-
-  const quoteCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
-    <div className = "row-class" style = {{"fontSize" : "16px"}}>
-      <Highlighter
-        highlightClassName="highlight-class"
-        searchWords={[search_text]}
-        textToHighlight={val + ""}
-      ></Highlighter>
-    </div>
-  );
+  const searchQuotes = () => {
+    window.location.assign(`/search/q=${searchText.current.value}/model=quote`);
+  };
 
   return (
-    <div className="align-items-center" style={{ textAlign: "center" }}>
-      <div className="container mb-5 mt-5 d-flex flex-row flex-wrap justify-content-between">
+    <div
+      className="container align-items-center"
+      style={{ textAlign: "center" }}
+    >
+      <div className="mb-5 mt-5 d-flex flex-row flex-wrap justify-content-between">
         <h2>Discover Quotes</h2>
         <div className="input-group">
           <div className="form-outline" id="authors-search">
@@ -263,15 +254,12 @@ function Quotes() {
               placeholder="Search quotes..."
               onKeyPress={(event: any) => {
                 if (event.key === "Enter") {
-                  setSearchText(searchText.current.value);
+                  searchQuotes();
                 }
               }}
             />
           </div>
-          <button
-            className="btn btn-primary"
-            onClick={() => setSearchText(searchText.current.value)}
-          >
+          <button className="btn btn-primary" onClick={() => searchQuotes()}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
@@ -279,12 +267,14 @@ function Quotes() {
       {loading ? (
         <Loading />
       ) : (
-        <MUIDataTable
-          title=""
-          data={data.quotes}
-          columns={columns}
-          options={options}
-        />
+        <MuiThemeProvider theme={getMuiTheme()}>
+          <MUIDataTable
+            title=""
+            data={data.quotes}
+            columns={columns}
+            options={options}
+          />
+        </MuiThemeProvider>
       )}
     </div>
   );

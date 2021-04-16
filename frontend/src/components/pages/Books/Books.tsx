@@ -69,7 +69,7 @@ function Books() {
     });
   };
 
-  const searchBooks = (input: string) => {
+  const searchBooks = () => {
     window.location.assign(`/search/q=${searchText.current.value}/model=book`);
   };
 
@@ -78,7 +78,7 @@ function Books() {
       <div className="row d-flex flex-row py-5">
         <div className="d-flex flex-row mb-5 flex-wrap justify-content-between">
           <h2>Discover Books</h2>
-          <div className="books-search input-group">
+          <div className="search-margin input-group">
             <div className="form-outline">
               <input
                 type="search"
@@ -87,14 +87,14 @@ function Books() {
                 placeholder="Search books..."
                 onKeyPress={(event: any) => {
                   if (event.key === "Enter") {
-                    searchBooks(searchText.current.value);
+                    searchBooks();
                   }
                 }}
               />
             </div>
             <button
               className="btn btn-primary"
-              onClick={() => searchBooks(searchText.current.value)}
+              onClick={() => searchBooks()}
             >
               <FontAwesomeIcon icon={faSearch} />
             </button>

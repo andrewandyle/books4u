@@ -1,45 +1,28 @@
-import React, { useState, useRef } from "react";
+// @ts-nocheck
+import React, { useRef } from "react";
 import MUIDataTable from "mui-datatables";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
-import Highlighter from "react-highlight-words";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
 function Authors(props: any) {
-  const [search_text, setSearchText] = useState<string>("");
   const searchText: any = useRef();
   const options = {
     print: false,
     download: false,
+    viewColumns: false,
     selectableRowsHideCheckboxes: true,
     jumpToPage: true,
-    searchText: search_text,
     search: false,
     filterType: "checkbox" as any,
-    setRowProps: (row: any, dataIndex: any, rowIndex: any) => {
-      return {
-        style: {cursor : "pointer"},
-      };
-    },
     onRowClick: (authorData: any) =>
-      window.location.assign("/author/" + authorData[0])
+      window.location.assign("/author/" + authorData[0]),
   };
 
-  function searchOnClick() {
-    window.location.assign("/search/q=" + searchText.current.value + "/model=author");
-  }
-
   const [{ data, loading }] = useAxios("/api/authors");
-  const authorCustomBodyRender = (val: any, tableMeta: any, updateVal: any) => (
-    <div className = "row-class" style = {{"fontSize" : "16px"}}>
-      <Highlighter
-        highlightClassName="highlight-class"
-        searchWords={[search_text]}
-        textToHighlight={val + ""} 
-      ></Highlighter>
-    </div>
-  );
+
   const columns = [
     {
       name: "author_id",
@@ -109,8 +92,6 @@ function Authors(props: any) {
       label: "First Name",
       options: {
         filter: false,
-        customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          authorCustomBodyRender(val, tableMeta, updateVal),
       },
     },
     {
@@ -118,8 +99,6 @@ function Authors(props: any) {
       label: "Last Name",
       options: {
         filter: false,
-        customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          authorCustomBodyRender(val, tableMeta, updateVal),
       },
     },
     {
@@ -127,8 +106,6 @@ function Authors(props: any) {
       label: "No. of Published Books",
       options: {
         filter: false,
-        customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          authorCustomBodyRender(val, tableMeta, updateVal),
       },
     },
     {
@@ -137,8 +114,6 @@ function Authors(props: any) {
       options: {
         filter: true,
         filterType: "dropdown" as any,
-        customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          authorCustomBodyRender(val, tableMeta, updateVal),
       },
     },
     {
@@ -162,19 +137,41 @@ function Authors(props: any) {
             return !show;
           },
         },
-        customBodyRender: (val: any, tableMeta: any, updateVal: any) =>
-          authorCustomBodyRender(
-            Math.round(val * 100) / 100,
-            tableMeta,
-            updateVal
-          ),
+        customBodyRender: (val: any) => {
+          return val ? val.toFixed(2) : "N/A";
+        },
       },
     },
   ];
 
+  const getMuiTheme = () =>
+    createMuiTheme({
+      overrides: {
+        MUIDataTableBodyCell: {
+          root: {
+            fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+            'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+            sans-serif`,
+            fontSize: 16,
+            cursor: "pointer",
+            backgroundColor: "#faebd7",
+          },
+        },
+      },
+    });
+
+  const searchAuthors = () => {
+    window.location.assign(
+      `/search/q=${searchText.current.value}/model=author`
+    );
+  };
+
   return (
-    <div className="align-items-center" style={{ textAlign: "center" }}>
-      <div className="container mb-5 mt-5 d-flex flex-row flex-wrap justify-content-between">
+    <div
+      className="container align-items-center"
+      style={{ textAlign: "center" }}
+    >
+      <div className="mb-5 mt-5 d-flex flex-row flex-wrap justify-content-between">
         <h2>Discover Authors</h2>
         <div className="input-group">
           <div className="form-outline" id="authors-search">
@@ -185,15 +182,12 @@ function Authors(props: any) {
               placeholder="Search authors..."
               onKeyPress={(event: any) => {
                 if (event.key === "Enter") {
-                  setSearchText(searchText.current.value);
+                  searchAuthors();
                 }
               }}
             />
           </div>
-          <button
-            className="btn btn-primary"
-            onClick={() => setSearchText(searchText.current.value)}
-          >
+          <button className="btn btn-primary" onClick={() => searchAuthors()}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
@@ -201,12 +195,14 @@ function Authors(props: any) {
       {loading ? (
         <Loading />
       ) : (
-        <MUIDataTable
-          title=""
-          data={data.authors}
-          columns={columns}
-          options={options}
-        />
+        <MuiThemeProvider theme={getMuiTheme()}>
+          <MUIDataTable
+            title=""
+            data={data.authors}
+            columns={columns}
+            options={options}
+          />
+        </MuiThemeProvider>
       )}
     </div>
   );
