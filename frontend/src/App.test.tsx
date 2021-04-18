@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Books from "./components/pages/Books";
-import BookItem from "./components/templates/Grid/items/BookItem";
+import BookItem from "./components/features/items/BookItem";
 import AuthorInstance from "./components/pages/AuthorInstance";
 import BookInstance from "./components/pages/BookInstance";
 import QuoteInstance from "./components/pages/QuoteInstance";

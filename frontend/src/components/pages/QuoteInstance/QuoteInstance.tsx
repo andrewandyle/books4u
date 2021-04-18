@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useAxios from "axios-hooks";
 import Loading from "../../features/Loading";
-import BookItem from "../../templates/Grid/items/BookItem";
+import BookItem from "../../features/items/BookItem";
 
 function QuoteInstance() {
   const url = window.location.href;

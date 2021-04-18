@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 
-function Authors(props: any) {
+function Authors() {
   const searchText: any = useRef();
   const options = {
     print: false,
@@ -152,6 +152,26 @@ function Authors(props: any) {
           root: {
             backgroundColor: "#dfd4c8",
           },
+        },
+        // For the filtering menu
+        MUIDataTableFilter: {
+          root: {
+            backgroundColor: "#faf0e3",
+          }
+        },
+        // For all dropdowns for filtering and pages
+        MuiList: {
+          root: {
+            backgroundColor: "#faf0e3",
+          }
+        },
+        // For the row that shows the active filters
+        MUIDataTableFilterList: {
+          root: {
+            padding: "0 16px",
+            margin: 0,
+            backgroundColor: "#dfd4c8",
+          }
         },
         // For the row with the column headers
         MUIDataTableHeadCell: {

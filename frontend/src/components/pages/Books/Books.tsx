@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, createContext } from "react";
-import BookItem from "../../templates/Grid/items/BookItem";
+import BookItem from "../../features/items/BookItem";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 import Pagination from "@material-ui/lab/Pagination";
@@ -8,8 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 import Select from "react-select";
-import SortButton from "./features/SortButton";
-import FilterButton from "./features/FilterButton";
+import SortButton from "../../features/filters/SortButton";
+import FilterButton from "../../features/filters/FilterButton";
 
 import genreOptions from "./genreOptions";
 const dropdownGenres = genreOptions.sort().map((genre) => {
@@ -37,6 +37,7 @@ export const FilterContext = createContext<FilterContextObject>({
 
 function Books() {
   const searchText: any = useRef();
+  const numPerPage = 30;
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedData, setDisplayedData] = useState([]);
   const [activeFilters, setActiveFilters] = useState<BookFilters>({});
@@ -51,8 +52,6 @@ function Books() {
       setDisplayedData(data.books.slice(0, numPerPage));
     }
   }, [data]);
-
-  const numPerPage = 30;
 
   const onPageChange = (pageNumber: number) => {
     const zeroIndexedPage = pageNumber - 1;

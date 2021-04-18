@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { FilterContext } from "../../Books";
+import { FilterContext } from "../../../pages/Books/Books";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import RangeFilter from "../RangeFilter";

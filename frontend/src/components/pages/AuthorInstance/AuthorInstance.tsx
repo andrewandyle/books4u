@@ -1,8 +1,8 @@
 import React from "react";
 import useAxios from "axios-hooks";
 import Loading from "../../features/Loading";
-import BookItem from "../../templates/Grid/items/BookItem";
-import QuoteItem from "../../templates/Grid/items/QuoteItem";
+import BookItem from "../../features/items/BookItem";
+import QuoteItem from "../../features/items/QuoteItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStar,

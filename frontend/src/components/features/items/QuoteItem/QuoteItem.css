@@ -4,16 +4,19 @@
 	height: 300px;
 	text-align: center;
 	line-height: 1.4em;
-	margin: 40px auto;
 	background-color: #fff;
 	border: 8px solid #333;
 	border-radius: 30px;
 	padding: 20px;
-  text-decoration: none;
-  color: black;
+  color: #333;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+}
+
+.quote-details {
+	font-size: 24px;
+	font-weight: 500;
 }
 
 .bubble:before,
@@ -36,4 +39,18 @@
 	bottom: -30px;
 	border: 15px solid;
 	border-color: #fff transparent transparent #fff;
+}
+
+.speech-back:before {
+	right: 30px;
+	bottom: -50px;
+	border: 25px solid;
+	border-color: #333 #333 transparent transparent;
+}
+
+.speech-back:after {
+	right: 38px;
+	bottom: -30px;
+	border: 15px solid;
+	border-color: #fff #fff transparent transparent;
 }
