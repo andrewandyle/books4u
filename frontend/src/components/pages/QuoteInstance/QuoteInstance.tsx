@@ -120,7 +120,7 @@ function QuoteInstance() {
           style={{ width: "100%" }}
         >
           {data.related_books.map((book: any) => (
-            <BookItem item={book} excludeAuthor />
+            <BookItem item={book} />
           ))}
         </div>
       </div>
