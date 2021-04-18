@@ -62,12 +62,17 @@ def get_quotes():
     sort_by = None
     for arg in args:
         if arg in rng_query_filters:
-            lower_bound, upper_bound = args[arg].split('-')
-            filters.append(getattr(Quote, arg).between(lower_bound, upper_bound))
+            # Score is an edge case, we don't split with hyphen because score can be negative
+            if arg == "score":
+                lower_bound, upper_bound = args[arg].split(':')
+                filters.append(getattr(Quote, arg).between(lower_bound, upper_bound))
+            else:
+                lower_bound, upper_bound = args[arg].split('-')
+                filters.append(getattr(Quote, arg).between(lower_bound, upper_bound))
         elif arg in arr_query_filters:
             language_filters = []
             for language in args[arg].split(','):
-                language_filters.append(getattr(Quote, arg).any(language))
+                language_filters.append(getattr(Quote, arg) == language)
             filters.append(or_(*language_filters))
         elif arg == "sort_by":
             sort_attr, order = args[arg].split('-')
@@ -94,8 +99,8 @@ def get_book(id):
     return jsonify({
         "book": book_schema.dump(book),
         "related_authors": related_authors,
-        "related_books": related_books,
-        "related_quotes": quotes_schema.dump(book.quotes)
+        "related_quotes": quotes_schema.dump(book.quotes),
+        "related_books": related_books
     })
 
 

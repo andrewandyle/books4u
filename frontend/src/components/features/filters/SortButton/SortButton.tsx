@@ -1,5 +1,9 @@
 import React, { useContext } from "react";
-import { FilterContext } from "../../../pages/Books/Books";
+import { BookFiltersContext, BookFilters } from "../../../pages/Books/Books";
+import {
+  QuoteFiltersContext,
+  QuoteFilters,
+} from "../../../pages/Quotes/Quotes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSort,
@@ -7,8 +11,18 @@ import {
   faSortDown,
 } from "@fortawesome/free-solid-svg-icons";
 
-function SortButton({ field }: any) {
-  const { activeFilters, setActiveFilters } = useContext(FilterContext);
+function SortButton({ field, quotes }: any) {
+  const { bookFilters, setBookFilters } = useContext(BookFiltersContext);
+  const { quoteFilters, setQuoteFilters } = useContext(QuoteFiltersContext);
+  let activeFilters: BookFilters | QuoteFilters, setActiveFilters: Function;
+  if (quotes) {
+    activeFilters = quoteFilters;
+    setActiveFilters = setQuoteFilters;
+  } else {
+    activeFilters = bookFilters;
+    setActiveFilters = setBookFilters;
+  }
+
   return (
     <button
       className="btn btn-primary d-flex align-items-center justify-content-evenly"

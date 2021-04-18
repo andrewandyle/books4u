@@ -25,7 +25,6 @@ function About() {
   const [teamData, setTeamData] = useState(teamMembers);
   const [stats, setStats] = useState({ commits: 0, issues: 0 });
 
-  // TODO: Make this a Flask endpoint instead of fetching data here
   useEffect(() => {
     async function getData() {
       setLoading(true);

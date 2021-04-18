@@ -16,7 +16,7 @@ const dropdownGenres = genreOptions.sort().map((genre) => {
   return { value: genre, label: genre };
 });
 
-interface BookFilters {
+export interface BookFilters {
   genres?: string;
   price?: string;
   year?: string;
@@ -25,14 +25,14 @@ interface BookFilters {
   sort_by?: string;
 }
 
-interface FilterContextObject {
-  activeFilters: BookFilters;
-  setActiveFilters: Function;
+interface BookContextObject {
+  bookFilters: BookFilters;
+  setBookFilters: Function;
 }
 
-export const FilterContext = createContext<FilterContextObject>({
-  activeFilters: {},
-  setActiveFilters: (value: any) => {},
+export const BookFiltersContext = createContext<BookContextObject>({
+  bookFilters: {},
+  setBookFilters: (value: any) => {},
 });
 
 function Books() {
@@ -97,7 +97,12 @@ function Books() {
           </div>
         </div>
 
-        <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+        <BookFiltersContext.Provider
+          value={{
+            bookFilters: activeFilters,
+            setBookFilters: setActiveFilters,
+          }}
+        >
           <div className="filters">
             <div className="filter-block d-flex flex-row align-items-center mb-2">
               <h4>Name</h4>
@@ -142,7 +147,7 @@ function Books() {
               <FilterButton field="price" min={1} max={60} />
             </div>
           </div>
-        </FilterContext.Provider>
+        </BookFiltersContext.Provider>
 
         {loading ? (
           <Loading />

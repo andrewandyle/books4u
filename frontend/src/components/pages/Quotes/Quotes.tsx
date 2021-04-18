@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, createContext } from "react";
 import QuoteItem from "../../features/items/QuoteItem";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
@@ -7,12 +7,48 @@ import Pagination from "@material-ui/lab/Pagination";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
+import Select from "react-select";
+import SortButton from "../../features/filters/SortButton";
+import FilterButton from "../../features/filters/FilterButton";
+
+const languageOptions = [
+  { value: "en", label: "English" },
+  { value: "es", label: "Spanish" },
+  { value: "pt", label: "Portuguese" },
+  { value: "de", label: "German" },
+  { value: "pl", label: "Polish" },
+  { value: "bs", label: "Bosnian" },
+];
+
+export interface QuoteFilters {
+  language?: string;
+  length?: string;
+  num_unique_words?: string;
+  num_syllables?: string;
+  score?: string;
+  sort_by?: string;
+}
+
+interface QuoteContextObject {
+  quoteFilters: QuoteFilters;
+  setQuoteFilters: Function;
+}
+
+export const QuoteFiltersContext = createContext<QuoteContextObject>({
+  quoteFilters: {},
+  setQuoteFilters: (value: any) => {},
+});
+
 function Quotes() {
   const searchText: any = useRef();
   const numPerPage = 30;
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedData, setDisplayedData] = useState([]);
-  const [{ data, loading }] = useAxios("/api/quotes");
+  const [activeFilters, setActiveFilters] = useState<QuoteFilters>({});
+  const [{ data, loading }] = useAxios({
+    url: "/api/quotes",
+    params: { ...activeFilters },
+  });
 
   useEffect(() => {
     if (data && data.quotes) {
@@ -41,13 +77,10 @@ function Quotes() {
   };
 
   return (
-    <div
-      className="container align-items-center"
-      style={{ textAlign: "center" }}
-    >
+    <div className="container">
       <div className="mb-5 mt-5 d-flex flex-row flex-wrap justify-content-between">
         <h2>Discover Quotes</h2>
-        <div className="input-group">
+        <div className="search-margin input-group">
           <div className="form-outline" id="authors-search">
             <input
               type="search"
@@ -66,6 +99,60 @@ function Quotes() {
           </button>
         </div>
       </div>
+
+      <QuoteFiltersContext.Provider
+        value={{
+          quoteFilters: activeFilters,
+          setQuoteFilters: setActiveFilters,
+        }}
+      >
+        <div className="filters">
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Quote Text</h4>
+            <SortButton quotes field="quote" />
+          </div>
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Language</h4>
+            <Select
+              className="dropdown"
+              options={languageOptions}
+              placeholder="Choose languages..."
+              onChange={(e: any) => {
+                const languageList = e.map((s: any) => s.value);
+                setActiveFilters({
+                  ...activeFilters,
+                  language:
+                    languageList.length > 0 ? languageList.join(",") : null,
+                });
+              }}
+              isMulti
+              isClearable
+              isSearchable
+            />
+          </div>
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Length</h4>
+            <SortButton quotes field="length" />
+            <FilterButton quotes field="length" min={0} max={3100} />
+          </div>
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Unique Words</h4>
+            <SortButton quotes field="num_unique_words" />
+            <FilterButton quotes field="num_unique_words" min={0} max={300} />
+          </div>
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Syllables</h4>
+            <SortButton quotes field="num_syllables" />
+            <FilterButton quotes field="num_syllables" min={0} max={700} />
+          </div>
+          <div className="filter-block d-flex flex-row align-items-center mb-2">
+            <h4>Score*</h4>
+            <SortButton quotes field="score" />
+            <FilterButton quotes field="score" min={-1} max={1} step={0.05} />
+          </div>
+        </div>
+      </QuoteFiltersContext.Provider>
+
       {loading ? (
         <Loading />
       ) : (
