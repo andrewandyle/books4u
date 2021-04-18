@@ -6,6 +6,7 @@ import Pagination from "@material-ui/lab/Pagination";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import QuoteIcon from "../../media/quote.png";
 
 import Select from "react-select";
 import SortButton from "../../features/filters/SortButton";
@@ -79,7 +80,15 @@ function Quotes() {
   return (
     <div className="container">
       <div className="mb-5 mt-5 d-flex flex-row flex-wrap justify-content-between">
-        <h2>Discover Quotes</h2>
+        <div className="d-flex align-items-center">
+          <img
+            src={QuoteIcon}
+            alt="Author"
+            width={40}
+            style={{ marginRight: 10 }}
+          />
+          <h2>Discover Quotes</h2>
+        </div>
         <div className="search-margin input-group">
           <div className="form-outline" id="authors-search">
             <input
@@ -152,6 +161,10 @@ function Quotes() {
           </div>
         </div>
       </QuoteFiltersContext.Provider>
+      <p className="mt-3" style={{ fontSize: 14 }}>
+        * A quote's score indicates the quote's NLP score, or the level of
+        sentiment/emotional tone behind the words.
+      </p>
 
       {loading ? (
         <Loading />
@@ -162,7 +175,10 @@ function Quotes() {
           ))}
           <div className="d-flex flex-row py-4 align-items-center justify-content-between">
             <h2 className="text-dark py-2 pr-4 m-0">
-              <strong className="text-secondary">{data.results}</strong> Results
+              <strong className="text-secondary">
+                {data.results > 0 ? data.results : "No"}
+              </strong>{" "}
+              Results
             </h2>
             <Pagination
               page={currentPage}

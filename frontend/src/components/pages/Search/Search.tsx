@@ -9,11 +9,20 @@ import {
   connectHits,
   Snippet,
 } from "react-instantsearch-dom";
+import { Link } from "react-router-dom";
 import "instantsearch.css/themes/satellite.css";
+
 import Placeholder from "../../media/placeholder.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faMars, faVenus } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import {
+  faSearch,
+  faStar,
+  faMars,
+  faVenus,
+} from "@fortawesome/free-solid-svg-icons";
+import BookIcon from "../../media/book.png";
+import AuthorIcon from "../../media/author.png";
+import QuoteIcon from "../../media/quote.png";
 
 // My Algolia Account:
 const mySearch = algoliasearch(
@@ -234,9 +243,15 @@ function Search(q: any) {
   const [quotePage, setQuotePage] = useState(1);
   return (
     <div className="container">
-      <h1 className="mt-5">
-        Search Results: <u>{q.q}</u>
-      </h1>
+      <div className="d-flex align-items-center mt-5">
+        <FontAwesomeIcon
+          icon={faSearch}
+          style={{ fontSize: 30, marginRight: 15 }}
+        />
+        <h1>
+          Search Results: <u>{q.q}</u>
+        </h1>
+      </div>
 
       <InstantSearch
         indexName="books_search"
@@ -263,7 +278,15 @@ function Search(q: any) {
         {(q.model === "all" || q.model === "book") && (
           <Index indexName="books_search">
             <div>
-              <h2 className="mt-4 mb-4">Book Results</h2>
+              <div className="mt-4 mb-4 d-flex align-items-center">
+                <img
+                  src={BookIcon}
+                  alt="Book"
+                  width={40}
+                  style={{ marginRight: 15 }}
+                />
+                <h2>Book Results</h2>
+              </div>
               <CustomBookHits />
             </div>
             <Pagination defaultRefinement={bookPage} />
@@ -273,7 +296,15 @@ function Search(q: any) {
         {(q.model === "all" || q.model === "author") && (
           <Index indexName="author_search">
             <div>
-              <h2 className="mt-4 mb-4">Author Results</h2>
+              <div className="mt-4 mb-4 d-flex align-items-center">
+                <img
+                  src={AuthorIcon}
+                  alt="Author"
+                  width={40}
+                  style={{ marginRight: 15 }}
+                />
+                <h2>Author Results</h2>
+              </div>
               <CustomAuthorHits />
             </div>
             <Pagination defaultRefinement={authorPage} />
@@ -283,7 +314,15 @@ function Search(q: any) {
         {(q.model === "all" || q.model === "quote") && (
           <Index indexName="quote_search">
             <div>
-              <h2 className="mt-4 mb-4">Quote Results</h2>
+              <div className="mt-4 mb-4 d-flex align-items-center">
+                <img
+                  src={QuoteIcon}
+                  alt="Quote"
+                  width={40}
+                  style={{ marginRight: 10 }}
+                />
+                <h2>Quote Results</h2>
+              </div>
               <p className="score-text">
                 A quote's score indicates the quote's NLP score, or the level of
                 sentiment/emotional tone behind the words.

@@ -1,11 +1,13 @@
 // @ts-nocheck
 import React, { useRef } from "react";
 import MUIDataTable from "mui-datatables";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
+import AuthorIcon from "../../media/author.png";
 
 function Authors() {
   const searchText: any = useRef();
@@ -157,13 +159,13 @@ function Authors() {
         MUIDataTableFilter: {
           root: {
             backgroundColor: "#faf0e3",
-          }
+          },
         },
         // For all dropdowns for filtering and pages
         MuiList: {
           root: {
             backgroundColor: "#faf0e3",
-          }
+          },
         },
         // For the row that shows the active filters
         MUIDataTableFilterList: {
@@ -171,7 +173,7 @@ function Authors() {
             padding: "0 16px",
             margin: 0,
             backgroundColor: "#dfd4c8",
-          }
+          },
         },
         // For the row with the column headers
         MUIDataTableHeadCell: {
@@ -211,7 +213,15 @@ function Authors() {
       style={{ textAlign: "center" }}
     >
       <div className="mb-5 mt-5 d-flex flex-row flex-wrap justify-content-between">
-        <h2>Discover Authors</h2>
+        <div className="d-flex align-items-center">
+          <img
+            src={AuthorIcon}
+            alt="Author"
+            width={40}
+            style={{ marginRight: 15 }}
+          />
+          <h2>Discover Authors</h2>
+        </div>
         <div className="input-group">
           <div className="form-outline" id="authors-search">
             <input

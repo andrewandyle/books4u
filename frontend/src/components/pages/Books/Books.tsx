@@ -6,6 +6,7 @@ import Pagination from "@material-ui/lab/Pagination";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import BookIcon from "../../media/book.png";
 
 import Select from "react-select";
 import SortButton from "../../features/filters/SortButton";
@@ -76,7 +77,15 @@ function Books() {
     <div className="container">
       <div className="row d-flex flex-row py-5">
         <div className="d-flex flex-row mb-5 flex-wrap justify-content-between">
-          <h2>Discover Books</h2>
+          <div className="d-flex align-items-center">
+            <img
+              src={BookIcon}
+              alt="Book"
+              width={40}
+              style={{ marginRight: 15 }}
+            />
+            <h2>Discover Books</h2>
+          </div>
           <div className="search-margin input-group">
             <div className="form-outline">
               <input
@@ -158,7 +167,9 @@ function Books() {
             ))}
             <div className="d-flex flex-row py-4 align-items-center justify-content-between">
               <h2 className="text-dark py-2 pr-4 m-0">
-                <strong className="text-secondary">{data.results}</strong>{" "}
+                <strong className="text-secondary">
+                  {data.results > 0 ? data.results : "No"}
+                </strong>{" "}
                 Results
               </h2>
               <Pagination
