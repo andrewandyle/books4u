@@ -1,6 +1,6 @@
 import React from "react";
 import GenresChart from "./charts/GenresChart";
-import YearsChart from "./charts/YearsChart";
+import ScoresChart from "./charts/ScoresChart";
 import ChartIcon from "../../media/chart.png";
 
 function OurVisualizations() {
@@ -16,7 +16,7 @@ function OurVisualizations() {
         <h2>Our Visualizations</h2>
       </div>
       <GenresChart />
-      <YearsChart />
+      <ScoresChart />
     </div>
   );
 }
