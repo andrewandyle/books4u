@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Loading from "../../../../features/Loading";
 import useAxios from "axios-hooks";
+import { useHistory } from "react-router-dom";
 import {
   ScatterChart,
   Scatter,
@@ -14,6 +15,7 @@ import {
 function RatingsChart() {
   const [{ data, loading }] = useAxios("/api/authors");
   const [displayedData, setDisplayedData] = useState<object[]>([]);
+  const history = useHistory();
 
   useEffect(() => {
     if (data) {
@@ -21,6 +23,7 @@ function RatingsChart() {
       data.authors.forEach((author: any) => {
         if (author.avg_rating) {
           ratingsToBooks.push({
+            author_id: author.author_id,
             name: `${author.first_name} ${author.last_name || ""}`,
             avg_rating: author.avg_rating.toFixed(2),
             num_published_books: author.num_published_books,
@@ -30,6 +33,10 @@ function RatingsChart() {
       setDisplayedData(ratingsToBooks);
     }
   }, [data]);
+
+  const goToAuthorPage = (id: number) => {
+    history.push(`/author/${id}`);
+  };
 
   return (
     <div className="mb-5 d-flex flex-column align-items-center">
@@ -52,7 +59,12 @@ function RatingsChart() {
             tickCount={4}
           />
           <ZAxis type="category" dataKey="name" name="Author" />
-          <Scatter data={displayedData} fill="#4169E1" />
+          <Scatter
+            data={displayedData}
+            fill="#4169E1"
+            style={{ cursor: "pointer" }}
+            onClick={(data) => goToAuthorPage(data.author_id)}
+          />
           <Tooltip />
         </ScatterChart>
       )}

@@ -1,7 +1,7 @@
 import React from "react";
 import DisasterTypesChart from "./charts/DisasterTypesChart";
-// import RatingsChart from "./charts/RatingsChart";
-// import ScoresChart from "./charts/ScoresChart";
+import PopulationDensityChart from "./charts/PopulationDensityChart";
+import OrganizationsChart from "./charts/OrganizationsChart";
 import ChartIcon from "../../media/chart.png";
 
 function ProviderData() {
@@ -24,8 +24,8 @@ function ProviderData() {
       </h4>
       <h5 className="mb-5">Hover over a chart for more information!</h5>
       <DisasterTypesChart />
-      {/* <RatingsChart />
-      <ScoresChart /> */}
+      <PopulationDensityChart />
+      <OrganizationsChart />
     </div>
   );
 }

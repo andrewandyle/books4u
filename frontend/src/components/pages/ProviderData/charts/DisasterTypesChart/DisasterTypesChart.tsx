@@ -56,7 +56,8 @@ function DisasterTypesChart() {
 
   return (
     <div className="mb-5 d-flex flex-column align-items-center">
-      <h2>Types of Disasters Per Year</h2>
+      <h2>Number of Each Type of Disaster Per Year</h2>
+      <p>This visualization only includes the top 10 most common disasters.</p>
       {loading || displayedData.length <= 0 ? (
         <Loading />
       ) : (
