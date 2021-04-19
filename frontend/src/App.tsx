@@ -8,6 +8,7 @@ import Quotes from "./components/pages/Quotes";
 import AuthorInstance from "./components/pages/AuthorInstance";
 import BookInstance from "./components/pages/BookInstance";
 import QuoteInstance from "./components/pages/QuoteInstance";
+import OurVisualizations from "./components/pages/OurVisualizations";
 import Search from "./components/pages/Search";
 import Navbar from "./components/features/Navbar";
 
@@ -27,6 +28,7 @@ function App() {
         <Route path="/book" component={BookInstance} />
         <Route path="/author" component={AuthorInstance} />
         <Route path="/quote" component={QuoteInstance} />
+        <Route path="/our-visualizations" component={OurVisualizations} />
         <Route
           path="/search/q=:q/model=:model"
           render={(props) => (

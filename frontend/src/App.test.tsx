@@ -117,7 +117,7 @@ test("checks number of filter buttons in books page", () => {
 /*Unit test checks number of div in Books Page */
 test("checks number of divs in books page", () => {
   const wrapper = shallow(<Books />);
-  expect(wrapper.find("div").length).toEqual(12);
+  expect(wrapper.find("div").length).toEqual(13);
 });
 
 /*Unit test checks number of FontAwesomeIcons in Books Page */
