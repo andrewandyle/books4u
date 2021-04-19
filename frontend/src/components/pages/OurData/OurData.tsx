@@ -4,7 +4,7 @@ import RatingsChart from "./charts/RatingsChart";
 import ScoresChart from "./charts/ScoresChart";
 import ChartIcon from "../../media/chart.png";
 
-function OurVisualizations() {
+function OurData() {
   return (
     <div className="container">
       <div className="mt-5 d-flex align-items-center">
@@ -14,7 +14,7 @@ function OurVisualizations() {
           width={40}
           style={{ marginRight: 15 }}
         />
-        <h2>Our Visualizations</h2>
+        <h2>Our Data Visualizations</h2>
       </div>
       <h5 className="mb-5">Hover over a chart for more information!</h5>
       <GenresChart />
@@ -24,4 +24,4 @@ function OurVisualizations() {
   );
 }
 
-export default OurVisualizations;
+export default OurData;

@@ -71,8 +71,8 @@ function ScoresChart() {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis type="category" dataKey="name" />
           <YAxis type="number" />
-          <Bar dataKey="value" fill="#FF89FF" />
           <Tooltip />
+          <Bar dataKey="value" fill="#FF89FF" />
         </BarChart>
       )}
     </div>

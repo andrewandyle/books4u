@@ -58,9 +58,15 @@ function Navbar() {
             </Link>
           </li>
           <li className="navbar-item">
-            <Link to="/our-visualizations" className="nav-link">
+            <Link to="/our-data" className="nav-link">
               <img className="nav-icon" src={Chart} alt="Chart" />
-              Our Visualizations
+              Our Data
+            </Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/provider-data" className="nav-link">
+              <img className="nav-icon" src={Chart} alt="Chart" />
+              Provider Data
             </Link>
           </li>
         </ul>
