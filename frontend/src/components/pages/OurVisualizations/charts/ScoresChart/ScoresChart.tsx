@@ -59,7 +59,6 @@ function ScoresChart() {
         * A quote's score indicates the quote's NLP score, or the level of
         sentiment/emotional tone behind the words.
       </p>
-      <p>(hover for info)</p>
       {loading || displayedData.length <= 0 ? (
         <Loading />
       ) : (

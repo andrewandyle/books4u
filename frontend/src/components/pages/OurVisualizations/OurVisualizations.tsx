@@ -1,12 +1,13 @@
 import React from "react";
 import GenresChart from "./charts/GenresChart";
+import RatingsChart from "./charts/RatingsChart";
 import ScoresChart from "./charts/ScoresChart";
 import ChartIcon from "../../media/chart.png";
 
 function OurVisualizations() {
   return (
     <div className="container">
-      <div className="mt-5 mb-5 d-flex align-items-center">
+      <div className="mt-5 d-flex align-items-center">
         <img
           src={ChartIcon}
           alt="Chart"
@@ -15,7 +16,9 @@ function OurVisualizations() {
         />
         <h2>Our Visualizations</h2>
       </div>
+      <h5 className="mb-5">Hover over a chart for more information!</h5>
       <GenresChart />
+      <RatingsChart />
       <ScoresChart />
     </div>
   );

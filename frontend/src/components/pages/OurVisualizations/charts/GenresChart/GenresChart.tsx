@@ -40,9 +40,8 @@ function GenresChart() {
   }, [data]);
 
   return (
-    <div className="d-flex flex-column align-items-center">
+    <div className="mb-5 d-flex flex-column align-items-center">
       <h2>Number of Books from the Most Popular Genres</h2>
-      <p>(hover for info)</p>
       {loading || displayedData.length <= 0 ? (
         <Loading />
       ) : (
