@@ -40,7 +40,7 @@ function RatingsChart() {
 
   return (
     <div className="mb-5 d-flex flex-column align-items-center">
-      <h2>Average Rating vs Number of Books for All Authors</h2>
+      <h2>Number of Books vs Average Rating for All Authors</h2>
       {loading || displayedData.length <= 0 ? (
         <Loading />
       ) : (
@@ -50,11 +50,20 @@ function RatingsChart() {
             type="number"
             dataKey="num_published_books"
             name="Number of Published Books"
+            label={{
+              value: "Number of Published Books",
+              position: "insideBottom",
+              offset: -5,
+            }}
           />
           <YAxis
             type="number"
             dataKey="avg_rating"
             name="Average Rating"
+            label={{
+              value: "Average Rating",
+              angle: -90,
+            }}
             domain={[2, 5]}
             tickCount={4}
           />

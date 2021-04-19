@@ -68,8 +68,23 @@ function DisasterTypesChart() {
           layout="horizontal"
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis type="category" dataKey="year" />
-          <YAxis />
+          <XAxis
+            type="category"
+            dataKey="year"
+            label={{
+              value: "Year",
+              position: "insideBottom",
+              offset: -5,
+            }}
+          />
+          <YAxis
+            label={{
+              value: "Number of Disasters",
+              angle: -90,
+              position: "insideLeft",
+              offset: 15,
+            }}
+          />
           <Tooltip />
           <Legend />
           <Bar dataKey="Flood" stackId="a" fill="#83d5f5" />

@@ -267,6 +267,18 @@ function About() {
         </div>
         <div>
           <img
+            src="https://raw.githubusercontent.com/d3/d3-logo/master/d3.png"
+            alt="D3"
+            className="tool-icon"
+          />
+          <a href="https://d3js.org/" target="_blank" rel="noreferrer">
+            D3
+          </a>
+          : JavaScript library used to visualize our data and our provider's
+          data (using components from recharts).
+        </div>
+        <div>
+          <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1280px-Amazon_Web_Services_Logo.svg.png"
             alt="AWS"
             className="tool-icon"

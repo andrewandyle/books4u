@@ -44,8 +44,8 @@ function ScoresChart() {
       });
       const displayedMapping: object[] = ranges.map((key: number) => {
         return {
-          name: `${key} to ${(key + 0.09).toFixed(2)}`,
-          value: scoreMapping[key],
+          "Score Range": `${key} to ${(key + 0.09).toFixed(2)}`,
+          "Number of Quotes": scoreMapping[key],
         };
       });
       setDisplayedData(displayedMapping);
@@ -53,7 +53,7 @@ function ScoresChart() {
   }, [data]);
 
   return (
-    <div className="d-flex flex-column align-items-center">
+    <div className="pb-5 d-flex flex-column align-items-center">
       <h2 className="mt-5">Number of Quotes from Score* Ranges</h2>
       <p style={{ fontSize: 14 }}>
         * A quote's score indicates the quote's NLP score, or the level of
@@ -67,12 +67,29 @@ function ScoresChart() {
           height={600}
           data={displayedData}
           layout="horizontal"
+          margin={{ bottom: 10 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis type="category" dataKey="name" />
-          <YAxis type="number" />
+          <XAxis
+            type="category"
+            dataKey="Score Range"
+            label={{
+              value: "Score Range",
+              position: "insideBottom",
+              offset: -5,
+            }}
+          />
+          <YAxis
+            type="number"
+            label={{
+              value: "Number of Quotes",
+              angle: -90,
+              position: "insideLeft",
+              offset: 15,
+            }}
+          />
           <Tooltip />
-          <Bar dataKey="value" fill="#FF89FF" />
+          <Bar dataKey="Number of Quotes" fill="#FF89FF" />
         </BarChart>
       )}
     </div>

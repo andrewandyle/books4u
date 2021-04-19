@@ -69,12 +69,29 @@ function PopulationDensityChart() {
               top: 5,
               right: 50,
               left: 150,
-              bottom: 5,
+              bottom: 10,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" domain={[0, 1000]} />
-            <YAxis type="category" dataKey="name" />
+            <XAxis
+              type="number"
+              domain={[0, 1000]}
+              label={{
+                value: "Population Density (Population / Area (sq. km))",
+                position: "insideBottom",
+                offset: -5,
+              }}
+            />
+            <YAxis
+              type="category"
+              dataKey="name"
+              label={{
+                value: "Country",
+                angle: -90,
+                position: "insideLeft",
+                offset: -70,
+              }}
+            />
             <Tooltip />
             <Bar dataKey="Population Density" fill="#7947ec" />
           </BarChart>
