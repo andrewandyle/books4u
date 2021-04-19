@@ -39,29 +39,32 @@ function GenresChart() {
     }
   }, [data]);
 
-  return loading || displayedData.length <= 0 ? (
-    <Loading />
-  ) : (
-    <div className="mt-5 d-flex flex-column align-items-center">
+  return (
+    <div className="d-flex flex-column align-items-center">
       <h2>Number of Books from the Most Popular Genres</h2>
-      <PieChart
-        width={425}
-        height={425}
-      >
-        <Pie
-          nameKey="name"
-          dataKey="value"
-          data={displayedData}
-          cx={200}
-          cy={200}
-          outerRadius={200}
-        >
-          {displayedData.map((_, index: number) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-        <Tooltip />
-      </PieChart>
+      <p>(hover for info)</p>
+      {loading || displayedData.length <= 0 ? (
+        <Loading />
+      ) : (
+        <PieChart width={425} height={425}>
+          <Pie
+            nameKey="name"
+            dataKey="value"
+            data={displayedData}
+            cx={200}
+            cy={200}
+            outerRadius={200}
+          >
+            {displayedData.map((_, index: number) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip />
+        </PieChart>
+      )}
     </div>
   );
 }
