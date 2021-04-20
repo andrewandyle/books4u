@@ -1,3 +1,11 @@
+.about-header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("./media/library.jpg");
+  color: white;
+  background-position: center;
+  font-size: 20px;
+}
+
 .tool-icon {
   width: 40px;
   margin: 5px 10px;

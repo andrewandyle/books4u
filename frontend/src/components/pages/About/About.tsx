@@ -129,32 +129,34 @@ function About() {
   }
 
   return (
-    <div className="container-fluid pt-5 pb-5">
-      <div className="container">
-        <div className="text-center mb-3">
-          <img src={Logo} width={175} alt="Books4U" />
+    <div className="pb-5">
+      <div className="about-header pt-5 pb-5 mb-5">
+        <div className="container">
+          <div className="text-center mb-3">
+            <img src={Logo} width={175} alt="Books4U" />
+          </div>
+          <h1 className="text-center">About Us</h1>
+          <hr />
+          <p>
+            Curious about what else the author of your favorite book has
+            written? Found an inspiring quote but don't know where it came from?
+          </p>
+          <p>
+            Books For You (Books4U) is a site that aims to help people explore
+            the literary world by browsing and exploring new books and authors.
+            This site is aimed towards people who want to learn more about their
+            favorite literary works or authors, or for those who simply want to
+            get more into reading!
+          </p>
         </div>
-        <h1 className="text-center">About Us</h1>
-        <hr />
-        <p>
-          Curious about what else the author of your favorite book has written?
-          Found an inspiring quote but don't know where it came from?
-        </p>
-        <p>
-          Books For You (Books4U) is a site that aims to help people explore the
-          literary world by browsing and exploring new books and authors. This
-          site is aimed towards people who want to learn more about their
-          favorite literary works or authors, or for those who simply want to
-          get more into reading!
-        </p>
-        <h1 className="text-center">Team</h1>
-        <hr />
       </div>
       {loading ? (
         <Loading />
       ) : (
         <>
           <div className="container">
+            <h1 className="text-center mb-3">Development Team</h1>
+            <hr />
             <div className="d-flex flex-wrap justify-content-evenly">
               {teamData.map((data) => (
                 <TeamMember member={data} key={data.username} />
