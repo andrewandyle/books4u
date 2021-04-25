@@ -9,11 +9,9 @@ book_schema = BookSchema()
 books_schema = BookSchema(many=True, exclude=['authors', 'quotes'])
 author_schema = AuthorSchema()
 authors_schema = AuthorSchema(many=True, exclude=['books', 'quotes'])
+authors_schema_with_books = AuthorSchema(many=True, exclude=['quotes'])
 quote_schema = QuoteSchema()
 quotes_schema = QuoteSchema(many=True, exclude=['books', 'author'])
-
-rng_query_filters = {'year', 'avg_rating', 'page_count', 'price'}
-arr_query_filters = {'genres'}
 
 @app.route("/", defaults = {"path" : ""})
 @app.route("/")
@@ -22,6 +20,10 @@ def index():
 
 @app.route('/api/books', methods=["GET"])
 def get_books():
+    # Range Queries
+    rng_query_filters = {'year', 'avg_rating', 'page_count', 'price'}
+    # Array Queries
+    arr_query_filters = {'genres'}
     filters = []
     args = request.args
     sort_by = None
@@ -51,7 +53,31 @@ def get_authors():
 
 @app.route('/api/quotes', methods=["GET"])
 def get_quotes():
-    all_quotes = Quote.query.all()
+    # Range Queries
+    rng_query_filters = {'length', 'num_unique_words', 'num_syllables', 'score'}
+    # Array Queries
+    arr_query_filters = {'language'}
+    filters = []
+    args = request.args
+    sort_by = None
+    for arg in args:
+        if arg in rng_query_filters:
+            # Score is an edge case, we don't split with hyphen because score can be negative
+            if arg == "score":
+                lower_bound, upper_bound = args[arg].split(':')
+                filters.append(getattr(Quote, arg).between(lower_bound, upper_bound))
+            else:
+                lower_bound, upper_bound = args[arg].split('-')
+                filters.append(getattr(Quote, arg).between(lower_bound, upper_bound))
+        elif arg in arr_query_filters:
+            language_filters = []
+            for language in args[arg].split(','):
+                language_filters.append(getattr(Quote, arg) == language)
+            filters.append(or_(*language_filters))
+        elif arg == "sort_by":
+            sort_attr, order = args[arg].split('-')
+            sort_by = nullslast(getattr(Quote, sort_attr).desc()) if order == 'D' else nullslast(getattr(Quote, sort_attr))
+    all_quotes = Quote.query.filter(*filters).order_by(sort_by).all()
     quotes_list = quotes_schema.dump(all_quotes)
     return jsonify({"results": len(quotes_list), "quotes": quotes_list})
 
@@ -59,10 +85,22 @@ def get_quotes():
 @app.route('/api/book/<id>', methods=["GET"])
 def get_book(id):
     book = Book.query.get(id)
+    related_authors = authors_schema_with_books.dump(book.authors)
+    related_books = []
+    for author in related_authors:
+        # Query for author again in order to get the actual book objects
+        # Books usually have 1-3 authors, so not running too many additional queries
+        author_query = Author.query.get(author['author_id'])
+        author_books = books_schema.dump(author_query.books)
+        for other_book in author_books:
+            # Retrieve other books from the author that aren't the current book
+            if other_book['book_id'] != int(id):
+                related_books.append(other_book)
     return jsonify({
         "book": book_schema.dump(book),
-        "related_authors": authors_schema.dump(book.authors),
-        "related_quotes": quotes_schema.dump(book.quotes)
+        "related_authors": related_authors,
+        "related_quotes": quotes_schema.dump(book.quotes),
+        "related_books": related_books
     })
 
 

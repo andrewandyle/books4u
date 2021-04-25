@@ -7,6 +7,7 @@ import User from "../../media/user.png";
 import Book from "../../media/book.png";
 import Author from "../../media/author.png";
 import Quote from "../../media/quote.png";
+import Chart from "../../media/chart.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -54,6 +55,18 @@ function Navbar() {
             <Link to="/quotes" className="nav-link">
               <img className="nav-icon" src={Quote} alt="Quotes" />
               Quotes
+            </Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/our-data" className="nav-link">
+              <img className="nav-icon" src={Chart} alt="Chart" />
+              Our Data
+            </Link>
+          </li>
+          <li className="navbar-item">
+            <Link to="/provider-data" className="nav-link">
+              <img className="nav-icon" src={Chart} alt="Chart" />
+              Provider Data
             </Link>
           </li>
         </ul>

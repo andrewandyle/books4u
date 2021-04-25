@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import ReactCardFlip from "react-card-flip";
-import Placeholder from "../../../../media/placeholder.png";
+import Placeholder from "../../../media/placeholder.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -17,7 +17,7 @@ function BookItem({ item }: any) {
     num_ratings,
     image,
   } = item;
-  const [isFlipped, setIsFlipped] = React.useState(false);
+  const [isFlipped, setIsFlipped] = useState(false);
   return (
     <Link
       to={`/book/${book_id}`}
@@ -27,7 +27,7 @@ function BookItem({ item }: any) {
       onMouseLeave={() => setIsFlipped(false)}
     >
       <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-        <div className="flip-card d-flex flex-row align-items-center justify-content-start">
+        <div className="book-card d-flex flex-row align-items-center justify-content-start">
           <img
             className="image-container"
             src={image || Placeholder}
@@ -42,27 +42,25 @@ function BookItem({ item }: any) {
             </div>
           </div>
         </div>
-        <div className="flip-card">
-          <div className="back-details">
-            Genre:{" "}
-            {genres
-              ? `${genres[0]}${
-                  genres.length > 1 ? ` + ${genres.length - 1}` : ""
-                }`
-              : "N/A"}
-            <br />
-            Year: {year ? year.substring(0, 4) : "N/A"}
-            <br />
-            Page Count: {page_count || "N/A"}
-            <br />
-            {avg_rating ? (
-              <div>
-                <FontAwesomeIcon icon={faStar} /> {avg_rating} ({num_ratings})
-              </div>
-            ) : (
-              <div>No rating data</div>
-            )}
-          </div>
+        <div className="book-card back-details">
+          Genre:{" "}
+          {genres
+            ? `${genres[0]}${
+                genres.length > 1 ? ` + ${genres.length - 1}` : ""
+              }`
+            : "N/A"}
+          <br />
+          Year: {year ? year.substring(0, 4) : "N/A"}
+          <br />
+          Page Count: {page_count || "N/A"}
+          <br />
+          {avg_rating ? (
+            <div>
+              <FontAwesomeIcon icon={faStar} /> {avg_rating} ({num_ratings})
+            </div>
+          ) : (
+            <div>No rating data</div>
+          )}
         </div>
       </ReactCardFlip>
     </Link>

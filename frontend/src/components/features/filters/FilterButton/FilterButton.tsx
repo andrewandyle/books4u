@@ -1,12 +1,26 @@
 import React, { useState, useContext } from "react";
-import { FilterContext } from "../../Books";
+import { BookFiltersContext, BookFilters } from "../../../pages/Books/Books";
+import {
+  QuoteFiltersContext,
+  QuoteFilters,
+} from "../../../pages/Quotes/Quotes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import RangeFilter from "../RangeFilter";
 
-function FilterButton({ field, ...rest }: any) {
+function FilterButton({ field, quotes, ...rest }: any) {
   const [isSliderVisible, setIsSliderVisible] = useState(false);
-  const { activeFilters, setActiveFilters } = useContext(FilterContext);
+  const { bookFilters, setBookFilters } = useContext(BookFiltersContext);
+  const { quoteFilters, setQuoteFilters } = useContext(QuoteFiltersContext);
+  let activeFilters: BookFilters | QuoteFilters, setActiveFilters: Function;
+  if (quotes) {
+    activeFilters = quoteFilters;
+    setActiveFilters = setQuoteFilters;
+  } else {
+    activeFilters = bookFilters;
+    setActiveFilters = setBookFilters;
+  }
+
   return (
     <>
       <button
@@ -31,7 +45,7 @@ function FilterButton({ field, ...rest }: any) {
               [field]: [
                 field === "price" ? range[0] - 0.01 : range[0],
                 range[1],
-              ].join("-"),
+              ].join(field !== "score" ? "-" : ":"),
             })
           }
           {...rest}

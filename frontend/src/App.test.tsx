@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Books from "./components/pages/Books";
-import BookItem from "./components/templates/Grid/items/BookItem";
+import BookItem from "./components/features/items/BookItem";
 import AuthorInstance from "./components/pages/AuthorInstance";
 import BookInstance from "./components/pages/BookInstance";
 import QuoteInstance from "./components/pages/QuoteInstance";
@@ -57,7 +57,7 @@ test("renders About page not undefined", () => {
 /* Simple Unit Tests for About Page */
 test("About page divs check", () => {
   const wrapper = shallow(<About />);
-  expect(wrapper.find("div").length).toEqual(18);
+  expect(wrapper.find("div").length).toEqual(20);
 });
 
 /* Simple Unit Tests for About Page */
@@ -69,19 +69,19 @@ test("About page loading check", () => {
 /* Simple Unit Tests for divs in About Page */
 test("About page divs check", () => {
   const wrapper = shallow(<About />);
-  expect(wrapper.find("div").length).toEqual(18);
+  expect(wrapper.find("div").length).toEqual(20);
 });
 
 /* Simple Unit Tests for images in About Page */
 test("About page images check", () => {
   const wrapper = shallow(<About />);
-  expect(wrapper.find("img").length).toEqual(15);
+  expect(wrapper.find("img").length).toEqual(16);
 });
 
 /* Simple Unit Tests for headers in About Page */
 test("About page headers check", () => {
   const wrapper = shallow(<About />);
-  expect(wrapper.find("h1").length).toEqual(4);
+  expect(wrapper.find("h1").length).toEqual(3);
 });
 
 /* Simple Unit Tests for headers in About Page */
@@ -117,7 +117,7 @@ test("checks number of filter buttons in books page", () => {
 /*Unit test checks number of div in Books Page */
 test("checks number of divs in books page", () => {
   const wrapper = shallow(<Books />);
-  expect(wrapper.find("div").length).toEqual(12);
+  expect(wrapper.find("div").length).toEqual(13);
 });
 
 /*Unit test checks number of FontAwesomeIcons in Books Page */

@@ -35,7 +35,7 @@ class FlaskTest(unittest.TestCase):
         tester = app.test_client(self)
         response = tester.get("/api/book/0")
         response_dict = response.json
-        self.assertEqual(set(response_dict), {'book', 'related_authors', 'related_quotes'})
+        self.assertEqual(set(response_dict), {'book', 'related_authors', 'related_quotes', 'related_books'})
 
     # Authors
 

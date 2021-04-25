@@ -1,22 +1,23 @@
 import React, { useState, useEffect, useRef, createContext } from "react";
-import BookItem from "../../templates/Grid/items/BookItem";
+import BookItem from "../../features/items/BookItem";
 import Loading from "../../features/Loading";
 import useAxios from "axios-hooks";
 import Pagination from "@material-ui/lab/Pagination";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import BookIcon from "../../media/book.png";
 
 import Select from "react-select";
-import SortButton from "./features/SortButton";
-import FilterButton from "./features/FilterButton";
+import SortButton from "../../features/filters/SortButton";
+import FilterButton from "../../features/filters/FilterButton";
 
 import genreOptions from "./genreOptions";
 const dropdownGenres = genreOptions.sort().map((genre) => {
   return { value: genre, label: genre };
 });
 
-interface BookFilters {
+export interface BookFilters {
   genres?: string;
   price?: string;
   year?: string;
@@ -25,18 +26,19 @@ interface BookFilters {
   sort_by?: string;
 }
 
-interface FilterContextObject {
-  activeFilters: BookFilters;
-  setActiveFilters: Function;
+interface BookContextObject {
+  bookFilters: BookFilters;
+  setBookFilters: Function;
 }
 
-export const FilterContext = createContext<FilterContextObject>({
-  activeFilters: {},
-  setActiveFilters: (value: any) => {},
+export const BookFiltersContext = createContext<BookContextObject>({
+  bookFilters: {},
+  setBookFilters: (value: any) => {},
 });
 
 function Books() {
   const searchText: any = useRef();
+  const numPerPage = 30;
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedData, setDisplayedData] = useState([]);
   const [activeFilters, setActiveFilters] = useState<BookFilters>({});
@@ -51,8 +53,6 @@ function Books() {
       setDisplayedData(data.books.slice(0, numPerPage));
     }
   }, [data]);
-
-  const numPerPage = 30;
 
   const onPageChange = (pageNumber: number) => {
     const zeroIndexedPage = pageNumber - 1;
@@ -77,7 +77,15 @@ function Books() {
     <div className="container">
       <div className="row d-flex flex-row py-5">
         <div className="d-flex flex-row mb-5 flex-wrap justify-content-between">
-          <h2>Discover Books</h2>
+          <div className="d-flex align-items-center">
+            <img
+              src={BookIcon}
+              alt="Book"
+              width={40}
+              style={{ marginRight: 15 }}
+            />
+            <h2>Discover Books</h2>
+          </div>
           <div className="search-margin input-group">
             <div className="form-outline">
               <input
@@ -98,7 +106,12 @@ function Books() {
           </div>
         </div>
 
-        <FilterContext.Provider value={{ activeFilters, setActiveFilters }}>
+        <BookFiltersContext.Provider
+          value={{
+            bookFilters: activeFilters,
+            setBookFilters: setActiveFilters,
+          }}
+        >
           <div className="filters">
             <div className="filter-block d-flex flex-row align-items-center mb-2">
               <h4>Name</h4>
@@ -143,7 +156,7 @@ function Books() {
               <FilterButton field="price" min={1} max={60} />
             </div>
           </div>
-        </FilterContext.Provider>
+        </BookFiltersContext.Provider>
 
         {loading ? (
           <Loading />
@@ -154,7 +167,9 @@ function Books() {
             ))}
             <div className="d-flex flex-row py-4 align-items-center justify-content-between">
               <h2 className="text-dark py-2 pr-4 m-0">
-                <strong className="text-secondary">{data.results}</strong>{" "}
+                <strong className="text-secondary">
+                  {data.results > 0 ? data.results : "No"}
+                </strong>{" "}
                 Results
               </h2>
               <Pagination

@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import useAxios from "axios-hooks";
 import Loading from "../../features/Loading";
-import QuoteItem from "../../templates/Grid/items/QuoteItem";
+import BookItem from "../../features/items/BookItem";
+import QuoteItem from "../../features/items/QuoteItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
@@ -123,6 +124,7 @@ function BookInstance() {
             </Link>
           ))}
         </div>
+
         <h1>Quotes From the Authors</h1>
         <div
           className="d-flex flex-row flex-wrap pt-3 pb-5 align-items-center"
@@ -130,6 +132,16 @@ function BookInstance() {
         >
           {data.related_quotes.map((quote: any) => (
             <QuoteItem item={quote} includeAuthor />
+          ))}
+        </div>
+
+        {data.related_books.length ? <h1>Other Books from the Authors</h1> : <></>}
+        <div
+          className="d-flex flex-row pt-4 pb-5 justify-content-center flex-wrap"
+          style={{ width: "100%" }}
+        >
+          {data.related_books.map((book: any) => (
+            <BookItem item={book} />
           ))}
         </div>
       </div>
