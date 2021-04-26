@@ -34,6 +34,7 @@ function About() {
       let newTeamMembers = [
         {
           name: "Andrew Le",
+          link: "https://aale.dev/",
           status: "Phase 1 Leader, Frontend/Backend",
           username: "andrewandyle",
           email: "andrewandyle@gmail.com",
@@ -46,6 +47,7 @@ function About() {
         },
         {
           name: "Sai Kiran Maddela",
+          link: "https://www.linkedin.com/in/sai-kiran-maddela-108b10182/",
           status: "Phase 2 Leader, Frontend",
           username: "saikm22000",
           email: "saikiran.m00@gmail.com",
@@ -58,6 +60,7 @@ function About() {
         },
         {
           name: "Rahul Ramaswamy",
+          link: "https://www.linkedin.com/in/rahul-ramaswamy-466592187/",
           status: "Phase 3 Leader, Backend",
           username: "rahulramaswamy",
           email: "rahul.ramaswamy@utexas.edu",
@@ -70,6 +73,7 @@ function About() {
         },
         {
           name: "Byungik Hyun",
+          link: "https://www.linkedin.com/in/byungik-hyun-5334b7195/",
           status: "Frontend",
           username: "quddlr9015",
           email: "quddlr9015@gmail.com",
@@ -82,6 +86,7 @@ function About() {
         },
         {
           name: "Maria Sierra",
+          link: "https://www.linkedin.com/in/mariasierra09/",
           status: "Frontend",
           username: "mjscs",
           email: "69916283+mjscs@users.noreply.github.com",
@@ -157,6 +162,7 @@ function About() {
           <div className="container">
             <h1 className="text-center mb-3">Development Team</h1>
             <hr />
+            <p style={{ fontSize: 20 }}>Click on our names to go to our LinkedIns!</p>
             <div className="d-flex flex-wrap justify-content-evenly">
               {teamData.map((data) => (
                 <TeamMember member={data} key={data.username} />

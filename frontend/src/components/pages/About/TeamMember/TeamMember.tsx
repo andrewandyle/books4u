@@ -6,7 +6,14 @@ function TeamMember({ member }: any) {
       <div className="d-flex flex-row p-2 border-bottom member-info">
         <img className="profile-pic" src={member.image} alt="Person" />
         <div className="p-2">
-          <h3>{member.name}</h3>
+          <a
+            href={member.link}
+            target="_blank"
+            rel="noreferrer"
+            style={{ textDecoration: 'none', color: 'white' }}
+          >
+            <h3>{member.name}</h3>
+          </a>
           {member.status}
           <br />
           <b>GitLab ID:</b> {member.username}
