@@ -17,8 +17,8 @@ class tests(unittest.TestCase):
             "./node_modules/chromedriver/bin/chromedriver", options=chrome_options
         )
         self.wait_time = 50
-        self.root_url = "https://booksforyou.me"
-        # self.root_url = "http://localhost:3000"
+        # self.root_url = "https://booksforyou.me"
+        self.root_url = "http://localhost:3000"
         
 
     def test_landing(self):
@@ -70,11 +70,11 @@ class tests(unittest.TestCase):
         self.driver.get(f"{self.root_url}/about")
         self.driver.implicitly_wait(self.wait_time)
         # verify title
-        title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/h1[1]').text
+        title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/div/h1').text
         assert title == "About Us"
         # check different sections of the about page
-        section = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/h1[2]').text
-        assert section == "Team"
+        section = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/h1').text
+        assert section == "Development Team"
         commits = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/div[1]/h3[1]').text
         assert "Total Commits" in commits
         issues = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/div[1]/h3[2]').text
@@ -128,14 +128,14 @@ class tests(unittest.TestCase):
         self.driver.get(f"{self.root_url}/quotes")
         self.driver.implicitly_wait(self.wait_time)
         # test clicking on item
-        self.driver.find_element_by_xpath('//*[@id="MUIDataTableBodyRow-0"]').click()
+        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/a[1]/div').click()
         assert f"{self.root_url}/quote/0" in self.driver.current_url
 
         # Sort by Quote
         self.driver.get(f"{self.root_url}/quotes")
-        initial_quote = self.driver.find_element_by_xpath('//*[@id="MUIDataTableBodyRow-0"]/td[1]/div[2]').text
-        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[3]/table/thead/tr/th[1]/span/button').click()
-        new_quote = self.driver.find_element_by_xpath('//*[@id="MUIDataTableBodyRow-40"]/td[1]/div[2]').text
+        initial_quote = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/a[1]/div/div/div[1]/div/h5').text
+        self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[1]/button').click()
+        new_quote = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/a[1]/div/div/div[1]/div/h5').text
         assert initial_quote != new_quote
 
         # Search From Quote page
@@ -165,7 +165,7 @@ class tests(unittest.TestCase):
         assert "The Kill Order" in book
 
         # Check quotes
-        quote = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[2]/a/h5').text
+        quote = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div[2]/a/div/div/div[1]/div/h5').text
         assert "I felt her absence." in quote
 
     def test_quote_instance(self):
@@ -183,25 +183,24 @@ class tests(unittest.TestCase):
         book = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/div/a[1]/div/div/div[1]/div/div/h4').text
         assert "The Kill Order" in book
 
+    # TODO: Fix
     def test_search_page(self):
         self.driver.get(f"{self.root_url}/search/q=fiction/model=all")
         self.driver.implicitly_wait(self.wait_time)
 
-        title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/h1').text
+        title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/h1').text
         assert "Search Results:" in title
 
-        search_text = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/h1/u').text
+        search_text = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[1]/h1/u').text
         assert "fiction" in search_text
 
-        book_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[2]/h2').text
+        book_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/div[1]/h2').text
         assert "Book Results" in book_title
 
-        author_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[4]/h2').text
-        quote_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[6]/h2').text
-        print(author_title, quote_title)
+        author_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[5]/div[1]/h2').text
         assert "Author Results" in author_title
 
-        quote_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[6]/h2').text
+        quote_title = self.driver.find_element_by_xpath('//*[@id="root"]/div/div/div[7]/div[1]/h2').text
         assert "Quote Results" in quote_title
 
 
