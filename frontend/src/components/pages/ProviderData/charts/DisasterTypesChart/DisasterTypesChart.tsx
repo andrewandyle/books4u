@@ -28,7 +28,7 @@ const types = [
 function DisasterTypesChart() {
   const [{ data, loading }] = useAxios({
     url: "https://disaster-averted.me/api/disasters",
-    params: { results_per_page: 2000 },
+    params: { results_per_page: 2500 },
   });
   const [displayedData, setDisplayedData] = useState<object[]>([]);
 

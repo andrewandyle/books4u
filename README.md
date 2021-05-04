@@ -17,7 +17,7 @@ Platform for users to browse their favorite books, authors, and quotes and explo
 * Phase 1: ab7919469cf6671145cac295bcda2b90b6b1981b
 * Phase 2: 039cc987dba22d9eac41da93a223f8499f7cda68
 * Phase 3: d4c2b073bad3b25ccfc8c5566d89c0a49edafd03
-* Phase 4: 86a78a8a253abc771a2acb0ec2fddb9840298529
+* Phase 4: 88953a61225a780aba42cb85ca28f4a06fac8e79
 
 ## Project Leader
 * Phase 1: Andrew Le
